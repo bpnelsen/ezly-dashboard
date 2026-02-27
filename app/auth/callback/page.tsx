@@ -2,8 +2,6 @@
 
 export const dynamic = 'force-dynamic'
 
-'use client'
-
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase-client'
@@ -13,45 +11,22 @@ export default function AuthCallback() {
 
   useEffect(() => {
     const handleCallback = async () => {
-      // Get the session from URL hash
       const { data, error } = await supabase.auth.getSession()
-      
-      if (error) {
-        console.error('Auth error:', error)
+      if (error || !data.session) {
         router.push('/login')
-        return
-      }
-
-      if (data.session) {
-        // Check if user has a profile
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', data.session.user.id)
-          .single()
-
-        if (!profile) {
-          // Create profile for new OAuth users
-          await supabase.from('profiles').insert({
-            id: data.session.user.id,
-            email: data.session.user.email,
-            full_name: data.session.user.user_metadata?.full_name || '',
-            role: 'contractor',
-          })
-        }
-
-        router.push('/dashboard')
       } else {
-        router.push('/login')
+        router.push('/dashboard')
       }
     }
-
     handleCallback()
   }, [router])
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <p>Authenticating...</p>
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">Redirecting...</h1>
+        <p>Please wait while we authenticate you.</p>
+      </div>
     </div>
   )
 }
