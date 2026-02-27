@@ -3,33 +3,22 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { Users, Mail, MessageSquare, BarChart3, ArrowRight, CheckCircle, Zap } from 'lucide-react'
+import { ArrowRight, CheckCircle, Users, Zap, BarChart3, MessageCircle } from 'lucide-react'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-pink-900/20"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/30 to-white">
       {/* Navigation */}
-      <nav className="border-b border-purple-500/20 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <div className="text-3xl font-bold">
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              EZLY
-            </span>
-          </div>
-          <div className="flex gap-4">
-            <Link href="/login" className="px-4 py-2 text-gray-300 hover:text-white transition">
+      <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/80">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold text-gray-900">EZLY</div>
+          <div className="flex gap-3">
+            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-gray-900 font-medium transition">
               Sign In
             </Link>
             <Link 
               href="/signup"
-              className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:from-purple-500 hover:to-pink-500 hover:shadow-xl hover:shadow-purple-500/50 transition"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition shadow-sm hover:shadow-md"
             >
               Get Started
             </Link>
@@ -37,105 +26,151 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
-        <div className="text-center space-y-8 mb-16">
-          <div className="inline-block">
-            <span className="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/50 rounded-full text-sm font-semibold text-purple-300">
-              ✨ The future of contractor management
-            </span>
+      {/* Hero */}
+      <section className="max-w-7xl mx-auto px-6 py-24 text-center">
+        <div className="space-y-6 mb-12">
+          <div className="inline-block px-4 py-2 bg-blue-100/60 text-blue-700 rounded-full text-sm font-semibold border border-blue-200/50">
+            ✨ The modern way to manage contractors
           </div>
-          <h1 className="text-7xl sm:text-8xl font-bold leading-tight">
-            Scale your
+          
+          <h1 className="text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
+            Connect. Engage.
             <br />
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              contractor network
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
+              Scale Faster.
             </span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Connect with 500+ verified contractors, manage campaigns, and track engagement with enterprise-grade tools built for modern teams.
+          
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Manage 500+ verified contractors, run smart campaigns, and track engagement—all in one beautiful platform built for modern teams.
           </p>
-          <div className="flex gap-4 justify-center pt-4 flex-wrap">
+
+          <div className="flex gap-4 justify-center pt-6">
             <Link 
               href="/signup"
-              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-lg hover:from-purple-500 hover:to-pink-500 hover:shadow-2xl hover:shadow-purple-500/50 transition flex items-center gap-2"
+              className="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg hover:shadow-xl flex items-center gap-2"
             >
-              Start Free <ArrowRight size={20} />
+              Start for Free <ArrowRight size={20} />
             </Link>
             <Link 
               href="/contractor-signup"
-              className="px-8 py-4 border border-purple-500/50 rounded-xl font-bold text-lg hover:bg-purple-500/10 hover:border-purple-400 transition"
+              className="px-8 py-4 border-2 border-gray-300 text-gray-900 rounded-lg font-semibold hover:border-gray-400 hover:bg-gray-50 transition"
             >
               I'm a Contractor
             </Link>
           </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-24">
-          {[
-            { icon: Users, title: '586+ Contractors', desc: 'Pre-verified & ready to engage', color: 'purple' },
-            { icon: Zap, title: 'AI-Powered', desc: 'Smart matching & automation' , color: 'pink'},
-            { icon: MessageSquare, title: 'Real-time Chat', desc: 'Direct communication channel', color: 'cyan' },
-            { icon: BarChart3, title: 'Analytics', desc: 'Track every interaction', color: 'purple' }
-          ].map((feature, i) => {
-            const colorClass = {
-              purple: 'from-purple-500 to-pink-500',
-              pink: 'from-pink-500 to-purple-500',
-              cyan: 'from-cyan-500 to-purple-500'
-            }[feature.color as keyof typeof colorClass]
-            
-            return (
-              <div key={i} className="p-6 rounded-xl bg-white/5 border border-purple-500/30 hover:border-purple-500/60 hover:bg-white/10 transition group backdrop-blur-sm">
-                <div className={`inline-block p-3 rounded-lg bg-gradient-to-br ${colorClass} mb-4 group-hover:scale-110 transition`}>
-                  <feature.icon size={24} className="text-white" />
-                </div>
-                <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.desc}</p>
+        {/* Mock Dashboard Preview */}
+        <div className="mt-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-3xl"></div>
+          <div className="relative bg-white rounded-2xl border border-gray-200/50 p-1 shadow-2xl">
+            <div className="bg-gradient-to-b from-gray-50 to-white rounded-xl p-8 space-y-4">
+              <div className="flex gap-3">
+                <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+                <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+                <div className="w-3 h-3 rounded-full bg-gray-300"></div>
               </div>
-            )
-          })}
+              <div className="grid grid-cols-4 gap-4">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="bg-gradient-to-br from-blue-100/50 to-cyan-100/50 rounded-lg p-4 h-24"></div>
+                ))}
+              </div>
+              <div className="space-y-3">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="h-12 bg-gray-100 rounded-lg"></div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="border-y border-purple-500/20 py-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Why teams choose EZLY
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* Features */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Everything you need to succeed</h2>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              icon: Users,
+              title: 'Verified Contractors',
+              description: 'Access 500+ pre-screened contractors ready to engage'
+            },
+            {
+              icon: Zap,
+              title: 'Smart Campaigns',
+              description: 'Launch and track campaigns with AI-powered insights'
+            },
+            {
+              icon: BarChart3,
+              title: 'Real Analytics',
+              description: 'Monitor engagement, responses, and ROI in real-time'
+            },
+            {
+              icon: MessageCircle,
+              title: 'Direct Messaging',
+              description: 'Communicate with contractors instantly and effectively'
+            },
+            {
+              icon: CheckCircle,
+              title: 'Easy Onboarding',
+              description: 'Get started in minutes with our intuitive interface'
+            },
+            {
+              icon: BarChart3,
+              title: 'Enterprise Grade',
+              description: 'Security, reliability, and support you can trust'
+            }
+          ].map((feature, i) => (
+            <div key={i} className="group p-8 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-gradient-to-br hover:from-blue-50/50 hover:to-cyan-50/50 transition">
+              <div className="inline-block p-3 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-200 transition mb-4">
+                <feature.icon size={24} />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="bg-gradient-to-r from-blue-50 to-cyan-50 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Why teams choose EZLY</h2>
+          
+          <div className="grid md:grid-cols-2 gap-12">
             {[
-              'Save 10+ hours per week on outreach',
-              'Track responses in real-time',
-              'Build lasting contractor relationships',
-              'Automate your entire workflow',
-              'Get AI-powered insights',
-              'Scale without limits'
+              'Save 10+ hours per week on contractor management',
+              'Track every interaction and measure ROI',
+              'Build lasting business relationships',
+              'Automate repetitive outreach tasks',
+              'Access real-time analytics and insights',
+              'Scale without limits or complications'
             ].map((benefit, i) => (
-              <div key={i} className="flex gap-4 items-start p-6 rounded-lg bg-white/5 border border-purple-500/20 hover:border-purple-500/40 transition backdrop-blur-sm">
-                <CheckCircle size={24} className="text-cyan-400 flex-shrink-0 mt-1" />
-                <p className="text-lg text-gray-300">{benefit}</p>
+              <div key={i} className="flex gap-4 items-start">
+                <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={24} />
+                <p className="text-lg text-gray-700">{benefit}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center relative z-10">
-        <h2 className="text-5xl font-bold mb-6">Ready to transform your business?</h2>
-        <p className="text-xl text-gray-400 mb-8">Join forward-thinking teams already using EZLY.</p>
+      {/* CTA */}
+      <section className="max-w-4xl mx-auto px-6 py-24 text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-6">Ready to transform your contractor network?</h2>
+        <p className="text-xl text-gray-600 mb-8">Join forward-thinking teams using EZLY to scale faster.</p>
         <Link 
           href="/signup"
-          className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-lg hover:from-purple-500 hover:to-pink-500 hover:shadow-2xl hover:shadow-purple-500/50 transition"
+          className="inline-block px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg"
         >
-          Start Your Free Trial
+          Start Your Free Trial Today
         </Link>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-purple-500/20 py-8 text-center text-gray-500 relative z-10">
+      <footer className="border-t border-gray-200 py-8 text-center text-gray-600">
         <p>&copy; 2026 EZLY. Building the future of contractor management.</p>
       </footer>
     </div>
