@@ -2,129 +2,186 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase-client'
-import type { ContractorMessage } from '@/lib/types'
+import { useState } from 'react'
+import { Search, Send, MoreVertical, Paperclip, Smile } from 'lucide-react'
 
 export default function MessagesPage() {
-  const [messages, setMessages] = useState<ContractorMessage[]>([])
-  const [loading, setLoading] = useState(true)
-  const [selectedMessage, setSelectedMessage] = useState<ContractorMessage | null>(null)
-  const [reply, setReply] = useState('')
+  const [selectedConversation, setSelectedConversation] = useState(0)
+  const [messageText, setMessageText] = useState('')
 
-  useEffect(() => {
-    loadMessages()
-  }, [])
+  const conversations = [
+    {
+      id: 1,
+      name: 'ABC Electrical',
+      lastMessage: 'Thanks for reaching out! We\'d be interested.',
+      timestamp: '2 min ago',
+      unread: true,
+      avatar: 'A'
+    },
+    {
+      id: 2,
+      name: 'Smith Roofing',
+      lastMessage: 'Can you send more details about the project?',
+      timestamp: '1 hour ago',
+      unread: false,
+      avatar: 'S'
+    },
+    {
+      id: 3,
+      name: 'Green HVAC',
+      lastMessage: 'We\'ll need to review our schedule.',
+      timestamp: '3 hours ago',
+      unread: false,
+      avatar: 'G'
+    },
+    {
+      id: 4,
+      name: 'Elite Plumbing',
+      lastMessage: 'Absolutely, let\'s set up a call.',
+      timestamp: 'Yesterday',
+      unread: false,
+      avatar: 'E'
+    },
+  ]
 
-  const loadMessages = async () => {
-    try {
-      setLoading(true)
-      const { data: session } = await supabase.auth.getSession()
-      if (!session.session) return
-
-      const { data, error } = await supabase
-        .from('contractor_messages')
-        .select('*')
-        .eq('to_user_id', session.session.user.id)
-        .order('created_at', { ascending: false })
-
-      if (error) console.error('Error loading messages:', error)
-      else setMessages(data || [])
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleSendReply = async () => {
-    if (!reply.trim() || !selectedMessage) return
-
-    try {
-      const { data: session } = await supabase.auth.getSession()
-      if (!session.session) return
-
-      await supabase.from('contractor_messages').insert({
-        from_user_id: session.session.user.id,
-        to_user_id: selectedMessage.from_user_id,
-        message: reply,
-        read: false,
-      })
-
-      setReply('')
-      loadMessages()
-    } catch (error) {
-      console.error('Error sending reply:', error)
-    }
-  }
+  const messages = [
+    {
+      id: 1,
+      sender: 'them',
+      text: 'Hi! Thanks for reaching out about the partnership opportunity.',
+      timestamp: '10:30 AM'
+    },
+    {
+      id: 2,
+      sender: 'you',
+      text: 'Great to connect with you! I think there could be some good synergy between our teams.',
+      timestamp: '10:35 AM'
+    },
+    {
+      id: 3,
+      sender: 'them',
+      text: 'Thanks for reaching out! We\'d be interested. Can you tell me more about what you have in mind?',
+      timestamp: '10:42 AM'
+    },
+    {
+      id: 4,
+      sender: 'you',
+      text: 'Absolutely! I\'ll send over a proposal by end of week.',
+      timestamp: '10:45 AM'
+    },
+  ]
 
   return (
-    <div className="grid grid-cols-3 gap-6 h-[calc(100vh-200px)]">
-      {/* Messages List */}
-      <div className="col-span-1 bg-white rounded-lg shadow overflow-hidden flex flex-col">
-        <div className="p-4 border-b">
-          <h2 className="text-lg font-bold text-gray-900">Messages</h2>
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Conversation List */}
+      <div className="w-80 border-r border-gray-200 bg-white flex flex-col">
+        {/* Header */}
+        <div className="p-6 border-b border-gray-200">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Messages</h1>
+          <div className="relative">
+            <Search size={18} className="absolute left-3 top-3 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search conversations..."
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            />
+          </div>
         </div>
+
+        {/* Conversations */}
         <div className="flex-1 overflow-y-auto">
-          {loading ? (
-            <div className="p-4 text-center text-gray-500">Loading...</div>
-          ) : messages.length === 0 ? (
-            <div className="p-4 text-center text-gray-500">No messages</div>
-          ) : (
-            messages.map((msg) => (
-              <button
-                key={msg.id}
-                onClick={() => setSelectedMessage(msg)}
-                className={`w-full text-left p-4 border-b hover:bg-gray-50 ${
-                  selectedMessage?.id === msg.id ? 'bg-blue-50' : ''
-                }`}
-              >
-                <p className="font-medium text-gray-900 truncate">Message</p>
-                <p className="text-sm text-gray-600 truncate">{msg.message}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {new Date(msg.created_at).toLocaleDateString()}
-                </p>
-              </button>
-            ))
-          )}
+          {conversations.map((conv, i) => (
+            <button
+              key={conv.id}
+              onClick={() => setSelectedConversation(i)}
+              className={`w-full text-left p-4 border-b border-gray-100 hover:bg-gray-50 transition ${
+                selectedConversation === i ? 'bg-blue-50' : ''
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">
+                  {conv.avatar}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h3 className={`font-semibold text-gray-900 ${conv.unread ? 'font-bold' : ''}`}>
+                      {conv.name}
+                    </h3>
+                    <span className="text-xs text-gray-500 flex-shrink-0">{conv.timestamp}</span>
+                  </div>
+                  <p className="text-sm text-gray-600 truncate">{conv.lastMessage}</p>
+                </div>
+                {conv.unread && (
+                  <div className="w-2.5 h-2.5 rounded-full bg-blue-600 flex-shrink-0"></div>
+                )}
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Message Detail */}
-      <div className="col-span-2 bg-white rounded-lg shadow overflow-hidden flex flex-col">
-        {selectedMessage ? (
-          <>
-            <div className="p-4 border-b">
-              <h3 className="text-lg font-bold text-gray-900">Message Detail</h3>
+      {/* Chat Area */}
+      <div className="flex-1 bg-white flex flex-col">
+        {/* Chat Header */}
+        <div className="border-b border-gray-200 p-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+              {conversations[selectedConversation].avatar}
             </div>
-            <div className="flex-1 overflow-y-auto p-4">
-              <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-gray-900">{selectedMessage.message}</p>
-                <p className="text-xs text-gray-500 mt-2">
-                  {new Date(selectedMessage.created_at).toLocaleString()}
+            <div>
+              <h2 className="text-lg font-bold text-gray-900">{conversations[selectedConversation].name}</h2>
+              <p className="text-sm text-gray-600">Active now</p>
+            </div>
+          </div>
+          <button className="p-2 hover:bg-gray-100 rounded-lg transition">
+            <MoreVertical size={20} className="text-gray-600" />
+          </button>
+        </div>
+
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`flex ${msg.sender === 'you' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className={`max-w-xs px-4 py-2.5 rounded-lg ${
+                  msg.sender === 'you'
+                    ? 'bg-blue-600 text-white rounded-br-none'
+                    : 'bg-gray-100 text-gray-900 rounded-bl-none'
+                }`}
+              >
+                <p className="text-sm">{msg.text}</p>
+                <p className={`text-xs mt-1 ${msg.sender === 'you' ? 'text-blue-100' : 'text-gray-500'}`}>
+                  {msg.timestamp}
                 </p>
               </div>
             </div>
-            <div className="border-t p-4">
-              <textarea
-                value={reply}
-                onChange={(e) => setReply(e.target.value)}
-                placeholder="Type your reply..."
-                rows={3}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <button
-                onClick={handleSendReply}
-                disabled={!reply.trim()}
-                className="mt-3 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
-              >
-                Send Reply
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            <p className="text-gray-600">Select a message to view details</p>
+          ))}
+        </div>
+
+        {/* Message Input */}
+        <div className="border-t border-gray-200 p-6">
+          <div className="flex items-end gap-3">
+            <button className="p-2.5 hover:bg-gray-100 rounded-lg transition text-gray-600">
+              <Paperclip size={20} />
+            </button>
+            <input
+              type="text"
+              placeholder="Type your message..."
+              value={messageText}
+              onChange={(e) => setMessageText(e.target.value)}
+              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            />
+            <button className="p-2.5 hover:bg-gray-100 rounded-lg transition text-gray-600">
+              <Smile size={20} />
+            </button>
+            <button className="p-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+              <Send size={20} />
+            </button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   )
