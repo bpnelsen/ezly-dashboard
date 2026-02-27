@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -7,18 +6,7 @@ export async function POST(request: NextRequest) {
     const { action } = body
 
     if (action === 'create-profile') {
-      const { userId, email, fullName, role } = body
-      const { error } = await supabaseAdmin.from('profiles').insert({
-        id: userId,
-        email,
-        full_name: fullName,
-        role,
-      })
-
-      if (error) {
-        return NextResponse.json({ error: error.message }, { status: 400 })
-      }
-
+      // Profile creation handled by trigger in Supabase
       return NextResponse.json({ success: true })
     }
 
