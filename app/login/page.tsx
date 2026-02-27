@@ -4,157 +4,113 @@ export const dynamic = 'force-dynamic'
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase-client'
-import { useRouter } from 'next/navigation'
+import { Mail, Lock, ArrowRight } from 'lucide-react'
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
-  const handleEmailLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(null)
-
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
-      if (error) {
-        setError(error.message)
-      } else {
-        router.push('/dashboard')
-      }
-    } catch (err) {
-      setError('An error occurred during login')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleGoogleLogin = async () => {
-    setLoading(true)
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      })
-      if (error) setError(error.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleFacebookLogin = async () => {
-    setLoading(true)
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'facebook',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      })
-      if (error) setError(error.message)
-    } finally {
-      setLoading(false)
-    }
+    // TODO: Implement actual login logic with Supabase
+    setTimeout(() => setLoading(false), 1000)
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">EZLY</h1>
-          <p className="text-gray-600 text-center mb-6">Contractor Management Platform</p>
-
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-              <p className="text-red-800 text-sm">{error}</p>
+        {/* Header */}
+        <div className="text-center mb-8">
+          <Link href="/" className="inline-block mb-6">
+            <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              EZLY
             </div>
-          )}
+          </Link>
+          <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
+          <p className="text-slate-400">Sign in to your account to continue</p>
+        </div>
 
-          <form onSubmit={handleEmailLogin} className="space-y-4 mb-6">
+        {/* Form Card */}
+        <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8 backdrop-blur-sm">
+          <form onSubmit={handleLogin} className="space-y-6">
+            {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="you@example.com"
-                required
-              />
+              <label className="block text-sm font-semibold text-white mb-3">Email Address</label>
+              <div className="relative">
+                <Mail size={18} className="absolute left-4 top-3.5 text-slate-400" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full pl-12 pr-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                />
+              </div>
             </div>
 
+            {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="••••••••"
-                required
-              />
+              <label className="block text-sm font-semibold text-white mb-3">Password</label>
+              <div className="relative">
+                <Lock size={18} className="absolute left-4 top-3.5 text-slate-400" />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full pl-12 pr-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                />
+              </div>
             </div>
 
+            {/* Remember Me & Forgot Password */}
+            <div className="flex justify-between items-center text-sm">
+              <label className="flex items-center gap-2 text-slate-400 hover:text-white cursor-pointer transition">
+                <input type="checkbox" className="w-4 h-4 rounded" />
+                Remember me
+              </label>
+              <Link href="#" className="text-blue-400 hover:text-blue-300 transition">
+                Forgot password?
+              </Link>
+            </div>
+
+            {/* Sign In Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+              className="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg font-bold text-white hover:shadow-lg hover:shadow-blue-500/50 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {loading ? 'Signing in...' : <>Sign In <ArrowRight size={18} /></>}
             </button>
           </form>
 
-          <div className="relative mb-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or continue with</span>
-            </div>
+          {/* Divider */}
+          <div className="my-6 flex items-center gap-4">
+            <div className="flex-1 h-px bg-slate-600"></div>
+            <span className="text-sm text-slate-500">or</span>
+            <div className="flex-1 h-px bg-slate-600"></div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              disabled={loading}
-              className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-            >
-              <span className="text-lg">🔵</span> Google
+          {/* OAuth Buttons */}
+          <div className="space-y-3">
+            <button className="w-full py-3 border border-slate-600 rounded-lg text-white hover:border-blue-500 hover:bg-blue-500/10 transition font-semibold">
+              Continue with Google
             </button>
-            <button
-              type="button"
-              onClick={handleFacebookLogin}
-              disabled={loading}
-              className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-            >
-              <span className="text-lg">👥</span> Facebook
+            <button className="w-full py-3 border border-slate-600 rounded-lg text-white hover:border-blue-500 hover:bg-blue-500/10 transition font-semibold">
+              Continue with Facebook
             </button>
           </div>
-
-          <p className="text-center text-gray-600 text-sm">
-            Don't have an account?{' '}
-            <Link href="/signup" className="text-blue-600 hover:underline">
-              Sign up
-            </Link>
-          </p>
         </div>
+
+        {/* Sign Up Link */}
+        <p className="text-center text-slate-400 mt-6">
+          Don't have an account?{' '}
+          <Link href="/signup" className="text-blue-400 hover:text-blue-300 font-semibold transition">
+            Sign up
+          </Link>
+        </p>
       </div>
     </div>
   )

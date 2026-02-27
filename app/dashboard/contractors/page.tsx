@@ -2,162 +2,130 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { Search, MapPin, Phone, Globe, Filter, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabase-client'
-import type { Contractor } from '@/lib/types'
+
+interface Contractor {
+  id: string
+  business_name: string
+  phone: string
+  address: string
+  website: string
+}
 
 export default function ContractorsPage() {
   const [contractors, setContractors] = useState<Contractor[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
-  const [page, setPage] = useState(1)
-  const pageSize = 20
+  const [selectedCategory, setSelectedCategory] = useState('all')
 
   useEffect(() => {
-    loadContractors()
-  }, [search, page])
+    fetchContractors()
+  }, [])
 
-  const loadContractors = async () => {
+  const fetchContractors = async () => {
     try {
       setLoading(true)
-      let query = supabase.from('contractors').select('*')
+      const { data, error } = await supabase
+        .from('contractors')
+        .select('id, business_name, phone, address, website')
+        .limit(50)
 
-      if (search) {
-        query = query.or(
-          `business_name.ilike.%${search}%,email.ilike.%${search}%,phone.ilike.%${search}%`
-        )
-      }
-
-      const { data, error } = await query
-        .order('created_at', { ascending: false })
-        .range((page - 1) * pageSize, page * pageSize - 1)
-
-      if (error) console.error('Error loading contractors:', error)
-      else setContractors(data || [])
+      if (error) throw error
+      setContractors(data || [])
+    } catch (error) {
+      console.error('Error fetching contractors:', error)
     } finally {
       setLoading(false)
     }
   }
 
+  const filteredContractors = contractors.filter(c =>
+    c.business_name.toLowerCase().includes(search.toLowerCase())
+  )
+
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900">Contractors</h1>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          + Add Contractor
-        </button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      {/* Header */}
+      <div className="bg-white border-b border-slate-200 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <h1 className="text-3xl font-bold text-slate-900 mb-4">Contractors</h1>
+          <p className="text-slate-600">{filteredContractors.length} contractors found</p>
+        </div>
       </div>
 
-      {/* Search */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <input
-          type="text"
-          placeholder="Search by name, email, or phone..."
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value)
-            setPage(1)
-          }}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-      </div>
-
-      {/* Contractors Table */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Business Name
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Email
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Phone
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                City
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Type
-              </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {loading ? (
-              <tr>
-                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
-                  Loading...
-                </td>
-              </tr>
-            ) : contractors.length === 0 ? (
-              <tr>
-                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
-                  No contractors found
-                </td>
-              </tr>
-            ) : (
-              contractors.map((contractor) => (
-                <tr key={contractor.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <Link
-                      href={`/dashboard/contractors/${contractor.id}`}
-                      className="text-blue-600 hover:underline font-medium"
-                    >
-                      {contractor.business_name}
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {contractor.email}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {contractor.phone || '-'}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {contractor.city || '-'}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium">
-                      {contractor.business_type || 'General'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm space-x-2">
-                    <button className="text-blue-600 hover:text-blue-900">Edit</button>
-                    <button className="text-red-600 hover:text-red-900">Delete</button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Pagination */}
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-600">
-          Showing {contractors.length} contractors
-        </p>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setPage(Math.max(1, page - 1))}
-            disabled={page === 1}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={contractors.length < pageSize}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-          >
-            Next
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Search & Filter Bar */}
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="flex-1 relative">
+            <Search size={20} className="absolute left-4 top-3 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search contractors..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <button className="px-6 py-3 border border-slate-300 rounded-lg font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+            <Filter size={18} />
+            Filter
           </button>
         </div>
+
+        {/* Contractors Grid */}
+        {loading ? (
+          <div className="grid gap-6">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="h-32 bg-white rounded-lg animate-pulse"></div>
+            ))}
+          </div>
+        ) : filteredContractors.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-slate-600 text-lg">No contractors found</p>
+          </div>
+        ) : (
+          <div className="grid gap-4">
+            {filteredContractors.map((contractor) => (
+              <Link key={contractor.id} href={`/dashboard/contractors/${contractor.id}`}>
+                <div className="bg-white rounded-lg border border-slate-200 p-6 hover:border-blue-500 hover:shadow-lg transition group cursor-pointer">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition mb-3">
+                        {contractor.business_name}
+                      </h3>
+                      <div className="space-y-2 text-slate-600">
+                        {contractor.address && (
+                          <div className="flex items-center gap-2">
+                            <MapPin size={16} className="text-slate-400" />
+                            <span className="text-sm">{contractor.address}</span>
+                          </div>
+                        )}
+                        {contractor.phone && (
+                          <div className="flex items-center gap-2">
+                            <Phone size={16} className="text-slate-400" />
+                            <span className="text-sm">{contractor.phone}</span>
+                          </div>
+                        )}
+                        {contractor.website && (
+                          <div className="flex items-center gap-2">
+                            <Globe size={16} className="text-slate-400" />
+                            <a href={contractor.website} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:text-blue-700">
+                              {contractor.website}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <ChevronRight size={24} className="text-slate-400 group-hover:text-blue-600 transition flex-shrink-0" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )
