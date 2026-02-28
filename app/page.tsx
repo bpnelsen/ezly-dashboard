@@ -16,6 +16,7 @@ export default function Home() {
             <a href="#home" className="text-gray-700 hover:text-gray-900 font-medium transition">Home</a>
             <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium transition">About</a>
             <a href="#solution" className="text-gray-700 hover:text-gray-900 font-medium transition">Solution</a>
+            <Link href="/blog" className="text-gray-700 hover:text-gray-900 font-medium transition">Blog</Link>
             <a href="#contact" className="text-gray-700 hover:text-gray-900 font-medium transition">Contact</a>
           </div>
           <div className="flex gap-3">
