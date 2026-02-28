@@ -2,9 +2,72 @@
 
 export const dynamic = 'force-dynamic'
 
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@supabase/supabase-js'
 import { Users, TrendingUp, MessageSquare, Activity, ArrowUpRight, BarChart3 } from 'lucide-react'
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_L7gJaRj4UpH8UtsyC0GDHQ_6MV10N4u'
+)
+
 export default function DashboardPage() {
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    checkUserRoleAndRedirect()
+  }, [])
+
+  const checkUserRoleAndRedirect = async () => {
+    try {
+      // Get current user
+      const { data: { session } } = await supabase.auth.getSession()
+      
+      if (!session?.user) {
+        // Not logged in, redirect to login
+        router.push('/login')
+        return
+      }
+
+      // Get user profile with role
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', session.user.id)
+        .single()
+
+      if (profile) {
+        // Redirect based on role
+        if (profile.role === 'homeowner') {
+          router.push('/dashboard/homeowner')
+          return
+        } else if (profile.role === 'contractor') {
+          router.push('/dashboard/contractor')
+          return
+        }
+        // Admin stays on this page
+      }
+
+      // Default: show admin dashboard
+      setLoading(false)
+    } catch (error) {
+      console.error('Error checking role:', error)
+      setLoading(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading dashboard...</p>
+        </div>
+      </div>
+    )
+  }
   const stats = [
     { label: 'Total Contractors', value: '586', change: '+2.4%', icon: Users, color: 'blue' },
     { label: 'Active This Month', value: '342', change: '+8.2%', icon: Activity, color: 'green' },

@@ -3,8 +3,14 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { BarChart3, Users, Mail, MessageSquare, Settings, LogOut, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
+import { BarChart3, Users, Mail, MessageSquare, Settings, LogOut, Menu, X, Home, Briefcase, FileText, Star } from 'lucide-react'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_L7gJaRj4UpH8UtsyC0GDHQ_6MV10N4u'
+)
 
 export default function DashboardLayout({
   children,
@@ -12,13 +18,60 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [userRole, setUserRole] = useState<string>('admin')
 
-  const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-    { name: 'Contractors', href: '/dashboard/contractors', icon: Users },
-    { name: 'Campaigns', href: '/dashboard/campaigns', icon: Mail },
-    { name: 'Messages', href: '/dashboard/messages', icon: MessageSquare },
-  ]
+  useEffect(() => {
+    fetchUserRole()
+  }, [])
+
+  const fetchUserRole = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', session.user.id)
+          .single()
+        
+        if (profile?.role) {
+          setUserRole(profile.role)
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching role:', error)
+    }
+  }
+
+  // Navigation based on role
+  const getNavigation = () => {
+    if (userRole === 'homeowner') {
+      return [
+        { name: 'Dashboard', href: '/dashboard/homeowner', icon: Home },
+        { name: 'My Projects', href: '/dashboard/homeowner/projects', icon: FileText },
+        { name: 'Find Contractors', href: '/dashboard/contractors', icon: Users },
+        { name: 'Messages', href: '/dashboard/messages', icon: MessageSquare },
+      ]
+    } else if (userRole === 'contractor') {
+      return [
+        { name: 'Dashboard', href: '/dashboard/contractor', icon: Briefcase },
+        { name: 'Available Jobs', href: '/dashboard/contractor/jobs', icon: FileText },
+        { name: 'My Bids', href: '/dashboard/contractor/bids', icon: Mail },
+        { name: 'Messages', href: '/dashboard/messages', icon: MessageSquare },
+        { name: 'My Profile', href: '/dashboard/contractor/profile', icon: Star },
+      ]
+    } else {
+      // Admin
+      return [
+        { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
+        { name: 'Contractors', href: '/dashboard/contractors', icon: Users },
+        { name: 'Campaigns', href: '/dashboard/campaigns', icon: Mail },
+        { name: 'Messages', href: '/dashboard/messages', icon: MessageSquare },
+      ]
+    }
+  }
+
+  const navigation = getNavigation()
 
   const bottomNavigation = [
     { name: 'Settings', href: '/dashboard/settings', icon: Settings },
@@ -62,7 +115,13 @@ export default function DashboardLayout({
               {sidebarOpen && <span className="text-sm font-medium">{item.name}</span>}
             </Link>
           ))}
-          <button className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-slate-800 hover:text-white transition">
+          <button 
+            onClick={async () => {
+              await supabase.auth.signOut()
+              window.location.href = '/login'
+            }}
+            className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-slate-800 hover:text-white transition"
+          >
             <LogOut size={20} />
             {sidebarOpen && <span className="text-sm font-medium">Sign Out</span>}
           </button>
