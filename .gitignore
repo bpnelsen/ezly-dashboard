@@ -1,9 +1,7 @@
-node_modules/
 .next/
+node_modules/
+.env
 .env.local
-.env.*.local
-*.log
 .DS_Store
-out/
-dist/
-.turbo/
+*.log
+.vercel
