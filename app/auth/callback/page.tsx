@@ -11,13 +11,31 @@ export default function AuthCallback() {
 
   useEffect(() => {
     const handleCallback = async () => {
-      const { data, error } = await supabase.auth.getSession()
-      if (error || !data.session) {
-        router.push('/login')
-      } else {
-        router.push('/dashboard')
+      // Check for OAuth callback in URL hash
+      const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      const accessToken = hashParams.get('access_token')
+      
+      if (accessToken) {
+        // OAuth callback - tokens are in the URL
+        const { data, error } = await supabase.auth.getSession()
+        
+        if (error) {
+          console.error('Auth error:', error)
+          router.push('/login')
+          return
+        }
+        
+        if (data.session) {
+          // Successfully authenticated
+          router.push('/dashboard')
+          return
+        }
       }
+      
+      // No valid session, redirect to login
+      router.push('/login')
     }
+    
     handleCallback()
   }, [router])
 

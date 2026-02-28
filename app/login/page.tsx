@@ -5,16 +5,58 @@ export const dynamic = 'force-dynamic'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Mail, Lock, ArrowRight } from 'lucide-react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_L7gJaRj4UpH8UtsyC0GDHQ_6MV10N4u'
+)
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => setLoading(false), 1000)
+    setError('')
+    
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      
+      if (error) throw error
+      
+      // Redirect to dashboard
+      window.location.href = '/dashboard'
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGoogleLogin = async () => {
+    setLoading(true)
+    setError('')
+    
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+      
+      if (error) throw error
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in with Google')
+      setLoading(false)
+    }
   }
 
   return (
@@ -32,6 +74,13 @@ export default function LoginPage() {
         {/* Form */}
         <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-xl">
           <form onSubmit={handleLogin} className="space-y-6">
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                {error}
+              </div>
+            )}
+
             {/* Email */}
             <div>
               <label className="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
@@ -92,11 +141,20 @@ export default function LoginPage() {
 
           {/* OAuth Buttons */}
           <div className="space-y-3">
-            <button className="w-full py-3 border border-gray-300 rounded-lg text-gray-900 hover:bg-gray-50 transition font-medium">
-              Google
+            <button 
+              type="button"
+              onClick={handleGoogleLogin}
+              disabled={loading}
+              className="w-full py-3 border border-gray-300 rounded-lg text-gray-900 hover:bg-gray-50 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Continue with Google
             </button>
-            <button className="w-full py-3 border border-gray-300 rounded-lg text-gray-900 hover:bg-gray-50 transition font-medium">
-              Facebook
+            <button 
+              type="button"
+              disabled
+              className="w-full py-3 border border-gray-200 rounded-lg text-gray-400 cursor-not-allowed font-medium"
+            >
+              Facebook (Coming Soon)
             </button>
           </div>
         </div>

@@ -18,6 +18,25 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  const handleGoogleSignup = async () => {
+    setLoading(true)
+    setError(null)
+    
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+      
+      if (error) throw error
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign up with Google')
+      setLoading(false)
+    }
+  }
+
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -141,6 +160,25 @@ export default function SignupPage() {
               {loading ? 'Creating account...' : 'Sign Up'}
             </button>
           </form>
+
+          {/* Divider */}
+          <div className="my-6 flex items-center gap-3">
+            <div className="flex-1 h-px bg-gray-200"></div>
+            <span className="text-xs text-gray-500 font-medium">OR</span>
+            <div className="flex-1 h-px bg-gray-200"></div>
+          </div>
+
+          {/* OAuth Buttons */}
+          <div className="space-y-3">
+            <button 
+              type="button"
+              onClick={handleGoogleSignup}
+              disabled={loading}
+              className="w-full py-3 border border-gray-300 rounded-lg text-gray-900 hover:bg-gray-50 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Continue with Google
+            </button>
+          </div>
 
           <p className="text-center text-gray-600 text-sm mt-6">
             Already have an account?{' '}
