@@ -18,6 +18,10 @@ export default function AuthCallback() {
       const hashParams = new URLSearchParams(window.location.hash.substring(1))
       const accessToken = hashParams.get('access_token')
       
+      // Get role from query params (passed from signup forms)
+      const searchParams = new URLSearchParams(window.location.search)
+      const roleFromUrl = searchParams.get('role')
+      
       if (accessToken) {
         // OAuth callback - tokens are in the URL
         const { data, error } = await supabase.auth.getSession()
@@ -40,7 +44,13 @@ export default function AuthCallback() {
           
           // Create profile if it doesn't exist (new OAuth user)
           if (!profile) {
-            const role = user.email === ADMIN_EMAIL ? 'admin' : 'homeowner'
+            // Determine role: admin, or use role from URL (homeowner/contractor)
+            let role = 'homeowner'
+            if (user.email === ADMIN_EMAIL) {
+              role = 'admin'
+            } else if (roleFromUrl === 'contractor' || roleFromUrl === 'homeowner') {
+              role = roleFromUrl
+            }
             
             await supabase.from('profiles').insert({
               id: user.id,
