@@ -25,7 +25,7 @@ const posts: BlogPost[] = [
     readTime: '5 min read',
     category: 'Homeowner Tips',
     author: 'EZLY Team',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop'
+    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=500&fit=crop'
   },
   {
     slug: 'contractor-red-flags',
@@ -35,7 +35,7 @@ const posts: BlogPost[] = [
     readTime: '7 min read',
     category: 'Homeowner Tips',
     author: 'EZLY Team',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop'
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop'
   },
   {
     slug: 'questions-to-ask-contractors',
@@ -45,7 +45,7 @@ const posts: BlogPost[] = [
     readTime: '6 min read',
     category: 'Homeowner Tips',
     author: 'EZLY Team',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop'
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=500&fit=crop'
   },
   {
     slug: 'contractor-pricing-guide',
@@ -55,7 +55,7 @@ const posts: BlogPost[] = [
     readTime: '8 min read',
     category: 'Pricing & Budgets',
     author: 'EZLY Team',
-    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=800&h=500&fit=crop'
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop'
   },
   {
     slug: 'seasonal-home-maintenance',

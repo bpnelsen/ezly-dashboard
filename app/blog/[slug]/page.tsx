@@ -25,7 +25,7 @@ const blogPosts: BlogContent = {
     readTime: '5 min read',
     category: 'Homeowner Tips',
     author: 'EZLY Team',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop',
     content: `
 # How to Choose the Right Contractor for Your Home Project
 
@@ -100,7 +100,7 @@ Taking the time to properly vet contractors will save you stress, money, and pot
     readTime: '7 min read',
     category: 'Homeowner Tips',
     author: 'EZLY Team',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop',
     content: `
 # 10 Red Flags When Hiring a Contractor
 
@@ -199,7 +199,7 @@ Use platforms like EZLY that verify contractors' credentials, provide transparen
     readTime: '6 min read',
     category: 'Homeowner Tips',
     author: 'EZLY Team',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=600&fit=crop',
     content: `
 # 15 Essential Questions to Ask Before Hiring a Contractor
 
