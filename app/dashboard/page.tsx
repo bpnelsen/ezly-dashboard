@@ -39,15 +39,30 @@ export default function DashboardPage() {
         .single()
 
       if (profile) {
-        // Redirect based on role
-        if (profile.role === 'homeowner') {
-          router.push('/dashboard/homeowner')
-          return
-        } else if (profile.role === 'contractor') {
-          router.push('/dashboard/contractor')
-          return
+        // Check if admin is viewing as a different role
+        const viewingAs = localStorage.getItem('admin_viewing_as')
+        
+        if (profile.role === 'admin' && viewingAs) {
+          // Admin viewing as different role
+          if (viewingAs === 'homeowner') {
+            router.push('/dashboard/homeowner')
+            return
+          } else if (viewingAs === 'contractor') {
+            router.push('/dashboard/contractor')
+            return
+          }
+          // Otherwise stay on admin dashboard
+        } else {
+          // Regular user - redirect based on their actual role
+          if (profile.role === 'homeowner') {
+            router.push('/dashboard/homeowner')
+            return
+          } else if (profile.role === 'contractor') {
+            router.push('/dashboard/contractor')
+            return
+          }
+          // Admin stays on this page
         }
-        // Admin stays on this page
       }
 
       // Default: show admin dashboard

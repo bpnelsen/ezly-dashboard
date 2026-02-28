@@ -18,10 +18,16 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const [userRole, setUserRole] = useState<string>('admin')
+  const [actualRole, setActualRole] = useState<string>('admin')
+  const [viewingAsRole, setViewingAsRole] = useState<string>('admin')
 
   useEffect(() => {
     fetchUserRole()
+    // Load saved viewing preference
+    const savedView = localStorage.getItem('admin_viewing_as')
+    if (savedView) {
+      setViewingAsRole(savedView)
+    }
   }, [])
 
   const fetchUserRole = async () => {
@@ -35,13 +41,30 @@ export default function DashboardLayout({
           .single()
         
         if (profile?.role) {
-          setUserRole(profile.role)
+          setActualRole(profile.role)
+          setViewingAsRole(profile.role)
         }
       }
     } catch (error) {
       console.error('Error fetching role:', error)
     }
   }
+
+  const switchViewAs = (role: string) => {
+    setViewingAsRole(role)
+    localStorage.setItem('admin_viewing_as', role)
+    // Redirect to appropriate dashboard
+    if (role === 'homeowner') {
+      window.location.href = '/dashboard/homeowner'
+    } else if (role === 'contractor') {
+      window.location.href = '/dashboard/contractor'
+    } else {
+      window.location.href = '/dashboard'
+    }
+  }
+
+  const isAdmin = actualRole === 'admin'
+  const userRole = viewingAsRole
 
   // Navigation based on role
   const getNavigation = () => {
@@ -136,6 +159,21 @@ export default function DashboardLayout({
             <h2 className="text-slate-900 text-sm font-semibold">EZLY Platform</h2>
           </div>
           <div className="flex items-center gap-4">
+            {/* Admin Role Switcher */}
+            {isAdmin && (
+              <div className="flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-lg">
+                <span className="text-xs font-medium text-slate-600">View as:</span>
+                <select
+                  value={viewingAsRole}
+                  onChange={(e) => switchViewAs(e.target.value)}
+                  className="text-sm font-semibold text-slate-900 bg-transparent border-none focus:outline-none cursor-pointer"
+                >
+                  <option value="admin">👑 Admin</option>
+                  <option value="homeowner">🏠 Homeowner</option>
+                  <option value="contractor">🔨 Contractor</option>
+                </select>
+              </div>
+            )}
             <button className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold hover:bg-slate-200 transition">
               A
             </button>
