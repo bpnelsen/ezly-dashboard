@@ -5,6 +5,12 @@ export const dynamic = 'force-dynamic'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Search, Filter, MapPin, Phone, Globe, Star, ChevronRight, Plus } from 'lucide-react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_L7gJaRj4UpH8UtsyC0GDHQ_6MV10N4u'
+)
 
 interface Contractor {
   id: string
@@ -16,14 +22,35 @@ interface Contractor {
 
 export default function ContractorsPage() {
   const [contractors, setContractors] = useState<Contractor[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [sortBy, setSortBy] = useState('name')
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Supabase connection coming soon
-    // For now, show empty state
+    fetchContractors()
   }, [])
+
+  const fetchContractors = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const { data, error } = await supabase
+        .from('contractors')
+        .select('id, business_name, phone, address, website')
+        .order('business_name', { ascending: true })
+      
+      if (error) throw error
+      
+      setContractors(data || [])
+    } catch (err: any) {
+      console.error('Error fetching contractors:', err)
+      setError(err.message || 'Failed to load contractors')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const filtered = contractors
     .filter(c => c.business_name.toLowerCase().includes(search.toLowerCase()))
@@ -77,6 +104,19 @@ export default function ContractorsPage() {
             Filter
           </button>
         </div>
+
+        {/* Error State */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <p className="text-red-800">{error}</p>
+            <button 
+              onClick={fetchContractors}
+              className="mt-2 text-red-600 hover:text-red-700 font-medium underline"
+            >
+              Try again
+            </button>
+          </div>
+        )}
 
         {/* Contractors Grid */}
         {loading ? (
