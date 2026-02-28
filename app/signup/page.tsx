@@ -7,14 +7,14 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase-client'
 import { useRouter } from 'next/navigation'
 
-type UserRole = 'owner' | 'admin' | 'contractor'
+type UserRole = 'homeowner' | 'contractor'
 
 export default function SignupPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
-  const [role, setRole] = useState<UserRole>('contractor')
+  const [role, setRole] = useState<UserRole>('homeowner')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -146,9 +146,8 @@ export default function SignupPage() {
                 onChange={(e) => setRole(e.target.value as UserRole)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
+                <option value="homeowner">Homeowner</option>
                 <option value="contractor">Contractor</option>
-                <option value="admin">Admin</option>
-                <option value="owner">Owner</option>
               </select>
             </div>
 
