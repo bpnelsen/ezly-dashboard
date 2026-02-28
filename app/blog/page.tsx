@@ -13,6 +13,7 @@ interface BlogPost {
   readTime: string
   category: string
   author: string
+  image: string
 }
 
 const posts: BlogPost[] = [
@@ -23,7 +24,8 @@ const posts: BlogPost[] = [
     date: '2026-02-15',
     readTime: '5 min read',
     category: 'Homeowner Tips',
-    author: 'EZLY Team'
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop'
   },
   {
     slug: 'contractor-red-flags',
@@ -32,7 +34,8 @@ const posts: BlogPost[] = [
     date: '2026-02-10',
     readTime: '7 min read',
     category: 'Homeowner Tips',
-    author: 'EZLY Team'
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop'
   },
   {
     slug: 'questions-to-ask-contractors',
@@ -41,7 +44,8 @@ const posts: BlogPost[] = [
     date: '2026-02-05',
     readTime: '6 min read',
     category: 'Homeowner Tips',
-    author: 'EZLY Team'
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop'
   },
   {
     slug: 'contractor-pricing-guide',
@@ -50,7 +54,8 @@ const posts: BlogPost[] = [
     date: '2026-01-28',
     readTime: '8 min read',
     category: 'Pricing & Budgets',
-    author: 'EZLY Team'
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=800&h=500&fit=crop'
   },
   {
     slug: 'seasonal-home-maintenance',
@@ -59,7 +64,8 @@ const posts: BlogPost[] = [
     date: '2026-01-20',
     readTime: '6 min read',
     category: 'Maintenance',
-    author: 'EZLY Team'
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop'
   }
 ]
 
@@ -86,32 +92,44 @@ export default function BlogPage() {
             <Link 
               key={post.slug} 
               href={`/blog/${post.slug}`}
-              className="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-200"
+              className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:border-blue-300 transition-all duration-200"
             >
-              <div className="flex items-center gap-2 text-sm text-blue-600 font-semibold mb-3">
-                <span className="px-3 py-1 bg-blue-100 rounded-full">{post.category}</span>
+              {/* Featured Image */}
+              <div className="h-48 overflow-hidden bg-gray-200 relative">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               
-              <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition">
-                {post.title}
-              </h2>
-              
-              <p className="text-gray-600 mb-4 line-clamp-3">
-                {post.excerpt}
-              </p>
-              
-              <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-100">
-                <div className="flex items-center gap-4">
-                  <span className="flex items-center gap-1">
-                    <Calendar size={16} />
-                    {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock size={16} />
-                    {post.readTime}
-                  </span>
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex items-center gap-2 text-sm text-blue-600 font-semibold mb-3">
+                  <span className="px-3 py-1 bg-blue-100 rounded-full">{post.category}</span>
                 </div>
-                <ArrowRight size={18} className="text-blue-600 group-hover:translate-x-1 transition" />
+                
+                <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition line-clamp-2">
+                  {post.title}
+                </h2>
+                
+                <p className="text-gray-600 mb-4 line-clamp-2">
+                  {post.excerpt}
+                </p>
+                
+                <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-100">
+                  <div className="flex items-center gap-4">
+                    <span className="flex items-center gap-1">
+                      <Calendar size={16} />
+                      {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock size={16} />
+                      {post.readTime}
+                    </span>
+                  </div>
+                  <ArrowRight size={18} className="text-blue-600 group-hover:translate-x-1 transition" />
+                </div>
               </div>
             </Link>
           ))}
