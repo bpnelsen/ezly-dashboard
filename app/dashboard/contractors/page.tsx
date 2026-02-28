@@ -5,7 +5,6 @@ export const dynamic = 'force-dynamic'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Search, Filter, MapPin, Phone, Globe, Star, ChevronRight, Plus } from 'lucide-react'
-import { supabase } from '@/lib/supabase-client'
 
 interface Contractor {
   id: string
@@ -17,30 +16,14 @@ interface Contractor {
 
 export default function ContractorsPage() {
   const [contractors, setContractors] = useState<Contractor[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
   const [sortBy, setSortBy] = useState('name')
 
   useEffect(() => {
-    fetchContractors()
+    // Supabase connection coming soon
+    // For now, show empty state
   }, [])
-
-  const fetchContractors = async () => {
-    try {
-      setLoading(true)
-      const { data, error } = await supabase
-        .from('contractors')
-        .select('id, business_name, phone, address, website')
-        .limit(100)
-
-      if (error) throw error
-      setContractors(data || [])
-    } catch (error) {
-      console.error('Error:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const filtered = contractors
     .filter(c => c.business_name.toLowerCase().includes(search.toLowerCase()))
