@@ -109,8 +109,102 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ROLE CHOOSER SECTION */}
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">What's Your Role?</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Choose how you'll use EZLY. We'll customize your experience based on your needs.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Homeowner Card */}
+            <Link 
+              href="/signup?role=homeowner"
+              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-blue-600 hover:shadow-xl transition-all duration-300 p-8"
+            >
+              <div className="p-4 rounded-lg bg-blue-100 text-blue-600 w-fit mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
+                <Users size={32} />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">I'm a Homeowner</h3>
+              
+              <p className="text-gray-600 mb-6">
+                Find verified contractors for your home projects. Post jobs, compare bids, and build relationships with trusted professionals.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Post unlimited projects</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Get multiple contractor bids</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Compare quotes & ratings</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Direct messaging & contracts</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-3 transition-all">
+                <span>Get Started</span>
+                <ArrowRight size={20} />
+              </div>
+            </Link>
+
+            {/* Contractor Card */}
+            <Link 
+              href="/signup?role=contractor"
+              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-teal-600 hover:shadow-xl transition-all duration-300 p-8"
+            >
+              <div className="p-4 rounded-lg bg-teal-100 text-teal-600 w-fit mb-6 group-hover:bg-teal-600 group-hover:text-white transition">
+                <Zap size={32} />
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">I'm a Contractor</h3>
+              
+              <p className="text-gray-600 mb-6">
+                Grow your business by connecting with quality leads. Find projects, submit bids, manage your reputation, and track earnings.
+              </p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Browse available projects</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Submit competitive bids</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Build your professional profile</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-700">
+                  <CheckCircle size={18} className="text-green-600 flex-shrink-0" />
+                  <span>Grow your 5-star reputation</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-teal-600 font-semibold group-hover:gap-3 transition-all">
+                <span>Get Started</span>
+                <ArrowRight size={20} />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ABOUT US */}
-      <section id="about" className="py-24 bg-gradient-to-b from-gray-50/50 to-white">
+      <section id="about" className="py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">About EZLY</h2>

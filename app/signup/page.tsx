@@ -2,21 +2,32 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase-client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 type UserRole = 'homeowner' | 'contractor'
 
-export default function SignupPage() {
+function SignupPageContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
   const [role, setRole] = useState<UserRole>('homeowner')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // Check for role query parameter and redirect to segment-specific signup
+  useEffect(() => {
+    const roleParam = searchParams.get('role')
+    if (roleParam === 'homeowner') {
+      router.push('/signup/homeowner')
+    } else if (roleParam === 'contractor') {
+      router.push('/signup/contractor')
+    }
+  }, [searchParams, router])
 
   const handleGoogleSignup = async () => {
     setLoading(true)
@@ -75,6 +86,78 @@ export default function SignupPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  // Show role selection screen first
+  const showRoleSelection = true
+
+  if (showRoleSelection) {
+    return (
+      <div className="min-h-screen bg-white">
+        <div className="border-b border-gray-200">
+          <div className="max-w-lg mx-auto px-6 py-4">
+            <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+              ← Back to Home
+            </Link>
+          </div>
+        </div>
+
+        <div className="max-w-lg mx-auto px-6 py-16">
+          <div className="mb-12">
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">Create Your Account</h1>
+            <p className="text-lg text-gray-600">First, let's set up your account for the right role</p>
+          </div>
+
+          <div className="grid gap-6">
+            {/* Homeowner Option */}
+            <button
+              onClick={() => router.push('/signup/homeowner')}
+              className="group text-left p-6 rounded-xl border-2 border-gray-200 hover:border-blue-600 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">I'm a Homeowner</h3>
+                  <p className="text-gray-600 mb-4">
+                    Find and hire verified contractors for your home projects
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>✓ Post unlimited projects</li>
+                    <li>✓ Get multiple bids</li>
+                    <li>✓ Message contractors directly</li>
+                  </ul>
+                </div>
+                <div className="text-blue-600 group-hover:text-blue-700 transition">→</div>
+              </div>
+            </button>
+
+            {/* Contractor Option */}
+            <button
+              onClick={() => router.push('/signup/contractor')}
+              className="group text-left p-6 rounded-xl border-2 border-gray-200 hover:border-teal-600 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">I'm a Contractor</h3>
+                  <p className="text-gray-600 mb-4">
+                    Grow your business and connect with quality home projects
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>✓ Browse available projects</li>
+                    <li>✓ Submit competitive bids</li>
+                    <li>✓ Build your reputation</li>
+                  </ul>
+                </div>
+                <div className="text-teal-600 group-hover:text-teal-700 transition">→</div>
+              </div>
+            </button>
+          </div>
+
+          <div className="mt-12 text-center text-sm text-gray-600">
+            <p>Already have an account? <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">Sign In</Link></p>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -188,5 +271,13 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center">Loading...</div>}>
+      <SignupPageContent />
+    </Suspense>
   )
 }
