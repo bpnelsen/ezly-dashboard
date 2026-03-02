@@ -115,7 +115,7 @@ export default function HomeownerDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
           <Link
             href="/dashboard/homeowner/post-project"
             className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
@@ -124,6 +124,16 @@ export default function HomeownerDashboard() {
               <Plus size={20} className="text-blue-600" />
             </div>
             <span className="font-semibold text-gray-900">Post Project</span>
+          </Link>
+
+          <Link
+            href="/dashboard/homeowner/bids"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+          >
+            <div className="p-2 bg-teal-100 rounded-lg">
+              <DollarSign size={20} className="text-teal-600" />
+            </div>
+            <span className="font-semibold text-gray-900">View Bids</span>
           </Link>
 
           <Link
