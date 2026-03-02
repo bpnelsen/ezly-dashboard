@@ -8,8 +8,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#3B82F6",
-        secondary: "#10B981",
+        // EZLY Brand Colors
+        "ezly-navy": "#0F3A7D",
+        "ezly-teal": "#06B6D4",
+        "ezly-orange": "#F97316",
+        // Legacy fallbacks
+        primary: "#0F3A7D",      // Navy
+        secondary: "#06B6D4",    // Teal
       },
     },
   },

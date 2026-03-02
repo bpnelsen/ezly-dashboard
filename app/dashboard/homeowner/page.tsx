@@ -55,7 +55,7 @@ export default function HomeownerDashboard() {
             </div>
             <Link
               href="/dashboard/homeowner/post-project"
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm hover:shadow-md flex items-center gap-2"
+              className="px-6 py-3 bg-[#0F3A7D] text-white rounded-lg font-semibold hover:bg-[#0d2f68] transition shadow-sm hover:shadow-md flex items-center gap-2"
             >
               <Plus size={20} />
               Post New Project
