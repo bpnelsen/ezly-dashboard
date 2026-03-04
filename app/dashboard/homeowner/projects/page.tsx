@@ -4,232 +4,221 @@ export const dynamic = 'force-dynamic'
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Plus, Search, Filter, Home, DollarSign, FileText, Clock, ChevronRight } from 'lucide-react'
+import { Clock, CheckCircle, AlertCircle, MessageCircle, Eye } from 'lucide-react'
 
 interface Project {
   id: string
   title: string
   category: string
-  budget: string
-  status: 'Active' | 'Pending' | 'Completed' | 'Cancelled'
-  bids: number
-  createdAt: string
+  status: 'open' | 'in-progress' | 'completed'
   location: string
+  budgetMin: number
+  budgetMax: number
+  bidsReceived: number
+  createdAt: string
+  acceptedBid?: {
+    contractorName: string
+    amount: number
+    startDate: string
+  }
 }
 
 export default function MyProjectsPage() {
-  const [search, setSearch] = useState('')
-  const [statusFilter, setStatusFilter] = useState('all')
+  const [filter, setFilter] = useState<'all' | 'open' | 'in-progress' | 'completed'>('all')
 
+  // Mock data
   const projects: Project[] = [
     {
       id: '1',
-      title: 'Kitchen Remodel',
-      category: 'Kitchen',
-      budget: '$15,000 - $25,000',
-      status: 'Active',
-      bids: 5,
-      createdAt: '2 days ago',
-      location: 'Salt Lake City, UT'
+      title: 'Kitchen Remodel with Island',
+      category: 'Kitchen Remodel',
+      status: 'open',
+      location: 'Denver, CO',
+      budgetMin: 8000,
+      budgetMax: 15000,
+      bidsReceived: 5,
+      createdAt: '2026-03-01'
     },
     {
       id: '2',
       title: 'Bathroom Renovation',
       category: 'Bathroom',
-      budget: '$8,000 - $12,000',
-      status: 'Pending',
-      bids: 3,
-      createdAt: '5 days ago',
-      location: 'Provo, UT'
+      status: 'in-progress',
+      location: 'Denver, CO',
+      budgetMin: 5000,
+      budgetMax: 12000,
+      bidsReceived: 3,
+      createdAt: '2026-02-20',
+      acceptedBid: {
+        contractorName: 'Elite Renovations LLC',
+        amount: 9500,
+        startDate: '2026-02-25'
+      }
     },
     {
       id: '3',
-      title: 'Roof Repair',
+      title: 'Roof Replacement',
       category: 'Roofing',
-      budget: '$3,000 - $5,000',
-      status: 'Completed',
-      bids: 7,
-      createdAt: '2 weeks ago',
-      location: 'Ogden, UT'
-    },
-    {
-      id: '4',
-      title: 'HVAC System Upgrade',
-      category: 'HVAC',
-      budget: '$5,000 - $8,000',
-      status: 'Active',
-      bids: 4,
-      createdAt: '1 week ago',
-      location: 'Sandy, UT'
+      status: 'completed',
+      location: 'Denver, CO',
+      budgetMin: 4000,
+      budgetMax: 8000,
+      bidsReceived: 4,
+      createdAt: '2026-01-10',
+      acceptedBid: {
+        contractorName: 'Summit Roofing Co',
+        amount: 6500,
+        startDate: '2026-01-15'
+      }
     }
   ]
 
-  const filtered = projects.filter(p => {
-    const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase()) || 
-                         p.category.toLowerCase().includes(search.toLowerCase())
-    const matchesStatus = statusFilter === 'all' || p.status.toLowerCase() === statusFilter.toLowerCase()
-    return matchesSearch && matchesStatus
-  })
+  const filtered = projects.filter(p => filter === 'all' || p.status === filter)
 
-  const statusCounts = {
-    all: projects.length,
-    active: projects.filter(p => p.status === 'Active').length,
-    pending: projects.filter(p => p.status === 'Pending').length,
-    completed: projects.filter(p => p.status === 'Completed').length
+  const statusConfig = {
+    open: {
+      icon: Clock,
+      label: 'Open for Bids',
+      color: 'blue',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-blue-200',
+      badgeColor: 'bg-blue-100 text-blue-800'
+    },
+    'in-progress': {
+      icon: AlertCircle,
+      label: 'In Progress',
+      color: 'amber',
+      bgColor: 'bg-amber-50',
+      borderColor: 'border-amber-200',
+      badgeColor: 'bg-amber-100 text-amber-800'
+    },
+    completed: {
+      icon: CheckCircle,
+      label: 'Completed',
+      color: 'green',
+      bgColor: 'bg-green-50',
+      borderColor: 'border-green-200',
+      badgeColor: 'bg-green-100 text-green-800'
+    }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-8 py-8">
-          <div className="flex justify-between items-start">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">My Projects</h1>
-              <p className="text-gray-600 mt-1">{filtered.length} project{filtered.length !== 1 ? 's' : ''} found</p>
-            </div>
-            <Link
-              href="/dashboard/homeowner/post-project"
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm hover:shadow-md flex items-center gap-2"
-            >
-              <Plus size={20} />
-              Post New Project
-            </Link>
-          </div>
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-8 py-6">
+          <h1 className="text-3xl font-bold text-gray-900">My Projects</h1>
+          <p className="text-gray-600 mt-1">Manage your home improvement projects</p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 py-8">
+      <div className="max-w-6xl mx-auto px-8 py-8">
         {/* Filters */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
-          <div className="flex gap-4 mb-6">
-            <div className="flex-1 relative">
-              <Search size={20} className="absolute left-4 top-3.5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-              />
-            </div>
-            <button className="px-6 py-3 border border-gray-300 rounded-lg font-semibold text-gray-900 hover:bg-gray-50 transition flex items-center gap-2">
-              <Filter size={18} />
-              More Filters
-            </button>
-          </div>
-
-          {/* Status Tabs */}
-          <div className="flex gap-2">
+        <div className="mb-8 flex gap-3">
+          {['all', 'open', 'in-progress', 'completed'].map(status => (
             <button
-              onClick={() => setStatusFilter('all')}
+              key={status}
+              onClick={() => setFilter(status as any)}
               className={`px-4 py-2 rounded-lg font-medium transition ${
-                statusFilter === 'all'
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-600 hover:bg-gray-100'
+                filter === status
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
               }`}
             >
-              All ({statusCounts.all})
+              {status.charAt(0).toUpperCase() + status.slice(1).replace('-', ' ')}
             </button>
-            <button
-              onClick={() => setStatusFilter('active')}
-              className={`px-4 py-2 rounded-lg font-medium transition ${
-                statusFilter === 'active'
-                  ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Active ({statusCounts.active})
-            </button>
-            <button
-              onClick={() => setStatusFilter('pending')}
-              className={`px-4 py-2 rounded-lg font-medium transition ${
-                statusFilter === 'pending'
-                  ? 'bg-yellow-100 text-yellow-700'
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Pending ({statusCounts.pending})
-            </button>
-            <button
-              onClick={() => setStatusFilter('completed')}
-              className={`px-4 py-2 rounded-lg font-medium transition ${
-                statusFilter === 'completed'
-                  ? 'bg-green-100 text-green-700'
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              Completed ({statusCounts.completed})
-            </button>
-          </div>
-        </div>
-
-        {/* Projects List */}
-        <div className="space-y-4">
-          {filtered.map((project) => (
-            <Link
-              key={project.id}
-              href={`/dashboard/homeowner/projects/${project.id}`}
-              className="block bg-white rounded-xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-lg transition"
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-3">
-                    <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      project.status === 'Active' ? 'bg-blue-100 text-blue-700' :
-                      project.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
-                      project.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                      'bg-gray-100 text-gray-700'
-                    }`}>
-                      {project.status}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Home size={16} className="text-gray-400" />
-                      <span>{project.category}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <DollarSign size={16} className="text-gray-400" />
-                      <span>{project.budget}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <FileText size={16} className="text-gray-400" />
-                      <span>{project.bids} bids</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Clock size={16} className="text-gray-400" />
-                      <span>{project.createdAt}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="ml-4">
-                  <ChevronRight size={24} className="text-blue-600" />
-                </div>
-              </div>
-            </Link>
           ))}
         </div>
 
-        {filtered.length === 0 && (
-          <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-            <Home size={48} className="mx-auto text-gray-300 mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 mb-2">No projects found</h3>
-            <p className="text-gray-600 mb-6">
-              {search ? 'Try adjusting your search filters' : 'Get started by posting your first project'}
-            </p>
-            {!search && (
-              <Link
-                href="/dashboard/homeowner/post-project"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
-              >
-                <Plus size={20} />
-                Post Your First Project
-              </Link>
-            )}
+        {/* Projects Grid */}
+        {filtered.length === 0 ? (
+          <div className="text-center py-12">
+            <Clock size={48} className="mx-auto text-gray-400 mb-3" />
+            <p className="text-gray-600 text-lg">No projects found</p>
+            <Link
+              href="/dashboard/homeowner/post-project"
+              className="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+            >
+              Post a New Project
+            </Link>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filtered.map(project => {
+              const config = statusConfig[project.status]
+              const Icon = config.icon
+              return (
+                <div
+                  key={project.id}
+                  className={`${config.bgColor} border ${config.borderColor} rounded-xl p-6 hover:shadow-md transition`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${config.badgeColor}`}>
+                          <Icon size={16} className="inline mr-1" />
+                          {config.label}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <span>{project.category}</span>
+                        <span>📍 {project.location}</span>
+                        <span>📅 {new Date(project.createdAt).toLocaleDateString()}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project Stats */}
+                  <div className="grid grid-cols-3 gap-4 mb-6 py-4 border-t border-b border-current border-opacity-10">
+                    <div>
+                      <p className="text-xs text-gray-600 font-medium">BUDGET</p>
+                      <p className="text-lg font-bold text-gray-900">
+                        ${project.budgetMin.toLocaleString()} - ${project.budgetMax.toLocaleString()}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-600 font-medium">BIDS RECEIVED</p>
+                      <p className="text-lg font-bold text-gray-900">{project.bidsReceived}</p>
+                    </div>
+                    {project.acceptedBid && (
+                      <div>
+                        <p className="text-xs text-gray-600 font-medium">ACCEPTED BID</p>
+                        <p className="text-lg font-bold text-gray-900">${project.acceptedBid.amount.toLocaleString()}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Contractor Info (if accepted) */}
+                  {project.acceptedBid && (
+                    <div className="bg-white bg-opacity-50 rounded-lg p-4 mb-4">
+                      <p className="text-sm text-gray-600 font-medium">CONTRACTOR</p>
+                      <p className="text-lg font-bold text-gray-900">{project.acceptedBid.contractorName}</p>
+                      <p className="text-sm text-gray-600 mt-1">
+                        Start Date: {new Date(project.acceptedBid.startDate).toLocaleDateString()}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Actions */}
+                  <div className="flex gap-3">
+                    <Link
+                      href={`/dashboard/homeowner/projects/${project.id}`}
+                      className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition flex items-center justify-center gap-2"
+                    >
+                      <Eye size={18} />
+                      View Details
+                    </Link>
+                    {project.status !== 'completed' && (
+                      <button className="flex-1 px-4 py-2 border border-current border-opacity-30 rounded-lg font-medium hover:bg-white hover:bg-opacity-50 transition flex items-center justify-center gap-2">
+                        <MessageCircle size={18} />
+                        Message
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
           </div>
         )}
       </div>
