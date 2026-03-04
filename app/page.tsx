@@ -11,21 +11,21 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/80">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-gray-900">EZLY</div>
+          <div className="text-2xl font-bold text-ezly-navy">EZLY</div>
           <div className="hidden md:flex gap-8 items-center">
-            <a href="#home" className="text-gray-700 hover:text-gray-900 font-medium transition">Home</a>
-            <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium transition">About</a>
-            <a href="#solution" className="text-gray-700 hover:text-gray-900 font-medium transition">Solution</a>
-            <Link href="/blog" className="text-gray-700 hover:text-gray-900 font-medium transition">Blog</Link>
-            <a href="#contact" className="text-gray-700 hover:text-gray-900 font-medium transition">Contact</a>
+            <a href="#home" className="text-gray-700 hover:text-ezly-navy font-medium transition">Home</a>
+            <a href="#about" className="text-gray-700 hover:text-ezly-navy font-medium transition">About</a>
+            <a href="#solution" className="text-gray-700 hover:text-ezly-navy font-medium transition">Solution</a>
+            <Link href="/blog" className="text-gray-700 hover:text-ezly-navy font-medium transition">Blog</Link>
+            <a href="#contact" className="text-gray-700 hover:text-ezly-navy font-medium transition">Contact</a>
           </div>
           <div className="flex gap-3">
-            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-gray-900 font-medium transition">
+            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-ezly-navy font-medium transition">
               Sign In
             </Link>
             <Link 
               href="/signup"
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition shadow-sm hover:shadow-md"
+              className="px-6 py-2 bg-ezly-navy text-white rounded-lg font-medium hover:bg-opacity-90 transition shadow-sm hover:shadow-md"
             >
               Get Started
             </Link>
@@ -36,14 +36,14 @@ export default function Home() {
       {/* HERO SECTION */}
       <section id="home" className="max-w-7xl mx-auto px-6 py-32 text-center">
         <div className="space-y-8 mb-16">
-          <div className="inline-block px-4 py-2 bg-blue-100/60 text-blue-700 rounded-full text-sm font-semibold border border-blue-200/50">
+          <div className="inline-block px-4 py-2 bg-ezly-navy/10 text-ezly-navy rounded-full text-sm font-semibold border border-ezly-navy/20">
             ✨ The future of contractor management is here
           </div>
           
           <h1 className="text-6xl md:text-7xl font-bold text-gray-900 leading-tight">
             Stop hunting for contractors.
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-ezly-navy to-ezly-teal">
               Start building relationships.
             </span>
           </h1>
@@ -55,13 +55,13 @@ export default function Home() {
           <div className="flex gap-4 justify-center pt-6">
             <Link 
               href="/signup"
-              className="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-lg hover:shadow-xl flex items-center gap-2"
+              className="px-8 py-4 bg-ezly-navy text-white rounded-lg font-semibold hover:bg-opacity-90 transition shadow-lg hover:shadow-xl flex items-center gap-2"
             >
               Start Free Trial <ArrowRight size={20} />
             </Link>
             <Link 
               href="#solution"
-              className="px-8 py-4 border-2 border-gray-300 text-gray-900 rounded-lg font-semibold hover:border-gray-400 hover:bg-gray-50 transition"
+              className="px-8 py-4 border-2 border-ezly-teal text-ezly-navy rounded-lg font-semibold hover:bg-ezly-teal/5 transition"
             >
               Learn More
             </Link>
@@ -86,7 +86,7 @@ export default function Home() {
 
         {/* Hero Visual */}
         <div className="mt-20 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-ezly-navy/20 to-ezly-teal/20 rounded-2xl blur-3xl"></div>
           <div className="relative bg-white rounded-2xl border border-gray-200/50 p-1 shadow-2xl">
             <div className="bg-gradient-to-b from-gray-50 to-white rounded-xl p-8 space-y-4">
               <div className="flex gap-3">
@@ -123,9 +123,9 @@ export default function Home() {
             {/* Homeowner Card */}
             <Link 
               href="/signup?role=homeowner"
-              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-blue-600 hover:shadow-xl transition-all duration-300 p-8"
+              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-ezly-navy hover:shadow-xl transition-all duration-300 p-8"
             >
-              <div className="p-4 rounded-lg bg-blue-100 text-blue-600 w-fit mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
+              <div className="p-4 rounded-lg bg-ezly-navy/10 text-ezly-navy w-fit mb-6 group-hover:bg-ezly-navy group-hover:text-white transition">
                 <Users size={32} />
               </div>
               
@@ -154,7 +154,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-3 transition-all">
+              <div className="flex items-center gap-2 text-ezly-navy font-semibold group-hover:gap-3 transition-all">
                 <span>Get Started</span>
                 <ArrowRight size={20} />
               </div>
@@ -163,9 +163,9 @@ export default function Home() {
             {/* Contractor Card */}
             <Link 
               href="/signup?role=contractor"
-              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-teal-600 hover:shadow-xl transition-all duration-300 p-8"
+              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-ezly-teal hover:shadow-xl transition-all duration-300 p-8"
             >
-              <div className="p-4 rounded-lg bg-teal-100 text-teal-600 w-fit mb-6 group-hover:bg-teal-600 group-hover:text-white transition">
+              <div className="p-4 rounded-lg bg-ezly-teal/10 text-ezly-teal w-fit mb-6 group-hover:bg-ezly-teal group-hover:text-white transition">
                 <Zap size={32} />
               </div>
               
@@ -194,7 +194,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-teal-600 font-semibold group-hover:gap-3 transition-all">
+              <div className="flex items-center gap-2 text-ezly-teal font-semibold group-hover:gap-3 transition-all">
                 <span>Get Started</span>
                 <ArrowRight size={20} />
               </div>
@@ -231,8 +231,8 @@ export default function Home() {
                 desc: 'We\'re here to help you succeed'
               }
             ].map((stat, i) => (
-              <div key={i} className="text-center p-8 rounded-xl bg-white border border-gray-200 hover:border-blue-300 hover:shadow-lg transition">
-                <p className="text-4xl font-bold text-blue-600 mb-2">{stat.number}</p>
+              <div key={i} className="text-center p-8 rounded-xl bg-white border border-gray-200 hover:border-ezly-navy/30 hover:shadow-lg transition">
+                <p className="text-4xl font-bold text-ezly-navy mb-2">{stat.number}</p>
                 <p className="text-lg font-semibold text-gray-900 mb-2">{stat.label}</p>
                 <p className="text-gray-600">{stat.desc}</p>
               </div>
@@ -276,7 +276,7 @@ export default function Home() {
                 }
               ].map((feature, i) => (
                 <div key={i} className="flex gap-4">
-                  <div className="p-3 rounded-lg bg-blue-100 text-blue-600 flex-shrink-0 h-fit">
+                  <div className="p-3 rounded-lg bg-ezly-navy/10 text-ezly-navy flex-shrink-0 h-fit">
                     <feature.icon size={24} />
                   </div>
                   <div>
@@ -287,7 +287,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-12 border border-blue-200/50">
+            <div className="bg-gradient-to-br from-ezly-navy/5 to-ezly-teal/5 rounded-2xl p-12 border border-ezly-navy/10">
               <div className="space-y-6">
                 <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
                   <p className="text-sm text-gray-600 mb-2">Average Time Saved</p>
@@ -318,7 +318,7 @@ export default function Home() {
               'Mobile responsive',
               'Team collaboration'
             ].map((feature, i) => (
-              <div key={i} className="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition">
+              <div key={i} className="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-ezly-navy/30 hover:bg-ezly-navy/5 transition">
                 <CheckCircle size={20} className="text-green-600 flex-shrink-0" />
                 <span className="text-gray-900 font-medium">{feature}</span>
               </div>
@@ -344,8 +344,8 @@ export default function Home() {
                   { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567', href: 'tel:+15551234567' },
                   { icon: MapPin, label: 'Address', value: '123 Main St, San Francisco, CA 94105', href: '#' }
                 ].map((contact, i) => (
-                  <a key={i} href={contact.href} className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50 transition">
-                    <div className="p-3 rounded-lg bg-blue-100 text-blue-600">
+                  <a key={i} href={contact.href} className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-ezly-navy/30 hover:bg-ezly-navy/5 transition">
+                    <div className="p-3 rounded-lg bg-ezly-navy/10 text-ezly-navy">
                       <contact.icon size={24} />
                     </div>
                     <div>
@@ -365,7 +365,7 @@ export default function Home() {
                   <input
                     type="text"
                     placeholder="Your name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ezly-navy focus:border-transparent transition"
                   />
                 </div>
                 <div>
@@ -373,7 +373,7 @@ export default function Home() {
                   <input
                     type="email"
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ezly-navy focus:border-transparent transition"
                   />
                 </div>
                 <div>
@@ -381,7 +381,7 @@ export default function Home() {
                   <input
                     type="text"
                     placeholder="Your company"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ezly-navy focus:border-transparent transition"
                   />
                 </div>
                 <div>
@@ -389,12 +389,12 @@ export default function Home() {
                   <textarea
                     placeholder="Tell us how we can help..."
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-ezly-navy focus:border-transparent transition"
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm hover:shadow-md"
+                  className="w-full px-6 py-3 bg-ezly-navy text-white rounded-lg font-semibold hover:bg-opacity-90 transition shadow-sm hover:shadow-md"
                 >
                   Send Message
                 </button>
@@ -405,13 +405,13 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+      <section className="py-24 bg-gradient-to-r from-ezly-navy to-ezly-teal text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to transform your contractor network?</h2>
-          <p className="text-xl text-blue-100 mb-8">Join teams already using EZLY to scale faster and smarter.</p>
+          <p className="text-xl text-white/80 mb-8">Join teams already using EZLY to scale faster and smarter.</p>
           <Link 
             href="/signup"
-            className="inline-block px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg"
+            className="inline-block px-8 py-4 bg-white text-ezly-navy rounded-lg font-bold hover:bg-gray-100 transition shadow-lg"
           >
             Start Your Free Trial Today
           </Link>
