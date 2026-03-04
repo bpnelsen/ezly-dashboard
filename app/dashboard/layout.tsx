@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
-import { BarChart3, Users, Mail, MessageSquare, Settings, LogOut, Menu, X, Home, Briefcase, FileText, Star } from 'lucide-react'
+import { BarChart3, Users, Mail, MessageSquare, Settings, LogOut, Menu, X, Home, Briefcase, FileText, Star, TrendingUp } from 'lucide-react'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
@@ -80,6 +80,7 @@ export default function DashboardLayout({
         { name: 'Dashboard', href: '/dashboard/contractor', icon: Briefcase },
         { name: 'Available Jobs', href: '/dashboard/contractor/jobs', icon: FileText },
         { name: 'My Bids', href: '/dashboard/contractor/bids', icon: Mail },
+        { name: 'Market Intelligence', href: '/dashboard/contractor/market-intelligence', icon: TrendingUp },
         { name: 'Messages', href: '/dashboard/messages', icon: MessageSquare },
         { name: 'My Profile', href: '/dashboard/contractor/profile', icon: Star },
       ]
