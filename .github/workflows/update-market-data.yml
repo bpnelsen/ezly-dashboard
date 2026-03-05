@@ -1,0 +1,61 @@
+name: Update Market Data Monthly
+
+# Run on the 1st of every month at 9 AM UTC (2 AM MST)
+on:
+  schedule:
+    - cron: '0 9 1 * *'
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  update-market-data:
+    runs-on: ubuntu-latest
+    name: Update Market Intelligence Data
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Update market data
+        run: node scripts/update-market-data.js
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - name: Commit changes (if any)
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "chore: update market intelligence data" || echo "No changes to commit"
+          git push || echo "No changes to push"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger Vercel deployment
+        run: |
+          curl -X POST "https://api.vercel.com/v1/deployments" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "ezly-dashboard",
+              "gitSource": {
+                "org": "bpnelsen",
+                "repo": "ezly-dashboard",
+                "ref": "main"
+              }
+            }'
+
+      - name: Log update completion
+        run: |
+          echo "✅ Market data update complete!"
+          echo "📅 Updated: $(date)"
+          echo "🚀 Vercel deployment triggered"
