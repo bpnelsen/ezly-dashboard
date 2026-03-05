@@ -123,11 +123,14 @@ export default function Home() {
             {/* Homeowner Card */}
             <Link 
               href="/signup?role=homeowner"
-              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-ezly-navy hover:shadow-xl transition-all duration-300 p-8"
+              className="group bg-gradient-to-br from-white to-blue-50 rounded-2xl border-2 border-gray-200 hover:border-ezly-navy hover:shadow-xl transition-all duration-300 p-8 relative overflow-hidden"
             >
-              <div className="p-4 rounded-lg bg-ezly-navy/10 text-ezly-navy w-fit mb-6 group-hover:bg-ezly-navy group-hover:text-white transition">
-                <Users size={32} />
-              </div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100/50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">🏠</div>
+                <div className="p-4 rounded-lg bg-ezly-navy/10 text-ezly-navy w-fit mb-6 group-hover:bg-ezly-navy group-hover:text-white transition">
+                  <Users size={32} />
+                </div>
               
               <h3 className="text-2xl font-bold text-gray-900 mb-3">I'm a Homeowner</h3>
               
@@ -154,20 +157,24 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-ezly-navy font-semibold group-hover:gap-3 transition-all">
-                <span>Get Started</span>
-                <ArrowRight size={20} />
+                <div className="flex items-center gap-2 text-ezly-navy font-semibold group-hover:gap-3 transition-all">
+                  <span>Get Started</span>
+                  <ArrowRight size={20} />
+                </div>
               </div>
             </Link>
 
             {/* Contractor Card */}
             <Link 
               href="/signup?role=contractor"
-              className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-ezly-teal hover:shadow-xl transition-all duration-300 p-8"
+              className="group bg-gradient-to-br from-white to-teal-50 rounded-2xl border-2 border-gray-200 hover:border-ezly-teal hover:shadow-xl transition-all duration-300 p-8 relative overflow-hidden"
             >
-              <div className="p-4 rounded-lg bg-ezly-teal/10 text-ezly-teal w-fit mb-6 group-hover:bg-ezly-teal group-hover:text-white transition">
-                <Zap size={32} />
-              </div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-100/50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">🔨</div>
+                <div className="p-4 rounded-lg bg-ezly-teal/10 text-ezly-teal w-fit mb-6 group-hover:bg-ezly-teal group-hover:text-white transition">
+                  <Zap size={32} />
+                </div>
               
               <h3 className="text-2xl font-bold text-gray-900 mb-3">I'm a Contractor</h3>
               
@@ -194,9 +201,10 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-ezly-teal font-semibold group-hover:gap-3 transition-all">
-                <span>Get Started</span>
-                <ArrowRight size={20} />
+                <div className="flex items-center gap-2 text-ezly-teal font-semibold group-hover:gap-3 transition-all">
+                  <span>Get Started</span>
+                  <ArrowRight size={20} />
+                </div>
               </div>
             </Link>
           </div>
