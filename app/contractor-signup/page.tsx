@@ -93,7 +93,7 @@ export default function ContractorSignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-navy-50 to-indigo-100 flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-2xl">
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">EZLY</h1>
@@ -126,7 +126,7 @@ export default function ContractorSignupPage() {
                     type="text"
                     value={formData.businessName}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -141,7 +141,7 @@ export default function ContractorSignupPage() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -156,7 +156,7 @@ export default function ContractorSignupPage() {
                     type="tel"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   />
                 </div>
 
@@ -170,7 +170,7 @@ export default function ContractorSignupPage() {
                     type="url"
                     value={formData.website}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   />
                 </div>
 
@@ -183,7 +183,7 @@ export default function ContractorSignupPage() {
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   >
                     <option value="">Select a category</option>
                     <option value="plumbing">Plumbing</option>
@@ -208,7 +208,7 @@ export default function ContractorSignupPage() {
                     type="text"
                     value={formData.city}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   />
                 </div>
 
@@ -222,7 +222,7 @@ export default function ContractorSignupPage() {
                     type="text"
                     value={formData.state}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -237,7 +237,7 @@ export default function ContractorSignupPage() {
                   value={formData.services}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                   placeholder="Describe the services you offer..."
                 />
               </div>
@@ -245,7 +245,7 @@ export default function ContractorSignupPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+                className="w-full bg-navy-600 text-white py-3 rounded-lg font-medium hover:bg-navy-700 disabled:opacity-50"
               >
                 {loading ? 'Registering...' : 'Register'}
               </button>
@@ -254,7 +254,7 @@ export default function ContractorSignupPage() {
 
           <p className="text-center text-gray-600 text-sm mt-6">
             Already have an account?{' '}
-            <a href="/login" className="text-blue-600 hover:underline">
+            <a href="/login" className="text-navy-600 hover:underline">
               Sign in
             </a>
           </p>

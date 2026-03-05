@@ -54,7 +54,7 @@ export default function NewCampaignPage() {
       <div className="mb-6">
         <button
           onClick={() => router.back()}
-          className="text-blue-600 hover:text-blue-900 text-sm mb-4"
+          className="text-navy-600 hover:text-navy-700 text-sm mb-4"
         >
           ← Back to Campaigns
         </button>
@@ -78,7 +78,7 @@ export default function NewCampaignPage() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
               placeholder="e.g., Spring Promotion 2024"
               required
             />
@@ -93,7 +93,7 @@ export default function NewCampaignPage() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
               placeholder="Describe your campaign..."
             />
           </div>
@@ -106,7 +106,7 @@ export default function NewCampaignPage() {
               id="template"
               value={template}
               onChange={(e) => setTemplate(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
             >
               <option value="default">Default Template</option>
               <option value="promotional">Promotional</option>
@@ -125,7 +125,7 @@ export default function NewCampaignPage() {
               type="number"
               value={recipientCount}
               onChange={(e) => setRecipientCount(parseInt(e.target.value) || 0)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
               placeholder="0"
             />
             <p className="text-sm text-gray-600 mt-1">You can select recipients in the next step</p>
@@ -142,7 +142,7 @@ export default function NewCampaignPage() {
             <button
               type="submit"
               disabled={loading || !title}
-              className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+              className="flex-1 px-6 py-3 bg-navy-600 text-white rounded-lg font-medium hover:bg-navy-700 disabled:opacity-50"
             >
               {loading ? 'Creating...' : 'Create Campaign'}
             </button>

@@ -292,8 +292,8 @@ export default function MarketIntelligence() {
           )}
 
           {/* Insights & Tips */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-8">
-            <h2 className="text-xl font-bold text-blue-900 mb-4">💡 Smart Bidding Tips</h2>
+          <div className="bg-gradient-to-br from-navy-50 to-indigo-50 rounded-xl border border-navy-200 p-8">
+            <h2 className="text-xl font-bold text-navy-700 mb-4">💡 Smart Bidding Tips</h2>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <CheckCircle size={20} className="text-green-600 flex-shrink-0 mt-0.5" />

@@ -49,11 +49,11 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/20">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-5xl mx-auto px-8 py-6">
-          <Link href="/dashboard/contractor/jobs" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/contractor/jobs" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Jobs
           </Link>
@@ -87,7 +87,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
               <ul className="space-y-3">
                 {job.requirements.map((req, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-blue-600 mt-1">✓</span>
+                    <span className="text-navy-600 mt-1">✓</span>
                     <span className="text-gray-700">{req}</span>
                   </li>
                 ))}
@@ -98,8 +98,8 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
             <div className="bg-white rounded-xl border border-gray-200 p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">About the Homeowner</h2>
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
-                  <User size={32} className="text-blue-600" />
+                <div className="w-16 h-16 rounded-full bg-navy-100 flex items-center justify-center">
+                  <User size={32} className="text-navy-600" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-gray-900">{job.postedBy}</h3>
@@ -160,7 +160,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
                       value={bidAmount}
                       onChange={(e) => setBidAmount(e.target.value)}
                       placeholder="18500"
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -174,7 +174,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
                   <select
                     value={bidTimeline}
                     onChange={(e) => setBidTimeline(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                     required
                   >
                     <option value="">Select timeline</option>
@@ -195,14 +195,14 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
                     onChange={(e) => setBidMessage(e.target.value)}
                     placeholder="Tell the homeowner about your experience and why you're a great fit for this project..."
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent resize-none"
                   />
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+                  className="w-full py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition"
                 >
                   Submit Bid
                 </button>

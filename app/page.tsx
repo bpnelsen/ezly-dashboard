@@ -96,7 +96,7 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-4 gap-4">
                 {[...Array(4)].map((_, i) => (
-                  <div key={i} className="bg-gradient-to-br from-blue-100/50 to-cyan-100/50 rounded-lg p-4 h-24"></div>
+                  <div key={i} className="bg-gradient-to-br from-navy-100/50 to-cyan-100/50 rounded-lg p-4 h-24"></div>
                 ))}
               </div>
               <div className="space-y-3">
@@ -123,9 +123,9 @@ export default function Home() {
             {/* Homeowner Card */}
             <Link 
               href="/signup?role=homeowner"
-              className="group bg-gradient-to-br from-white to-blue-50 rounded-2xl border-2 border-gray-200 hover:border-ezly-navy hover:shadow-xl transition-all duration-300 p-8 relative overflow-hidden"
+              className="group bg-gradient-to-br from-white to-navy-50 rounded-2xl border-2 border-gray-200 hover:border-ezly-navy hover:shadow-xl transition-all duration-300 p-8 relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100/50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-navy-100/50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition"></div>
               <div className="relative z-10">
                 <div className="text-5xl mb-4">🏠</div>
                 <div className="p-4 rounded-lg bg-ezly-navy/10 text-ezly-navy w-fit mb-6 group-hover:bg-ezly-navy group-hover:text-white transition">

@@ -40,11 +40,11 @@ export default function ContractorProfilePage() {
   ])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/20">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-5xl mx-auto px-8 py-6">
-          <Link href="/dashboard/contractor" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/contractor" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Dashboard
           </Link>
@@ -52,7 +52,7 @@ export default function ContractorProfilePage() {
             <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
             <button
               onClick={() => setIsEditing(!isEditing)}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+              className="px-6 py-2 bg-navy-600 text-white rounded-lg font-medium hover:bg-navy-700 transition"
             >
               {isEditing ? 'Save Changes' : 'Edit Profile'}
             </button>
@@ -76,8 +76,8 @@ export default function ContractorProfilePage() {
                 <span>{profile.yearsExperience} years experience</span>
               </div>
             </div>
-            <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center">
-              <Award size={40} className="text-blue-600" />
+            <div className="w-20 h-20 rounded-full bg-navy-100 flex items-center justify-center">
+              <Award size={40} className="text-navy-600" />
             </div>
           </div>
 
@@ -111,7 +111,7 @@ export default function ContractorProfilePage() {
         <div className="bg-white rounded-xl border border-gray-200 p-8 mb-8">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-2xl font-bold text-gray-900">Services & Rates</h3>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition flex items-center gap-2">
+            <button className="px-4 py-2 bg-navy-600 text-white rounded-lg font-medium hover:bg-navy-700 transition flex items-center gap-2">
               <Plus size={18} />
               Add Service
             </button>
@@ -125,8 +125,8 @@ export default function ContractorProfilePage() {
                   <p className="text-sm text-gray-600">{service.projects} projects completed</p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <p className="text-xl font-bold text-blue-600">${service.hourlyRate}/hr</p>
-                  <button className="p-2 text-gray-500 hover:text-blue-600 transition">
+                  <p className="text-xl font-bold text-navy-600">${service.hourlyRate}/hr</p>
+                  <button className="p-2 text-gray-500 hover:text-navy-600 transition">
                     <Edit size={18} />
                   </button>
                   <button className="p-2 text-gray-500 hover:text-red-600 transition">
@@ -142,7 +142,7 @@ export default function ContractorProfilePage() {
         <div className="bg-white rounded-xl border border-gray-200 p-8 mb-8">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-2xl font-bold text-gray-900">Portfolio</h3>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition flex items-center gap-2">
+            <button className="px-4 py-2 bg-navy-600 text-white rounded-lg font-medium hover:bg-navy-700 transition flex items-center gap-2">
               <Plus size={18} />
               Add Project
             </button>
@@ -151,7 +151,7 @@ export default function ContractorProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {portfolio.map((project) => (
               <div key={project.id} className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
-                <div className="bg-gradient-to-br from-blue-100 to-blue-50 h-40 flex items-center justify-center text-5xl">
+                <div className="bg-gradient-to-br from-navy-100 to-navy-50 h-40 flex items-center justify-center text-5xl">
                   {project.image}
                 </div>
                 <div className="p-4">

@@ -80,9 +80,9 @@ export default function MyProjectsPage() {
       icon: Clock,
       label: 'Open for Bids',
       color: 'blue',
-      bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200',
-      badgeColor: 'bg-blue-100 text-blue-800'
+      bgColor: 'bg-navy-50',
+      borderColor: 'border-navy-200',
+      badgeColor: 'bg-navy-100 text-navy-600'
     },
     'in-progress': {
       icon: AlertCircle,
@@ -121,7 +121,7 @@ export default function MyProjectsPage() {
               onClick={() => setFilter(status as any)}
               className={`px-4 py-2 rounded-lg font-medium transition ${
                 filter === status
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-navy-600 text-white'
                   : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
               }`}
             >
@@ -137,7 +137,7 @@ export default function MyProjectsPage() {
             <p className="text-gray-600 text-lg">No projects found</p>
             <Link
               href="/dashboard/homeowner/post-project"
-              className="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+              className="inline-block mt-4 px-6 py-2 bg-navy-600 text-white rounded-lg font-medium hover:bg-navy-700 transition"
             >
               Post a New Project
             </Link>
@@ -204,7 +204,7 @@ export default function MyProjectsPage() {
                   <div className="flex gap-3">
                     <Link
                       href={`/dashboard/homeowner/projects/${project.id}`}
-                      className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition flex items-center justify-center gap-2"
+                      className="flex-1 px-4 py-2 bg-navy-600 text-white rounded-lg font-medium hover:bg-navy-700 transition flex items-center justify-center gap-2"
                     >
                       <Eye size={18} />
                       View Details

@@ -44,7 +44,7 @@ export default function HomeownerDashboard() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/20">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -70,10 +70,10 @@ export default function HomeownerDashboard() {
           {/* Active Projects */}
           <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <Home size={24} className="text-blue-600" />
+              <div className="p-3 bg-navy-100 rounded-lg">
+                <Home size={24} className="text-navy-600" />
               </div>
-              <span className="text-2xl font-bold text-blue-600">+2</span>
+              <span className="text-2xl font-bold text-navy-600">+2</span>
             </div>
             <h3 className="text-gray-600 text-sm font-medium mb-1">Active Projects</h3>
             <p className="text-3xl font-bold text-gray-900">{stats.activeProjects}</p>
@@ -118,17 +118,17 @@ export default function HomeownerDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
           <Link
             href="/dashboard/homeowner/post-project"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Plus size={20} className="text-blue-600" />
+            <div className="p-2 bg-navy-100 rounded-lg">
+              <Plus size={20} className="text-navy-600" />
             </div>
             <span className="font-semibold text-gray-900">Post Project</span>
           </Link>
 
           <Link
             href="/dashboard/homeowner/bids"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
             <div className="p-2 bg-teal-100 rounded-lg">
               <DollarSign size={20} className="text-teal-600" />
@@ -138,7 +138,7 @@ export default function HomeownerDashboard() {
 
           <Link
             href="/dashboard/contractors"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
             <div className="p-2 bg-green-100 rounded-lg">
               <Home size={20} className="text-green-600" />
@@ -148,7 +148,7 @@ export default function HomeownerDashboard() {
 
           <Link
             href="/dashboard/messages"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
             <div className="p-2 bg-purple-100 rounded-lg">
               <MessageCircle size={20} className="text-purple-600" />
@@ -158,7 +158,7 @@ export default function HomeownerDashboard() {
 
           <Link
             href="/dashboard/homeowner/contracts"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
             <div className="p-2 bg-orange-100 rounded-lg">
               <FileText size={20} className="text-orange-600" />
@@ -171,7 +171,7 @@ export default function HomeownerDashboard() {
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold text-gray-900">Recent Projects</h2>
-            <Link href="/dashboard/homeowner/projects" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+            <Link href="/dashboard/homeowner/projects" className="text-navy-600 hover:text-navy-700 font-medium text-sm">
               View All →
             </Link>
           </div>
@@ -181,14 +181,14 @@ export default function HomeownerDashboard() {
               <Link
                 key={project.id}
                 href={`/dashboard/homeowner/projects/${project.id}`}
-                className="block p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-navy-300 hover:shadow-md transition"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="font-bold text-gray-900">{project.title}</h3>
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        project.status === 'Active' ? 'bg-blue-100 text-blue-700' :
+                        project.status === 'Active' ? 'bg-navy-100 text-navy-700' :
                         project.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
                         'bg-green-100 text-green-700'
                       }`}>
@@ -214,7 +214,7 @@ export default function HomeownerDashboard() {
                       </span>
                     </div>
                   </div>
-                  <div className="text-blue-600">
+                  <div className="text-navy-600">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                     </svg>

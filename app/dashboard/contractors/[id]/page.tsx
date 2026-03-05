@@ -97,14 +97,14 @@ export default function ContractorDetailPage() {
         <div>
           <button
             onClick={() => router.back()}
-            className="text-blue-600 hover:text-blue-900 mb-4 text-sm"
+            className="text-navy-600 hover:text-navy-700 mb-4 text-sm"
           >
             ← Back to Contractors
           </button>
           <h1 className="text-3xl font-bold text-gray-900">{contractor.business_name}</h1>
         </div>
         <div className="flex gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button className="px-4 py-2 bg-navy-600 text-white rounded-lg hover:bg-navy-700">
             Edit
           </button>
           <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
@@ -133,7 +133,7 @@ export default function ContractorDetailPage() {
                   href={contractor.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-navy-600 hover:underline"
                 >
                   {contractor.website}
                 </a>

@@ -96,7 +96,7 @@ function SignupPageContent() {
       <div className="min-h-screen bg-white">
         <div className="border-b border-gray-200">
           <div className="max-w-lg mx-auto px-6 py-4">
-            <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            <Link href="/" className="inline-flex items-center text-navy-600 hover:text-navy-700 font-medium">
               ← Back to Home
             </Link>
           </div>
@@ -112,7 +112,7 @@ function SignupPageContent() {
             {/* Homeowner Option */}
             <button
               onClick={() => router.push('/signup/homeowner')}
-              className="group text-left p-6 rounded-xl border-2 border-gray-200 hover:border-blue-600 hover:shadow-lg transition-all duration-300"
+              className="group text-left p-6 rounded-xl border-2 border-gray-200 hover:border-navy-600 hover:shadow-lg transition-all duration-300"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -126,7 +126,7 @@ function SignupPageContent() {
                     <li>✓ Message contractors directly</li>
                   </ul>
                 </div>
-                <div className="text-blue-600 group-hover:text-blue-700 transition">→</div>
+                <div className="text-navy-600 group-hover:text-navy-700 transition">→</div>
               </div>
             </button>
 
@@ -153,7 +153,7 @@ function SignupPageContent() {
           </div>
 
           <div className="mt-12 text-center text-sm text-gray-600">
-            <p>Already have an account? <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">Sign In</Link></p>
+            <p>Already have an account? <Link href="/login" className="text-navy-600 hover:text-navy-700 font-medium">Sign In</Link></p>
           </div>
         </div>
       </div>
@@ -161,7 +161,7 @@ function SignupPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-navy-50 to-indigo-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">EZLY</h1>
@@ -183,7 +183,7 @@ function SignupPageContent() {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                 placeholder="John Doe"
                 required
               />
@@ -198,7 +198,7 @@ function SignupPageContent() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                 placeholder="you@example.com"
                 required
               />
@@ -213,7 +213,7 @@ function SignupPageContent() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
                 placeholder="••••••••"
                 required
               />
@@ -227,7 +227,7 @@ function SignupPageContent() {
                 id="role"
                 value={role}
                 onChange={(e) => setRole(e.target.value as UserRole)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
               >
                 <option value="homeowner">Homeowner</option>
                 <option value="contractor">Contractor</option>
@@ -237,7 +237,7 @@ function SignupPageContent() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50"
+              className="w-full bg-navy-600 text-white py-2 rounded-lg font-medium hover:bg-navy-700 disabled:opacity-50"
             >
               {loading ? 'Creating account...' : 'Sign Up'}
             </button>
@@ -264,7 +264,7 @@ function SignupPageContent() {
 
           <p className="text-center text-gray-600 text-sm mt-6">
             Already have an account?{' '}
-            <Link href="/login" className="text-blue-600 hover:underline">
+            <Link href="/login" className="text-navy-600 hover:underline">
               Sign in
             </Link>
           </p>

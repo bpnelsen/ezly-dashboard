@@ -43,7 +43,7 @@ export default function CampaignsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/30">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -52,7 +52,7 @@ export default function CampaignsPage() {
               <h1 className="text-3xl font-bold text-gray-900">Campaigns</h1>
               <p className="text-gray-600 mt-1">Create and manage your outreach campaigns</p>
             </div>
-            <Link href="/dashboard/campaigns/new" className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm flex items-center gap-2">
+            <Link href="/dashboard/campaigns/new" className="px-6 py-2.5 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition shadow-sm flex items-center gap-2">
               <Plus size={18} />
               New Campaign
             </Link>
@@ -67,8 +67,8 @@ export default function CampaignsPage() {
             <div key={campaign.id} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="p-3 rounded-lg bg-blue-100">
-                    <Mail className="text-blue-600" size={24} />
+                  <div className="p-3 rounded-lg bg-navy-100">
+                    <Mail className="text-navy-600" size={24} />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-gray-900">{campaign.name}</h3>
@@ -105,7 +105,7 @@ export default function CampaignsPage() {
                   <span className="text-sm font-bold text-gray-900">{campaign.progress}%</span>
                 </div>
                 <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-blue-600" style={{ width: `${campaign.progress}%` }}></div>
+                  <div className="h-full bg-navy-600" style={{ width: `${campaign.progress}%` }}></div>
                 </div>
               </div>
 
@@ -131,7 +131,7 @@ export default function CampaignsPage() {
 
               {/* Actions */}
               <div className="flex gap-3">
-                <button className="px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded transition">
+                <button className="px-4 py-2 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded transition">
                   View Details
                 </button>
                 <button className="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded transition">
@@ -152,7 +152,7 @@ export default function CampaignsPage() {
           <div className="text-center py-16">
             <Mail className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <p className="text-gray-600 text-lg mb-6">No campaigns yet</p>
-            <Link href="/dashboard/campaigns/new" className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+            <Link href="/dashboard/campaigns/new" className="px-6 py-2 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition">
               Create your first campaign
             </Link>
           </div>

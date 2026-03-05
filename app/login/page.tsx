@@ -60,7 +60,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/20 to-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-white via-navy-50/20 to-white flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-10">
@@ -91,7 +91,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
                 />
               </div>
             </div>
@@ -100,7 +100,7 @@ export default function LoginPage() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-semibold text-gray-900">Password</label>
-                <Link href="#" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                <Link href="#" className="text-sm text-navy-600 hover:text-navy-700 font-medium">
                   Forgot?
                 </Link>
               </div>
@@ -111,14 +111,14 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
                 />
               </div>
             </div>
 
             {/* Remember Me */}
             <label className="flex items-center gap-2 text-gray-700 cursor-pointer">
-              <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-blue-600" />
+              <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-navy-600" />
               <span className="text-sm">Remember me</span>
             </label>
 
@@ -126,7 +126,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+              className="w-full py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
             >
               {loading ? 'Signing in...' : <>Sign In <ArrowRight size={18} /></>}
             </button>
@@ -169,7 +169,7 @@ export default function LoginPage() {
         {/* Sign Up Link */}
         <p className="text-center text-gray-600 mt-6">
           Don't have an account?{' '}
-          <Link href="/signup" className="text-blue-600 hover:text-blue-700 font-semibold">
+          <Link href="/signup" className="text-navy-600 hover:text-navy-700 font-semibold">
             Create one
           </Link>
         </p>

@@ -107,7 +107,7 @@ export default function PostProjectPage() {
           <div className="max-w-4xl mx-auto px-8 py-6">
             <button 
               onClick={() => setStep('form')}
-              className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium"
+              className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium"
             >
               <ArrowLeft size={18} className="mr-2" />
               Back to Edit
@@ -124,7 +124,7 @@ export default function PostProjectPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-3xl font-bold text-gray-900">{formData.title}</h2>
-                <span className="px-4 py-1 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm">
+                <span className="px-4 py-1 bg-navy-100 text-navy-700 rounded-full font-semibold text-sm">
                   {formData.category}
                 </span>
               </div>
@@ -141,12 +141,12 @@ export default function PostProjectPage() {
             </div>
 
             {/* Budget */}
-            <div className="bg-blue-50 rounded-lg p-6 mb-8">
+            <div className="bg-navy-50 rounded-lg p-6 mb-8">
               <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <DollarSign size={20} />
                 Budget Range
               </h3>
-              <p className="text-2xl font-bold text-blue-600">
+              <p className="text-2xl font-bold text-navy-600">
                 ${parseInt(formData.budgetMin).toLocaleString()} - ${parseInt(formData.budgetMax).toLocaleString()}
               </p>
             </div>
@@ -197,11 +197,11 @@ export default function PostProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/20">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-4xl mx-auto px-8 py-6">
-          <Link href="/dashboard/homeowner" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/homeowner" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Dashboard
           </Link>
@@ -222,7 +222,7 @@ export default function PostProjectPage() {
               value={formData.title}
               onChange={(e) => setFormData({...formData, title: e.target.value})}
               placeholder="e.g., Kitchen Remodel with Island"
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                 errors.title ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -237,7 +237,7 @@ export default function PostProjectPage() {
             <select
               value={formData.category}
               onChange={(e) => setFormData({...formData, category: e.target.value})}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                 errors.category ? 'border-red-500' : 'border-gray-300'
               }`}
             >
@@ -259,7 +259,7 @@ export default function PostProjectPage() {
               onChange={(e) => setFormData({...formData, description: e.target.value})}
               placeholder="Describe your project: size, specific requirements, materials, what you're hoping to achieve, any challenges, timeline expectations..."
               rows={6}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition resize-none ${
                 errors.description ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -279,7 +279,7 @@ export default function PostProjectPage() {
                 value={formData.budgetMin}
                 onChange={(e) => setFormData({...formData, budgetMin: e.target.value})}
                 placeholder="5000"
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                   errors.budgetMin ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -295,7 +295,7 @@ export default function PostProjectPage() {
                 value={formData.budgetMax}
                 onChange={(e) => setFormData({...formData, budgetMax: e.target.value})}
                 placeholder="15000"
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                   errors.budgetMax ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -313,7 +313,7 @@ export default function PostProjectPage() {
             <select
               value={formData.timeline}
               onChange={(e) => setFormData({...formData, timeline: e.target.value})}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                 errors.timeline ? 'border-red-500' : 'border-gray-300'
               }`}
             >
@@ -336,7 +336,7 @@ export default function PostProjectPage() {
               value={formData.location}
               onChange={(e) => setFormData({...formData, location: e.target.value})}
               placeholder="City, State or ZIP code"
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                 errors.location ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -373,7 +373,7 @@ export default function PostProjectPage() {
             )}
 
             {/* Upload Area */}
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition">
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-navy-400 transition">
               <Upload size={40} className="mx-auto text-gray-400 mb-3" />
               <p className="text-gray-600 mb-2">Drag and drop photos here, or click to browse</p>
               <p className="text-sm text-gray-500 mb-4">PNG, JPG up to 10MB each (upload up to 5 photos)</p>
@@ -399,7 +399,7 @@ export default function PostProjectPage() {
             <button
               type="button"
               onClick={handlePreview}
-              className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+              className="flex-1 py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
             >
               <Eye size={18} />
               Preview & Post
@@ -414,9 +414,9 @@ export default function PostProjectPage() {
         </form>
 
         {/* Help Section */}
-        <div className="mt-8 bg-blue-50 rounded-xl p-6 border border-blue-200">
-          <h3 className="font-bold text-blue-900 mb-3">💡 Tips for Getting Great Bids</h3>
-          <ul className="text-sm text-blue-800 space-y-2">
+        <div className="mt-8 bg-navy-50 rounded-xl p-6 border border-navy-200">
+          <h3 className="font-bold text-navy-700 mb-3">💡 Tips for Getting Great Bids</h3>
+          <ul className="text-sm text-navy-600 space-y-2">
             <li>✅ Be specific about what you need - details attract quality contractors</li>
             <li>✅ Upload photos if possible - visuals help contractors understand the scope</li>
             <li>✅ Set a realistic budget range - contractors are more likely to bid</li>

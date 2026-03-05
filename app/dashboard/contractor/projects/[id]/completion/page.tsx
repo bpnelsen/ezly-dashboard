@@ -107,7 +107,7 @@ export default function ProjectCompletionPage({ params }: { params: { id: string
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-8 py-6">
-          <Link href="/dashboard/contractor/projects" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/contractor/projects" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Projects
           </Link>
@@ -124,7 +124,7 @@ export default function ProjectCompletionPage({ params }: { params: { id: string
             <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-bold text-gray-900">Completion Progress</h2>
-                <span className="text-3xl font-bold text-blue-600">{completionPercentage}%</span>
+                <span className="text-3xl font-bold text-navy-600">{completionPercentage}%</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
                 <div
@@ -195,7 +195,7 @@ export default function ProjectCompletionPage({ params }: { params: { id: string
               )}
 
               {/* Upload Area */}
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-navy-400 transition">
                 <Camera size={40} className="mx-auto text-gray-400 mb-3" />
                 <p className="text-gray-600 mb-2">Drag and drop photos here, or click to browse</p>
                 <p className="text-sm text-gray-500 mb-4">PNG, JPG up to 10MB each</p>
@@ -225,7 +225,7 @@ export default function ProjectCompletionPage({ params }: { params: { id: string
                 onChange={(e) => setFinalNotes(e.target.value)}
                 placeholder="E.g., Maintenance schedule, warranty details, care instructions..."
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none resize-none"
               />
             </div>
           </div>
@@ -265,8 +265,8 @@ export default function ProjectCompletionPage({ params }: { params: { id: string
               )}
 
               {/* Status */}
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 mb-6">
-                <p className="text-sm text-blue-900">
+              <div className="p-4 bg-navy-50 rounded-lg border border-navy-200 mb-6">
+                <p className="text-sm text-navy-700">
                   <strong>Status:</strong> Ready for homeowner review{completionPercentage === 100 ? '.' : ' once all items are checked.'}
                 </p>
               </div>

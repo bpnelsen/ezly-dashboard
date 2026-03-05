@@ -99,9 +99,9 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
                   Contractor has been notified and paid
                 </p>
               </div>
-              <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg">
-                <CheckCircle size={20} className="text-blue-600 flex-shrink-0" />
-                <p className="text-sm text-blue-900">
+              <div className="flex items-center gap-3 p-4 bg-navy-50 rounded-lg">
+                <CheckCircle size={20} className="text-navy-600 flex-shrink-0" />
+                <p className="text-sm text-navy-700">
                   Invoice #EZ-{project.id}-{new Date().getFullYear()} has been saved
                 </p>
               </div>
@@ -110,7 +110,7 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
             <div className="flex gap-3">
               <Link
                 href="/dashboard/homeowner/projects"
-                className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+                className="flex-1 px-6 py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition"
               >
                 Back to Projects
               </Link>
@@ -133,7 +133,7 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-8 py-6">
-          <Link href={`/dashboard/homeowner/projects/${params.id}/review`} className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href={`/dashboard/homeowner/projects/${params.id}/review`} className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Review
           </Link>
@@ -181,7 +181,7 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
                     key={method.id}
                     className={`flex items-start gap-4 p-4 border-2 rounded-lg cursor-pointer transition ${
                       selectedMethod === method.id
-                        ? 'border-blue-500 bg-blue-50'
+                        ? 'border-navy-500 bg-navy-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -215,7 +215,7 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
                     <input
                       type="text"
                       placeholder="John Doe"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none"
                     />
                   </div>
 
@@ -227,7 +227,7 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
                       type="text"
                       placeholder="4242 4242 4242 4242"
                       maxLength={19}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none font-mono"
                     />
                   </div>
 
@@ -240,7 +240,7 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
                         type="text"
                         placeholder="MM/YY"
                         maxLength={5}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none"
                       />
                     </div>
                     <div>
@@ -251,7 +251,7 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
                         type="text"
                         placeholder="123"
                         maxLength={4}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none"
                       />
                     </div>
                   </div>
@@ -260,12 +260,12 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
             )}
 
             {/* Security Info */}
-            <div className="bg-blue-50 rounded-xl border border-blue-200 p-6">
+            <div className="bg-navy-50 rounded-xl border border-navy-200 p-6">
               <div className="flex gap-3">
-                <Lock size={20} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                <Lock size={20} className="text-navy-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-blue-900">Your payment is secure</p>
-                  <p className="text-sm text-blue-800 mt-1">
+                  <p className="font-semibold text-navy-700">Your payment is secure</p>
+                  <p className="text-sm text-navy-600 mt-1">
                     All transactions are encrypted with SSL security. Your card information is never stored.
                   </p>
                 </div>

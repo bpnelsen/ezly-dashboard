@@ -83,7 +83,7 @@ export default function MessagesPage() {
             <input
               type="text"
               placeholder="Search conversations..."
-              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
             />
           </div>
         </div>
@@ -95,11 +95,11 @@ export default function MessagesPage() {
               key={conv.id}
               onClick={() => setSelectedConversation(i)}
               className={`w-full text-left p-4 border-b border-gray-100 hover:bg-gray-50 transition ${
-                selectedConversation === i ? 'bg-blue-50' : ''
+                selectedConversation === i ? 'bg-navy-50' : ''
               }`}
             >
               <div className="flex items-start gap-3">
-                <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-navy-600 text-white flex items-center justify-center font-bold flex-shrink-0">
                   {conv.avatar}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -112,7 +112,7 @@ export default function MessagesPage() {
                   <p className="text-sm text-gray-600 truncate">{conv.lastMessage}</p>
                 </div>
                 {conv.unread && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-blue-600 flex-shrink-0"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-navy-600 flex-shrink-0"></div>
                 )}
               </div>
             </button>
@@ -125,7 +125,7 @@ export default function MessagesPage() {
         {/* Chat Header */}
         <div className="border-b border-gray-200 p-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+            <div className="w-12 h-12 rounded-full bg-navy-600 text-white flex items-center justify-center font-bold">
               {conversations[selectedConversation].avatar}
             </div>
             <div>
@@ -148,12 +148,12 @@ export default function MessagesPage() {
               <div
                 className={`max-w-xs px-4 py-2.5 rounded-lg ${
                   msg.sender === 'you'
-                    ? 'bg-blue-600 text-white rounded-br-none'
+                    ? 'bg-navy-600 text-white rounded-br-none'
                     : 'bg-gray-100 text-gray-900 rounded-bl-none'
                 }`}
               >
                 <p className="text-sm">{msg.text}</p>
-                <p className={`text-xs mt-1 ${msg.sender === 'you' ? 'text-blue-100' : 'text-gray-500'}`}>
+                <p className={`text-xs mt-1 ${msg.sender === 'you' ? 'text-navy-100' : 'text-gray-500'}`}>
                   {msg.timestamp}
                 </p>
               </div>
@@ -172,12 +172,12 @@ export default function MessagesPage() {
               placeholder="Type your message..."
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
-              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
             />
             <button className="p-2.5 hover:bg-gray-100 rounded-lg transition text-gray-600">
               <Smile size={20} />
             </button>
-            <button className="p-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            <button className="p-2.5 bg-navy-600 text-white rounded-lg hover:bg-navy-700 transition">
               <Send size={20} />
             </button>
           </div>

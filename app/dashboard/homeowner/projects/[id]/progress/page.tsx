@@ -119,7 +119,7 @@ export default function ProjectProgressPage({ params }: { params: { id: string }
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-8 py-6">
-          <Link href="/dashboard/homeowner/projects" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/homeowner/projects" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Projects
           </Link>
@@ -136,11 +136,11 @@ export default function ProjectProgressPage({ params }: { params: { id: string }
             <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-bold text-gray-900">Project Progress</h2>
-                <span className="text-2xl font-bold text-blue-600">{project.progress}%</span>
+                <span className="text-2xl font-bold text-navy-600">{project.progress}%</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                 <div
-                  className="bg-blue-600 h-full rounded-full transition-all duration-300"
+                  className="bg-navy-600 h-full rounded-full transition-all duration-300"
                   style={{ width: `${project.progress}%` }}
                 />
               </div>
@@ -167,7 +167,7 @@ export default function ProjectProgressPage({ params }: { params: { id: string }
               <div className="space-y-6">
                 {progressUpdates.map((update, index) => {
                   const Icon = update.status === 'completed' ? CheckCircle : update.status === 'in-progress' ? AlertCircle : Zap
-                  const color = update.status === 'completed' ? 'text-green-600' : update.status === 'in-progress' ? 'text-blue-600' : 'text-gray-400'
+                  const color = update.status === 'completed' ? 'text-green-600' : update.status === 'in-progress' ? 'text-navy-600' : 'text-gray-400'
 
                   return (
                     <div key={update.id} className="relative pb-6">
@@ -220,7 +220,7 @@ export default function ProjectProgressPage({ params }: { params: { id: string }
                     key={msg.id}
                     className={`p-4 rounded-lg ${
                       msg.role === 'homeowner'
-                        ? 'bg-blue-50 border border-blue-200 ml-12'
+                        ? 'bg-navy-50 border border-navy-200 ml-12'
                         : 'bg-gray-100 border border-gray-200 mr-12'
                     }`}
                   >
@@ -245,11 +245,11 @@ export default function ProjectProgressPage({ params }: { params: { id: string }
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                     placeholder="Type a message..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none"
                   />
                   <button
                     onClick={handleSendMessage}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+                    className="px-4 py-2 bg-navy-600 text-white rounded-lg font-medium hover:bg-navy-700 transition"
                   >
                     Send
                   </button>
@@ -266,9 +266,9 @@ export default function ProjectProgressPage({ params }: { params: { id: string }
 
               <div className="space-y-4">
                 {/* Status Badge */}
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <p className="text-sm text-blue-600 font-medium">IN PROGRESS</p>
-                  <p className="text-2xl font-bold text-blue-900 mt-1">{project.progress}%</p>
+                <div className="p-4 bg-navy-50 rounded-lg border border-navy-200">
+                  <p className="text-sm text-navy-600 font-medium">IN PROGRESS</p>
+                  <p className="text-2xl font-bold text-navy-700 mt-1">{project.progress}%</p>
                 </div>
 
                 {/* Contractor Contact */}
@@ -276,11 +276,11 @@ export default function ProjectProgressPage({ params }: { params: { id: string }
                   <p className="text-sm text-gray-600 font-medium mb-3">CONTRACTOR</p>
                   <p className="font-bold text-gray-900">{project.contractor}</p>
                   <div className="flex gap-2 mt-3">
-                    <button className="flex-1 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-200 transition flex items-center justify-center gap-1">
+                    <button className="flex-1 px-3 py-2 bg-navy-100 text-navy-700 rounded-lg text-sm font-medium hover:bg-navy-200 transition flex items-center justify-center gap-1">
                       <Phone size={16} />
                       Call
                     </button>
-                    <button className="flex-1 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-200 transition flex items-center justify-center gap-1">
+                    <button className="flex-1 px-3 py-2 bg-navy-100 text-navy-700 rounded-lg text-sm font-medium hover:bg-navy-200 transition flex items-center justify-center gap-1">
                       <MessageCircle size={16} />
                       Message
                     </button>

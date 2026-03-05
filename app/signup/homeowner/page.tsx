@@ -120,7 +120,7 @@ export default function HomeownerSignup() {
       {/* Header */}
       <div className="border-b border-gray-200">
         <div className="max-w-lg mx-auto px-6 py-4">
-          <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+          <Link href="/" className="inline-flex items-center text-navy-600 hover:text-navy-700 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Home
           </Link>
@@ -138,9 +138,9 @@ export default function HomeownerSignup() {
         {/* Progress */}
         <div className="mb-8">
           <div className="flex gap-2">
-            <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 1 ? 'bg-blue-600' : 'bg-gray-200'}`}></div>
-            <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 2 ? 'bg-blue-600' : 'bg-gray-200'}`}></div>
-            <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 3 ? 'bg-blue-600' : 'bg-gray-200'}`}></div>
+            <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 1 ? 'bg-navy-600' : 'bg-gray-200'}`}></div>
+            <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 2 ? 'bg-navy-600' : 'bg-gray-200'}`}></div>
+            <div className={`h-1 flex-1 rounded-full transition-colors ${step >= 3 ? 'bg-navy-600' : 'bg-gray-200'}`}></div>
           </div>
           <p className="text-sm text-gray-600 mt-4">Step {step} of 3</p>
         </div>
@@ -161,7 +161,7 @@ export default function HomeownerSignup() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent outline-none transition"
               />
             </div>
 
@@ -173,7 +173,7 @@ export default function HomeownerSignup() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent outline-none transition"
               />
               <p className="text-xs text-gray-500 mt-2">At least 8 characters</p>
             </div>
@@ -181,7 +181,7 @@ export default function HomeownerSignup() {
             <button
               onClick={() => setStep(2)}
               disabled={!formData.email || formData.password.length < 8}
-              className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 transition"
+              className="w-full py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 disabled:bg-gray-300 transition"
             >
               Continue
             </button>
@@ -204,7 +204,7 @@ export default function HomeownerSignup() {
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="John Smith"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent outline-none transition"
               />
             </div>
 
@@ -216,7 +216,7 @@ export default function HomeownerSignup() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="(555) 123-4567"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent outline-none transition"
               />
             </div>
 
@@ -228,7 +228,7 @@ export default function HomeownerSignup() {
                 value={formData.homeLocation}
                 onChange={handleChange}
                 placeholder="City, State"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent outline-none transition"
               />
             </div>
 
@@ -242,7 +242,7 @@ export default function HomeownerSignup() {
               <button
                 onClick={() => setStep(3)}
                 disabled={!formData.fullName}
-                className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 transition"
+                className="flex-1 py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 disabled:bg-gray-300 transition"
               >
                 Continue
               </button>
@@ -269,7 +269,7 @@ export default function HomeownerSignup() {
                       value={type}
                       checked={formData.projectType.includes(type)}
                       onChange={handleChange}
-                      className="w-4 h-4 text-blue-600 rounded"
+                      className="w-4 h-4 text-navy-600 rounded"
                     />
                     <span className="text-sm text-gray-700">{type}</span>
                   </label>
@@ -283,7 +283,7 @@ export default function HomeownerSignup() {
                 name="homeType"
                 value={formData.homeType}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent outline-none transition"
               >
                 <option value="">Select property type...</option>
                 {homeTypes.map(type => (
@@ -298,7 +298,7 @@ export default function HomeownerSignup() {
                 name="howDidYouHear"
                 value={formData.howDidYouHear}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-600 focus:border-transparent outline-none transition"
               >
                 <option value="">Select...</option>
                 <option value="google">Google Search</option>
@@ -325,7 +325,7 @@ export default function HomeownerSignup() {
               <button
                 onClick={handleSignup}
                 disabled={loading}
-                className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 transition"
+                className="flex-1 py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 disabled:bg-gray-300 transition"
               >
                 {loading ? 'Creating Account...' : 'Create Account'}
               </button>
@@ -367,7 +367,7 @@ export default function HomeownerSignup() {
 
         {/* Footer */}
         <div className="mt-8 text-center text-sm text-gray-600">
-          <p>Already have an account? <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">Sign In</Link></p>
+          <p>Already have an account? <Link href="/login" className="text-navy-600 hover:text-navy-700 font-medium">Sign In</Link></p>
         </div>
       </div>
     </div>

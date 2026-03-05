@@ -73,9 +73,9 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="border-b border-gray-200 bg-gradient-to-br from-blue-50 to-white">
+      <div className="border-b border-gray-200 bg-gradient-to-br from-navy-50 to-white">
         <div className="max-w-7xl mx-auto px-6 py-16">
-          <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-8 font-medium">
+          <Link href="/" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-8 font-medium">
             ← Back to Home
           </Link>
           <h1 className="text-5xl font-bold text-gray-900 mb-4">EZLY Blog</h1>
@@ -92,7 +92,7 @@ export default function BlogPage() {
             <Link 
               key={post.slug} 
               href={`/blog/${post.slug}`}
-              className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:border-blue-300 transition-all duration-200"
+              className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:border-navy-300 transition-all duration-200"
             >
               {/* Featured Image */}
               <div className="h-48 overflow-hidden bg-gray-200 relative">
@@ -105,11 +105,11 @@ export default function BlogPage() {
               
               {/* Content */}
               <div className="p-6">
-                <div className="flex items-center gap-2 text-sm text-blue-600 font-semibold mb-3">
-                  <span className="px-3 py-1 bg-blue-100 rounded-full">{post.category}</span>
+                <div className="flex items-center gap-2 text-sm text-navy-600 font-semibold mb-3">
+                  <span className="px-3 py-1 bg-navy-100 rounded-full">{post.category}</span>
                 </div>
                 
-                <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition line-clamp-2">
+                <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-navy-600 transition line-clamp-2">
                   {post.title}
                 </h2>
                 
@@ -128,7 +128,7 @@ export default function BlogPage() {
                       {post.readTime}
                     </span>
                   </div>
-                  <ArrowRight size={18} className="text-blue-600 group-hover:translate-x-1 transition" />
+                  <ArrowRight size={18} className="text-navy-600 group-hover:translate-x-1 transition" />
                 </div>
               </div>
             </Link>

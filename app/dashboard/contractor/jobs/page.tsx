@@ -104,7 +104,7 @@ export default function BrowseJobsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/20">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -127,7 +127,7 @@ export default function BrowseJobsPage() {
                 placeholder="Search by job title or location..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
               />
             </div>
 
@@ -148,7 +148,7 @@ export default function BrowseJobsPage() {
                   onClick={() => setCategoryFilter(cat)}
                   className={`px-4 py-2 rounded-lg font-medium transition ${
                     categoryFilter === cat
-                      ? 'bg-blue-100 text-blue-700'
+                      ? 'bg-navy-100 text-navy-700'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -165,7 +165,7 @@ export default function BrowseJobsPage() {
             <Link
               key={job.id}
               href={`/dashboard/contractor/jobs/${job.id}`}
-              className="block bg-white rounded-xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-lg transition"
+              className="block bg-white rounded-xl border border-gray-200 p-6 hover:border-navy-300 hover:shadow-lg transition"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
@@ -177,7 +177,7 @@ export default function BrowseJobsPage() {
                   </div>
                   <p className="text-gray-600 mb-3">{job.description}</p>
                 </div>
-                <ChevronRight size={24} className="text-blue-600 flex-shrink-0" />
+                <ChevronRight size={24} className="text-navy-600 flex-shrink-0" />
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4 pt-4 border-t border-gray-100">

@@ -127,7 +127,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-8 py-6">
-          <Link href="/dashboard/homeowner/projects" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/homeowner/projects" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Projects
           </Link>
@@ -163,7 +163,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   </div>
                   <div>
                     <p className="text-xs text-gray-600 font-medium">STATUS</p>
-                    <p className="text-lg font-bold text-blue-600 mt-1">Open for Bids</p>
+                    <p className="text-lg font-bold text-navy-600 mt-1">Open for Bids</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-600 font-medium">POSTED</p>
@@ -188,7 +188,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                     onClick={() => setSelectedBid(selectedBid === bid.id ? null : bid.id)}
                     className={`border rounded-lg p-4 cursor-pointer transition ${
                       selectedBid === bid.id
-                        ? 'border-blue-500 bg-blue-50'
+                        ? 'border-navy-500 bg-navy-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -313,10 +313,10 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
               </div>
 
               {/* Info Box */}
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mt-6 p-4 bg-navy-50 rounded-lg border border-navy-200">
                 <div className="flex gap-3">
-                  <AlertCircle size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
-                  <div className="text-sm text-blue-900">
+                  <AlertCircle size={18} className="text-navy-600 flex-shrink-0 mt-0.5" />
+                  <div className="text-sm text-navy-700">
                     <p className="font-semibold mb-1">Tip: Compare carefully</p>
                     <p className="text-xs">Look beyond price - consider experience, timeline, and reviews</p>
                   </div>
@@ -352,8 +352,8 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                     </p>
                   </div>
 
-                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <p className="text-sm text-blue-900">
+                  <div className="p-4 bg-navy-50 rounded-lg border border-navy-200">
+                    <p className="text-sm text-navy-700">
                       ✅ Once accepted, the contractor will be notified and you'll both be able to communicate about next steps.
                     </p>
                   </div>

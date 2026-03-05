@@ -538,7 +538,7 @@ export default function BlogPostPage() {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Post Not Found</h1>
-          <Link href="/blog" className="text-blue-600 hover:text-blue-700 font-medium">
+          <Link href="/blog" className="text-navy-600 hover:text-navy-700 font-medium">
             ← Back to Blog
           </Link>
         </div>
@@ -549,15 +549,15 @@ export default function BlogPostPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="border-b border-gray-200 bg-gradient-to-br from-blue-50 to-white">
+      <div className="border-b border-gray-200 bg-gradient-to-br from-navy-50 to-white">
         <div className="max-w-4xl mx-auto px-6 py-12">
-          <Link href="/blog" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-8 font-medium">
+          <Link href="/blog" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-8 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Blog
           </Link>
           
           <div className="flex items-center gap-2 text-sm mb-4">
-            <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full font-semibold flex items-center gap-1">
+            <span className="px-3 py-1 bg-navy-100 text-navy-700 rounded-full font-semibold flex items-center gap-1">
               <Tag size={14} />
               {post.category}
             </span>
@@ -614,15 +614,15 @@ export default function BlogPostPage() {
 
       {/* CTA Section */}
       <div className="max-w-4xl mx-auto px-6 py-16">
-        <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-12 text-center text-white">
+        <div className="bg-gradient-to-br from-navy-600 to-navy-700 rounded-2xl p-12 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Ready to Find Your Perfect Contractor?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-navy-100 mb-8 max-w-2xl mx-auto">
             Join EZLY today and connect with verified, trusted contractors in your area.
           </p>
           <div className="flex gap-4 justify-center">
             <Link 
               href="/signup"
-              className="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition shadow-lg"
+              className="px-8 py-4 bg-white text-navy-600 rounded-lg font-semibold hover:bg-navy-50 transition shadow-lg"
             >
               Get Started Free
             </Link>

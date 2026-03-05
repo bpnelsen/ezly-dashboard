@@ -88,7 +88,7 @@ export default function MyBidsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/20">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -124,7 +124,7 @@ export default function MyBidsPage() {
             <Link
               key={bid.id}
               href={`/dashboard/contractor/jobs/${bid.id}`}
-              className="block bg-white rounded-xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-lg transition"
+              className="block bg-white rounded-xl border border-gray-200 p-6 hover:border-navy-300 hover:shadow-lg transition"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
@@ -164,7 +164,7 @@ export default function MyBidsPage() {
               {/* Action Button */}
               <div className="mt-4 pt-4 border-t border-gray-100">
                 {bid.status === 'Pending' && (
-                  <button className="px-4 py-2 text-sm bg-blue-50 text-blue-600 rounded-lg font-medium hover:bg-blue-100 transition">
+                  <button className="px-4 py-2 text-sm bg-navy-50 text-navy-600 rounded-lg font-medium hover:bg-navy-100 transition">
                     Edit Bid
                   </button>
                 )}

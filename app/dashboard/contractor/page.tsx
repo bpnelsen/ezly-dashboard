@@ -35,7 +35,7 @@ export default function ContractorDashboard() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/20">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -46,7 +46,7 @@ export default function ContractorDashboard() {
             </div>
             <Link
               href="/dashboard/contractor/profile"
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm"
+              className="px-6 py-3 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition shadow-sm"
             >
               Edit Profile
             </Link>
@@ -59,8 +59,8 @@ export default function ContractorDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <Briefcase size={24} className="text-blue-600" />
+              <div className="p-3 bg-navy-100 rounded-lg">
+                <Briefcase size={24} className="text-navy-600" />
               </div>
             </div>
             <h3 className="text-gray-600 text-sm font-medium mb-1">Active Jobs</h3>
@@ -103,17 +103,17 @@ export default function ContractorDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Link
             href="/dashboard/contractor/jobs"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Briefcase size={20} className="text-blue-600" />
+            <div className="p-2 bg-navy-100 rounded-lg">
+              <Briefcase size={20} className="text-navy-600" />
             </div>
             <span className="font-semibold text-gray-900">Browse Jobs</span>
           </Link>
 
           <Link
             href="/dashboard/contractor/bids"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
             <div className="p-2 bg-yellow-100 rounded-lg">
               <FileText size={20} className="text-yellow-600" />
@@ -123,7 +123,7 @@ export default function ContractorDashboard() {
 
           <Link
             href="/dashboard/messages"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
             <div className="p-2 bg-purple-100 rounded-lg">
               <MessageCircle size={20} className="text-purple-600" />
@@ -133,7 +133,7 @@ export default function ContractorDashboard() {
 
           <Link
             href="/dashboard/contractor/profile"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-md transition flex items-center gap-3"
+            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
           >
             <div className="p-2 bg-green-100 rounded-lg">
               <Star size={20} className="text-green-600" />
@@ -146,7 +146,7 @@ export default function ContractorDashboard() {
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold text-gray-900">Available Jobs</h2>
-            <Link href="/dashboard/contractor/jobs" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+            <Link href="/dashboard/contractor/jobs" className="text-navy-600 hover:text-navy-700 font-medium text-sm">
               View All →
             </Link>
           </div>
@@ -156,7 +156,7 @@ export default function ContractorDashboard() {
               <Link
                 key={job.id}
                 href={`/dashboard/contractor/jobs/${job.id}`}
-                className="block p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-navy-300 hover:shadow-md transition"
               >
                 <div className="flex items-start justify-between mb-2">
                   <div>
@@ -169,13 +169,13 @@ export default function ContractorDashboard() {
                       <span>{job.posted}</span>
                     </div>
                   </div>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
+                  <span className="px-3 py-1 bg-navy-100 text-navy-700 rounded-full text-xs font-semibold">
                     {job.category}
                   </span>
                 </div>
                 <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
                   <span className="text-sm font-semibold text-gray-900">Budget: {job.budget}</span>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition">
+                  <button className="px-4 py-2 bg-navy-600 text-white rounded-lg text-sm font-semibold hover:bg-navy-700 transition">
                     Submit Bid
                   </button>
                 </div>

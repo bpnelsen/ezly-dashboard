@@ -55,7 +55,7 @@ export default function ProjectReviewPage({ params }: { params: { id: string } }
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-8 py-6">
-          <Link href="/dashboard/homeowner/projects" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/homeowner/projects" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Projects
           </Link>
@@ -178,7 +178,7 @@ export default function ProjectReviewPage({ params }: { params: { id: string } }
                     onChange={(e) => setReview(e.target.value)}
                     placeholder="Tell other homeowners about your experience..."
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none resize-none"
                   />
                 </div>
               </div>
@@ -274,9 +274,9 @@ export default function ProjectReviewPage({ params }: { params: { id: string } }
             </div>
 
             {/* Info Box */}
-            <div className="bg-blue-50 rounded-xl border border-blue-200 p-6">
-              <h3 className="font-bold text-blue-900 mb-3">Payment Security</h3>
-              <ul className="text-sm text-blue-900 space-y-2">
+            <div className="bg-navy-50 rounded-xl border border-navy-200 p-6">
+              <h3 className="font-bold text-navy-700 mb-3">Payment Security</h3>
+              <ul className="text-sm text-navy-700 space-y-2">
                 <li className="flex gap-2">
                   <span>✓</span>
                   <span>Your payment is secure & encrypted</span>
@@ -319,8 +319,8 @@ export default function ProjectReviewPage({ params }: { params: { id: string } }
                 <p className="text-2xl font-bold text-green-600">${project.invoiceAmount.toLocaleString()}</p>
               </div>
 
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-900">
+              <div className="p-4 bg-navy-50 rounded-lg">
+                <p className="text-sm text-navy-700">
                   ✓ By approving, you confirm the work is complete and satisfactory.
                 </p>
               </div>
@@ -361,7 +361,7 @@ export default function ProjectReviewPage({ params }: { params: { id: string } }
                 <textarea
                   placeholder="Describe the issue in detail..."
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none resize-none"
                 />
               </div>
 

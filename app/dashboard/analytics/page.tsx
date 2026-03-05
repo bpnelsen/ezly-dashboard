@@ -117,7 +117,7 @@ export default function AnalyticsPage() {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
                   <div
-                    className="bg-blue-600 h-2 rounded-full"
+                    className="bg-navy-600 h-2 rounded-full"
                     style={{
                       width: `${Math.min(analytics.average_open_rate, 100)}%`,
                     }}

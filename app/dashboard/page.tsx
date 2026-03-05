@@ -77,7 +77,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-navy-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading dashboard...</p>
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/30">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -100,7 +100,7 @@ export default function DashboardPage() {
               <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
               <p className="text-gray-600 mt-1">Welcome back! Here's your network activity.</p>
             </div>
-            <button className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm">
+            <button className="px-6 py-2.5 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition shadow-sm">
               + New Campaign
             </button>
           </div>
@@ -112,7 +112,7 @@ export default function DashboardPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {stats.map((stat, i) => {
             const colorMap = {
-              blue: { bg: 'bg-blue-50', border: 'border-blue-200', icon: 'text-blue-600', iconBg: 'bg-blue-100' },
+              blue: { bg: 'bg-navy-50', border: 'border-navy-200', icon: 'text-navy-600', iconBg: 'bg-navy-100' },
               green: { bg: 'bg-green-50', border: 'border-green-200', icon: 'text-green-600', iconBg: 'bg-green-100' },
               purple: { bg: 'bg-purple-50', border: 'border-purple-200', icon: 'text-purple-600', iconBg: 'bg-purple-100' },
               orange: { bg: 'bg-orange-50', border: 'border-orange-200', icon: 'text-orange-600', iconBg: 'bg-orange-100' }
@@ -186,7 +186,7 @@ export default function DashboardPage() {
                     <span className="text-sm font-bold text-gray-900">68%</span>
                   </div>
                   <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-600" style={{ width: '68%' }}></div>
+                    <div className="h-full bg-navy-600" style={{ width: '68%' }}></div>
                   </div>
                 </div>
                 <div>
@@ -202,19 +202,19 @@ export default function DashboardPage() {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-xl p-6 shadow-sm">
+            <div className="bg-gradient-to-br from-navy-600 to-navy-700 text-white rounded-xl p-6 shadow-sm">
               <h3 className="text-lg font-bold mb-4">Next Actions</h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue-300"></span>
+                  <span className="w-2 h-2 rounded-full bg-navy-300"></span>
                   Review 5 pending replies
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue-300"></span>
+                  <span className="w-2 h-2 rounded-full bg-navy-300"></span>
                   Send follow-up emails
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue-300"></span>
+                  <span className="w-2 h-2 rounded-full bg-navy-300"></span>
                   Schedule 3 meetings
                 </li>
               </ul>

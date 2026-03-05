@@ -60,7 +60,7 @@ export default function ContractorsPage() {
     })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/30">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -69,7 +69,7 @@ export default function ContractorsPage() {
               <h1 className="text-3xl font-bold text-gray-900">Contractors</h1>
               <p className="text-gray-600 mt-1">{filtered.length} contractors in your network</p>
             </div>
-            <button className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm flex items-center gap-2">
+            <button className="px-6 py-2.5 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition shadow-sm flex items-center gap-2">
               <Plus size={18} />
               Add Contractor
             </button>
@@ -87,13 +87,13 @@ export default function ContractorsPage() {
               placeholder="Search by name, location, service..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
             />
           </div>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition text-gray-900"
           >
             <option value="name">Sort by Name</option>
             <option value="recent">Recently Added</option>
@@ -128,7 +128,7 @@ export default function ContractorsPage() {
         ) : filtered.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-gray-600 text-lg mb-4">No contractors found</p>
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+            <button className="px-6 py-2 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition">
               Add your first contractor
             </button>
           </div>
@@ -136,11 +136,11 @@ export default function ContractorsPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((contractor) => (
               <Link key={contractor.id} href={`/dashboard/contractors/${contractor.id}`}>
-                <div className="group bg-white border border-gray-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-lg transition h-full flex flex-col">
+                <div className="group bg-white border border-gray-200 rounded-lg p-6 hover:border-navy-300 hover:shadow-lg transition h-full flex flex-col">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition line-clamp-2">
+                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-navy-600 transition line-clamp-2">
                         {contractor.business_name}
                       </h3>
                       <div className="flex items-center gap-1 mt-2">
@@ -149,7 +149,7 @@ export default function ContractorsPage() {
                         ))}
                       </div>
                     </div>
-                    <ChevronRight size={20} className="text-gray-400 group-hover:text-blue-600 transition" />
+                    <ChevronRight size={20} className="text-gray-400 group-hover:text-navy-600 transition" />
                   </div>
 
                   {/* Info */}
@@ -171,7 +171,7 @@ export default function ContractorsPage() {
                         <Globe size={16} className="text-gray-400 flex-shrink-0" />
                         <a href={contractor.website} target="_blank" rel="noopener noreferrer" 
                            onClick={(e) => e.stopPropagation()}
-                           className="text-blue-600 hover:text-blue-700 truncate">
+                           className="text-navy-600 hover:text-navy-700 truncate">
                           Visit
                         </a>
                       </div>
@@ -180,7 +180,7 @@ export default function ContractorsPage() {
 
                   {/* Actions */}
                   <div className="flex gap-2 pt-4 border-t border-gray-100">
-                    <button className="flex-1 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded transition">
+                    <button className="flex-1 py-2 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded transition">
                       Message
                     </button>
                     <button className="flex-1 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded transition">

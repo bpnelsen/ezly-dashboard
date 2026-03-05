@@ -168,10 +168,10 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-8 py-8">
         {/* Edit Controls */}
         {isEditMode && (
-          <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8 flex items-center justify-between">
+          <div className="bg-navy-50 border-2 border-navy-200 rounded-xl p-6 mb-8 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <AlertCircle size={24} className="text-blue-600" />
-              <span className="font-semibold text-blue-900">Edit Mode Enabled - Changes will be saved to Supabase</span>
+              <AlertCircle size={24} className="text-navy-600" />
+              <span className="font-semibold text-navy-700">Edit Mode Enabled - Changes will be saved to Supabase</span>
             </div>
             <div className="flex gap-3">
               <button
@@ -199,7 +199,7 @@ export default function AdminDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {stats.map(stat => (
               <div key={stat.id} className={`rounded-xl border p-6 transition ${
-                isEditMode ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200'
+                isEditMode ? 'bg-navy-50 border-navy-200' : 'bg-white border-gray-200'
               }`}>
                 <p className="text-sm text-gray-600 font-medium">{stat.description}</p>
                 {isEditMode ? (
@@ -234,7 +234,7 @@ export default function AdminDashboard() {
           <div className="space-y-4">
             {settings.map(setting => (
               <div key={setting.id} className={`rounded-xl border p-6 transition ${
-                isEditMode ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200'
+                isEditMode ? 'bg-navy-50 border-navy-200' : 'bg-white border-gray-200'
               }`}>
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -269,13 +269,13 @@ export default function AdminDashboard() {
             <Link href="/dashboard/admin/analytics" className="group">
               <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition">
-                    <BarChart3 size={24} className="text-blue-600" />
+                  <div className="p-3 bg-navy-100 rounded-lg group-hover:bg-navy-200 transition">
+                    <BarChart3 size={24} className="text-navy-600" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition">Analytics</h3>
+                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-navy-600 transition">Analytics</h3>
                 </div>
                 <p className="text-sm text-gray-600">View detailed platform metrics, revenue, and user statistics</p>
-                <p className="text-xs text-blue-600 font-semibold mt-3">View Dashboard →</p>
+                <p className="text-xs text-navy-600 font-semibold mt-3">View Dashboard →</p>
               </div>
             </Link>
 

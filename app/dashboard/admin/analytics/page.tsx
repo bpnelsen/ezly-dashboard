@@ -68,7 +68,7 @@ export default function AnalyticsPage() {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-6">
-          <Link href="/dashboard/admin" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 font-medium">
+          <Link href="/dashboard/admin" className="inline-flex items-center text-navy-600 hover:text-navy-700 mb-4 font-medium">
             <ArrowLeft size={18} className="mr-2" />
             Back to Admin
           </Link>
@@ -112,7 +112,7 @@ export default function AnalyticsPage() {
         {/* Projects Section */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <Briefcase size={28} className="text-blue-600" />
+            <Briefcase size={28} className="text-navy-600" />
             Project Statistics
           </h2>
 

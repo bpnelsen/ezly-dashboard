@@ -219,7 +219,7 @@ export default function HomeownerBidsPage() {
               onClick={() => setSelectedTab(tab as any)}
               className={`flex-1 px-6 py-4 text-sm font-medium transition ${
                 selectedTab === tab
-                  ? 'text-blue-600 border-b-2 border-blue-600'
+                  ? 'text-navy-600 border-b-2 border-navy-600'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -402,7 +402,7 @@ export default function HomeownerBidsPage() {
               {/* Message */}
               <div>
                 <h3 className="font-bold text-gray-900 mb-3">Contractor's Message</h3>
-                <div className="bg-blue-50 rounded-lg p-4">
+                <div className="bg-navy-50 rounded-lg p-4">
                   <p className="text-gray-700">{selectedBid.message}</p>
                 </div>
               </div>

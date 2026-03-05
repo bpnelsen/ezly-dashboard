@@ -16,7 +16,7 @@ export default function SettingsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/30">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-8 py-8">
@@ -34,7 +34,7 @@ export default function SettingsPage() {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-3 font-semibold border-b-2 transition ${
                 activeTab === tab.id
-                  ? 'text-blue-600 border-blue-600'
+                  ? 'text-navy-600 border-navy-600'
                   : 'text-gray-600 border-transparent hover:text-gray-900'
               }`}
             >
@@ -56,7 +56,7 @@ export default function SettingsPage() {
                   <input
                     type="text"
                     defaultValue="Brian Nelson"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
                   />
                 </div>
                 <div>
@@ -64,7 +64,7 @@ export default function SettingsPage() {
                   <input
                     type="email"
                     defaultValue="brian@example.com"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
                   />
                 </div>
                 <div>
@@ -72,10 +72,10 @@ export default function SettingsPage() {
                   <input
                     type="text"
                     defaultValue="Your Company Name"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
                   />
                 </div>
-                <button className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2">
+                <button className="px-6 py-2.5 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition flex items-center gap-2">
                   <Save size={18} />
                   Save Changes
                 </button>
@@ -91,12 +91,12 @@ export default function SettingsPage() {
                   <input
                     type="text"
                     defaultValue="My Workspace"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Timezone</label>
-                  <select className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900">
+                  <select className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition text-gray-900">
                     <option>America/Phoenix (MST)</option>
                     <option>America/Denver (MDT)</option>
                     <option>America/Chicago</option>
@@ -135,14 +135,14 @@ export default function SettingsPage() {
         {activeTab === 'billing' && (
           <div className="bg-white rounded-xl border border-gray-200 p-8">
             <h2 className="text-lg font-bold text-gray-900 mb-6">Billing & Subscription</h2>
-            <div className="mb-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mb-8 p-6 bg-navy-50 border border-navy-200 rounded-lg">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Current Plan</p>
                   <p className="text-2xl font-bold text-gray-900">Pro Plan</p>
                   <p className="text-sm text-gray-600 mt-2">$99/month • Renews Mar 27, 2026</p>
                 </div>
-                <button className="px-4 py-2 border border-blue-300 text-blue-600 rounded-lg hover:bg-blue-100 transition font-semibold">
+                <button className="px-4 py-2 border border-navy-300 text-navy-600 rounded-lg hover:bg-navy-100 transition font-semibold">
                   Change Plan
                 </button>
               </div>
@@ -186,7 +186,7 @@ export default function SettingsPage() {
             <div className="bg-white rounded-xl border border-gray-200 p-8">
               <h2 className="text-lg font-bold text-gray-900 mb-6">Two-Factor Authentication</h2>
               <p className="text-gray-600 mb-4">Add an extra layer of security to your account</p>
-              <button className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+              <button className="px-6 py-2.5 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition">
                 Enable 2FA
               </button>
             </div>
