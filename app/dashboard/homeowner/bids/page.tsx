@@ -2,25 +2,29 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { DollarSign, Clock, CheckCircle, XCircle, MessageCircle, User, Star, Calendar } from 'lucide-react'
+import { DollarSign, Clock, CheckCircle, XCircle, MessageCircle, User, Star, Calendar, AlertCircle, Loader } from 'lucide-react'
+
+interface Contractor {
+  id: string
+  email: string
+}
+
+interface Project {
+  id: string
+  title: string
+  category: string
+}
 
 interface Bid {
   id: string
   projectId: string
-  projectTitle: string
-  contractor: {
-    id: string
-    name: string
-    company: string
-    rating: number
-    completedProjects: number
-    avatar?: string
-  }
+  project: Project
+  contractor: Contractor
   amount: number
   timeline: string
-  submittedDate: string
+  submitted_at: string
   status: 'pending' | 'accepted' | 'rejected' | 'withdrawn'
   message: string
   details: {
@@ -35,106 +39,77 @@ interface Bid {
 export default function HomeownerBidsPage() {
   const [selectedTab, setSelectedTab] = useState<'all' | 'pending' | 'accepted' | 'rejected'>('all')
   const [selectedBid, setSelectedBid] = useState<Bid | null>(null)
+  const [bids, setBids] = useState<Bid[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [actionLoading, setActionLoading] = useState<string | null>(null)
 
-  // Sample bid data - Replace with real data from Supabase
-  const bids: Bid[] = [
-    {
-      id: '1',
-      projectId: 'proj-1',
-      projectTitle: 'Kitchen Remodel - Complete Renovation',
-      contractor: {
-        id: 'c1',
-        name: 'John Martinez',
-        company: 'Martinez Kitchen & Bath',
-        rating: 4.9,
-        completedProjects: 87
-      },
-      amount: 28500,
-      timeline: '6-8 weeks',
-      submittedDate: '2026-02-25',
-      status: 'pending',
-      message: 'I have over 15 years of experience with kitchen renovations. I can start within 2 weeks and guarantee quality work with a 2-year warranty.',
-      details: {
-        startDate: '2026-03-15',
-        completionDate: '2026-05-01',
-        laborCost: 18500,
-        materialsCost: 10000,
-        warranty: '2 years on labor, manufacturer warranty on materials'
+  // Fetch bids on mount
+  useEffect(() => {
+    fetchBids()
+  }, [])
+
+  async function fetchBids() {
+    try {
+      setLoading(true)
+      const response = await fetch('/api/bids')
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch bids')
       }
-    },
-    {
-      id: '2',
-      projectId: 'proj-1',
-      projectTitle: 'Kitchen Remodel - Complete Renovation',
-      contractor: {
-        id: 'c2',
-        name: 'Sarah Chen',
-        company: 'Premium Home Renovations',
-        rating: 4.8,
-        completedProjects: 124
-      },
-      amount: 32000,
-      timeline: '8-10 weeks',
-      submittedDate: '2026-02-26',
-      status: 'pending',
-      message: 'We specialize in high-end kitchen renovations with custom cabinetry. Our team includes licensed electricians and plumbers.',
-      details: {
-        startDate: '2026-03-20',
-        completionDate: '2026-05-15',
-        laborCost: 22000,
-        materialsCost: 10000,
-        warranty: '5 years comprehensive warranty'
-      }
-    },
-    {
-      id: '3',
-      projectId: 'proj-2',
-      projectTitle: 'Bathroom Renovation - Master Bath',
-      contractor: {
-        id: 'c3',
-        name: 'Mike Johnson',
-        company: 'Johnson Plumbing & Remodel',
-        rating: 4.7,
-        completedProjects: 63
-      },
-      amount: 15750,
-      timeline: '4-5 weeks',
-      submittedDate: '2026-02-24',
-      status: 'accepted',
-      message: 'Licensed and insured with 20+ years experience. I can provide references from similar bathroom projects in your area.',
-      details: {
-        startDate: '2026-03-10',
-        completionDate: '2026-04-15',
-        laborCost: 9750,
-        materialsCost: 6000,
-        warranty: '3 years on labor'
-      }
-    },
-    {
-      id: '4',
-      projectId: 'proj-1',
-      projectTitle: 'Kitchen Remodel - Complete Renovation',
-      contractor: {
-        id: 'c4',
-        name: 'David Lopez',
-        company: 'Budget Kitchen Pros',
-        rating: 4.3,
-        completedProjects: 42
-      },
-      amount: 22500,
-      timeline: '6-7 weeks',
-      submittedDate: '2026-02-23',
-      status: 'rejected',
-      message: 'Affordable quality work. Can work with your budget and timeline.',
-      details: {
-        startDate: '2026-03-12',
-        completionDate: '2026-04-30',
-        laborCost: 14500,
-        materialsCost: 8000,
-        warranty: '1 year warranty'
-      }
+
+      const data = await response.json()
+      setBids(data || [])
+      setError(null)
+    } catch (err: any) {
+      setError(err.message)
+      console.error('Error fetching bids:', err)
+    } finally {
+      setLoading(false)
     }
-  ]
+  }
+
+  async function handleAcceptBid(bid: Bid) {
+    try {
+      setActionLoading(bid.id)
+      const response = await fetch(`/api/bids/${bid.id}/accept`, {
+        method: 'POST'
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to accept bid')
+      }
+
+      // Refresh bids
+      await fetchBids()
+      setSelectedBid(null)
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
+  async function handleRejectBid(bid: Bid) {
+    try {
+      setActionLoading(bid.id)
+      const response = await fetch(`/api/bids/${bid.id}/reject`, {
+        method: 'POST'
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to reject bid')
+      }
+
+      // Refresh bids
+      await fetchBids()
+      setSelectedBid(null)
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setActionLoading(null)
+    }
+  }
 
   const filteredBids = selectedTab === 'all' 
     ? bids 
@@ -157,16 +132,6 @@ export default function HomeownerBidsPage() {
     }
   }
 
-  const handleAcceptBid = (bid: Bid) => {
-    alert(`Accepting bid from ${bid.contractor.company} for $${bid.amount.toLocaleString()}`)
-    // TODO: Update bid status in database
-  }
-
-  const handleRejectBid = (bid: Bid) => {
-    alert(`Rejecting bid from ${bid.contractor.company}`)
-    // TODO: Update bid status in database
-  }
-
   return (
     <div className="p-8">
       {/* Header */}
@@ -174,6 +139,17 @@ export default function HomeownerBidsPage() {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Bids & Proposals</h1>
         <p className="text-gray-600">Review and manage contractor bids for your projects</p>
       </div>
+
+      {/* Error Alert */}
+      {error && (
+        <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3">
+          <AlertCircle size={20} className="text-red-600" />
+          <div>
+            <p className="font-semibold text-red-900">Error</p>
+            <p className="text-red-700">{error}</p>
+          </div>
+        </div>
+      )}
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-6 mb-8">
@@ -211,226 +187,179 @@ export default function HomeownerBidsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg border border-gray-200 mb-6">
-        <div className="flex border-b border-gray-200">
-          {['all', 'pending', 'accepted', 'rejected'].map(tab => (
-            <button
-              key={tab}
-              onClick={() => setSelectedTab(tab as any)}
-              className={`flex-1 px-6 py-4 text-sm font-medium transition ${
-                selectedTab === tab
-                  ? 'text-navy-600 border-b-2 border-navy-600'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              <span className="ml-2 text-xs text-gray-500">
-                ({tab === 'all' ? stats.total : stats[tab as keyof typeof stats]})
-              </span>
-            </button>
-          ))}
+      <div className="mb-8 flex gap-4 border-b border-gray-200">
+        {(['all', 'pending', 'accepted', 'rejected'] as const).map(tab => (
+          <button
+            key={tab}
+            onClick={() => setSelectedTab(tab)}
+            className={`px-4 py-2 font-medium text-sm border-b-2 transition ${
+              selectedTab === tab
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      {/* Loading State */}
+      {loading ? (
+        <div className="text-center py-12">
+          <Loader className="animate-spin mx-auto mb-4 text-gray-400" size={32} />
+          <p className="text-gray-600">Loading bids...</p>
         </div>
-
-        {/* Bids List */}
-        <div className="divide-y divide-gray-200">
-          {filteredBids.length === 0 ? (
-            <div className="p-12 text-center text-gray-500">
-              <DollarSign size={48} className="mx-auto mb-4 text-gray-300" />
-              <p className="text-lg font-medium text-gray-900 mb-2">No {selectedTab} bids</p>
-              <p>When contractors submit bids, they'll appear here.</p>
-            </div>
-          ) : (
-            filteredBids.map(bid => (
-              <div key={bid.id} className="p-6 hover:bg-gray-50 transition">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-lg font-bold text-gray-900">{bid.contractor.company}</h3>
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(bid.status)}`}>
-                        {bid.status}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-1">For: {bid.projectTitle}</p>
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <User size={14} />
-                        {bid.contractor.name}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Star size={14} className="text-amber-500" />
-                        {bid.contractor.rating} ({bid.contractor.completedProjects} projects)
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        Submitted {new Date(bid.submittedDate).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900">${bid.amount.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600 flex items-center gap-1">
-                      <Clock size={14} />
-                      {bid.timeline}
-                    </div>
-                  </div>
+      ) : filteredBids.length === 0 ? (
+        <div className="text-center py-12">
+          <p className="text-gray-600">No {selectedTab !== 'all' ? selectedTab : ''} bids yet</p>
+        </div>
+      ) : (
+        /* Bids List */
+        <div className="space-y-4">
+          {filteredBids.map(bid => (
+            <div
+              key={bid.id}
+              className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition cursor-pointer"
+              onClick={() => setSelectedBid(bid)}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-1">{bid.project.title}</h3>
+                  <p className="text-sm text-gray-600">From: {bid.contractor.email}</p>
                 </div>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(bid.status)}`}>
+                  {bid.status.charAt(0).toUpperCase() + bid.status.slice(1)}
+                </span>
+              </div>
 
-                <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                  <p className="text-sm text-gray-700">{bid.message}</p>
+              <div className="grid grid-cols-3 gap-4 mb-4">
+                <div>
+                  <p className="text-sm text-gray-600">Amount</p>
+                  <p className="text-lg font-bold text-gray-900">${bid.amount.toLocaleString()}</p>
                 </div>
-
-                <div className="flex items-center gap-3">
-                  {bid.status === 'pending' && (
-                    <>
-                      <button
-                        onClick={() => handleAcceptBid(bid)}
-                        className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition flex items-center gap-2"
-                      >
-                        <CheckCircle size={18} />
-                        Accept Bid
-                      </button>
-                      <button
-                        onClick={() => handleRejectBid(bid)}
-                        className="px-4 py-2 border border-red-600 text-red-600 rounded-lg font-medium hover:bg-red-50 transition flex items-center gap-2"
-                      >
-                        <XCircle size={18} />
-                        Reject
-                      </button>
-                    </>
-                  )}
-                  
-                  <button
-                    onClick={() => setSelectedBid(bid)}
-                    className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition"
-                  >
-                    View Details
-                  </button>
-
-                  <Link
-                    href="/dashboard/messages"
-                    className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition flex items-center gap-2"
-                  >
-                    <MessageCircle size={18} />
-                    Message
-                  </Link>
+                <div>
+                  <p className="text-sm text-gray-600">Timeline</p>
+                  <p className="text-lg font-semibold text-gray-900">{bid.timeline}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Submitted</p>
+                  <p className="text-sm text-gray-900">{new Date(bid.submitted_at).toLocaleDateString()}</p>
                 </div>
               </div>
-            ))
-          )}
+
+              <p className="text-sm text-gray-700 mb-4 line-clamp-2">{bid.message}</p>
+
+              {bid.status === 'pending' && (
+                <div className="flex gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleAcceptBid(bid)
+                    }}
+                    disabled={actionLoading === bid.id}
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition disabled:opacity-50"
+                  >
+                    {actionLoading === bid.id ? 'Accepting...' : 'Accept Bid'}
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleRejectBid(bid)
+                    }}
+                    disabled={actionLoading === bid.id}
+                    className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-medium transition disabled:opacity-50"
+                  >
+                    {actionLoading === bid.id ? 'Rejecting...' : 'Reject'}
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-      </div>
+      )}
 
       {/* Bid Detail Modal */}
       {selectedBid && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-start justify-between">
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-8">
+              <h2 className="text-2xl font-bold mb-4">{selectedBid.project.title}</h2>
+              <div className="grid grid-cols-2 gap-6 mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-1">{selectedBid.contractor.company}</h2>
-                  <p className="text-gray-600">{selectedBid.projectTitle}</p>
+                  <p className="text-sm text-gray-600">Contractor</p>
+                  <p className="font-semibold">{selectedBid.contractor.email}</p>
                 </div>
-                <button
-                  onClick={() => setSelectedBid(null)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  <XCircle size={24} />
-                </button>
+                <div>
+                  <p className="text-sm text-gray-600">Amount</p>
+                  <p className="text-2xl font-bold text-green-600">${selectedBid.amount.toLocaleString()}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Timeline</p>
+                  <p className="font-semibold">{selectedBid.timeline}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Status</p>
+                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedBid.status)}`}>
+                    {selectedBid.status.toUpperCase()}
+                  </span>
+                </div>
               </div>
+
+              <div className="mb-6">
+                <h3 className="font-semibold mb-2">Message</h3>
+                <p className="text-gray-700">{selectedBid.message}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div>
+                  <p className="text-sm text-gray-600">Start Date</p>
+                  <p className="font-semibold">{selectedBid.details?.startDate}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Completion Date</p>
+                  <p className="font-semibold">{selectedBid.details?.completionDate}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Labor Cost</p>
+                  <p className="font-semibold">${selectedBid.details?.laborCost.toLocaleString()}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Materials Cost</p>
+                  <p className="font-semibold">${selectedBid.details?.materialsCost.toLocaleString()}</p>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <p className="text-sm text-gray-600">Warranty</p>
+                <p className="font-semibold">{selectedBid.details?.warranty}</p>
+              </div>
+
+              {selectedBid.status === 'pending' && (
+                <div className="flex gap-4 mb-4">
+                  <button
+                    onClick={() => handleAcceptBid(selectedBid)}
+                    disabled={actionLoading === selectedBid.id}
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium transition disabled:opacity-50"
+                  >
+                    {actionLoading === selectedBid.id ? 'Accepting...' : 'Accept This Bid'}
+                  </button>
+                  <button
+                    onClick={() => handleRejectBid(selectedBid)}
+                    disabled={actionLoading === selectedBid.id}
+                    className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-medium transition disabled:opacity-50"
+                  >
+                    {actionLoading === selectedBid.id ? 'Rejecting...' : 'Reject'}
+                  </button>
+                </div>
+              )}
+
+              <button
+                onClick={() => setSelectedBid(null)}
+                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 py-2 rounded-lg font-medium transition"
+              >
+                Close
+              </button>
             </div>
-
-            <div className="p-6 space-y-6">
-              {/* Contractor Info */}
-              <div>
-                <h3 className="font-bold text-gray-900 mb-3">Contractor Information</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="text-sm text-gray-600">Contact</span>
-                    <p className="font-medium">{selectedBid.contractor.name}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Rating</span>
-                    <p className="font-medium flex items-center gap-1">
-                      <Star size={16} className="text-amber-500" />
-                      {selectedBid.contractor.rating} ({selectedBid.contractor.completedProjects} projects)
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Pricing Breakdown */}
-              <div>
-                <h3 className="font-bold text-gray-900 mb-3">Pricing Breakdown</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Labor Cost</span>
-                    <span className="font-medium">${selectedBid.details.laborCost.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Materials Cost</span>
-                    <span className="font-medium">${selectedBid.details.materialsCost.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between pt-2 border-t border-gray-200">
-                    <span className="font-bold text-gray-900">Total</span>
-                    <span className="font-bold text-gray-900">${selectedBid.amount.toLocaleString()}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Timeline */}
-              <div>
-                <h3 className="font-bold text-gray-900 mb-3">Project Timeline</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="text-sm text-gray-600">Start Date</span>
-                    <p className="font-medium">{new Date(selectedBid.details.startDate).toLocaleDateString()}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Completion Date</span>
-                    <p className="font-medium">{new Date(selectedBid.details.completionDate).toLocaleDateString()}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Warranty */}
-              <div>
-                <h3 className="font-bold text-gray-900 mb-3">Warranty</h3>
-                <p className="text-gray-700">{selectedBid.details.warranty}</p>
-              </div>
-
-              {/* Message */}
-              <div>
-                <h3 className="font-bold text-gray-900 mb-3">Contractor's Message</h3>
-                <div className="bg-navy-50 rounded-lg p-4">
-                  <p className="text-gray-700">{selectedBid.message}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Actions */}
-            {selectedBid.status === 'pending' && (
-              <div className="p-6 border-t border-gray-200 flex gap-3">
-                <button
-                  onClick={() => {
-                    handleAcceptBid(selectedBid)
-                    setSelectedBid(null)
-                  }}
-                  className="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition"
-                >
-                  Accept This Bid
-                </button>
-                <button
-                  onClick={() => {
-                    handleRejectBid(selectedBid)
-                    setSelectedBid(null)
-                  }}
-                  className="flex-1 px-6 py-3 border-2 border-red-600 text-red-600 rounded-lg font-semibold hover:bg-red-50 transition"
-                >
-                  Reject Bid
-                </button>
-              </div>
-            )}
           </div>
         </div>
       )}
