@@ -11,19 +11,36 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Get bids for homeowner's projects
+    // Get bids for homeowner's jobs (uses job_id)
     const { data: bids, error } = await supabase
       .from('bids')
       .select(`
-        *,
-        project:projects(id, title, category),
+        id,
+        job_id,
+        contractor_id,
+        amount,
+        proposal,
+        estimated_duration,
+        status,
+        created_at,
+        updated_at,
+        job:jobs(id, title, category),
         contractor:auth.users(id, email)
       `)
-      .eq('project.homeowner_id', session.user.id);
+      .eq('job.homeowner_id', session.user.id);
 
     if (error) throw error;
 
-    return NextResponse.json(bids);
+    // Transform for frontend consistency
+    const transformedBids = bids?.map((bid: any) => ({
+      ...bid,
+      project_id: bid.job_id,
+      project: bid.job,
+      message: bid.proposal,
+      timeline: bid.estimated_duration
+    })) || [];
+
+    return NextResponse.json(transformedBids);
   } catch (error: any) {
     return NextResponse.json(
       { error: error.message },
