@@ -1,20 +1,29 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY!;
 
 export async function POST(
   request: NextRequest,
   { params }: { params: { bidId: string } }
 ) {
   try {
-    const supabase = createRouteHandlerClient({ cookies });
-    const { data: { session } } = await supabase.auth.getSession();
-
-    if (!session) {
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Get bid with job details (uses job_id)
+    const token = authHeader.slice(7);
+    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    
+    if (userError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Get bid with job details
     const { data: bid, error: bidError } = await supabase
       .from('bids')
       .select('*, job:jobs(homeowner_id)')
@@ -26,11 +35,11 @@ export async function POST(
     }
 
     // Verify homeowner owns this job
-    if (bid.job.homeowner_id !== session.user.id) {
+    if (bid.job.homeowner_id !== user.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    // Update bid status to accepted
+    // Update bid status
     const { error: updateError } = await supabase
       .from('bids')
       .update({ status: 'accepted' })
@@ -38,13 +47,13 @@ export async function POST(
 
     if (updateError) throw updateError;
 
-    // Create contract from accepted bid
+    // Create contract
     const { data: contract, error: contractError } = await supabase
       .from('contracts')
       .insert({
         bid_id: params.bidId,
         job_id: bid.job_id,
-        homeowner_id: session.user.id,
+        homeowner_id: user.id,
         contractor_id: bid.contractor_id,
         amount: bid.amount,
         status: 'pending'
@@ -59,9 +68,6 @@ export async function POST(
       contract
     });
   } catch (error: any) {
-    return NextResponse.json(
-      { error: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

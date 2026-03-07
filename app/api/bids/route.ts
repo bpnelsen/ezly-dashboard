@@ -1,17 +1,26 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY!;
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ cookies });
-    const { data: { session } } = await supabase.auth.getSession();
-
-    if (!session) {
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Get bids for homeowner's jobs (uses job_id)
+    const token = authHeader.slice(7);
+    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    
+    if (userError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Get bids for homeowner's jobs
     const { data: bids, error } = await supabase
       .from('bids')
       .select(`
@@ -27,11 +36,11 @@ export async function GET(request: NextRequest) {
         job:jobs(id, title, category),
         contractor:auth.users(id, email)
       `)
-      .eq('job.homeowner_id', session.user.id);
+      .eq('job.homeowner_id', user.id);
 
     if (error) throw error;
 
-    // Transform for frontend consistency
+    // Transform for frontend
     const transformedBids = bids?.map((bid: any) => ({
       ...bid,
       project_id: bid.job_id,
@@ -42,9 +51,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(transformedBids);
   } catch (error: any) {
-    return NextResponse.json(
-      { error: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
