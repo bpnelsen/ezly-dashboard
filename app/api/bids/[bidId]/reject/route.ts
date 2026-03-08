@@ -1,14 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_KEY!;
+export const dynamic = 'force-dynamic';
 
 export async function POST(
   request: NextRequest,
   { params }: { params: { bidId: string } }
 ) {
   try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+    const supabaseKey = process.env.SUPABASE_SERVICE_KEY!;
     const supabase = createClient(supabaseUrl, supabaseKey);
     
     const authHeader = request.headers.get('Authorization');
