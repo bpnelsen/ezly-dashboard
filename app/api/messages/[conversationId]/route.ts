@@ -1,16 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { conversationId: string } }
 ) {
   try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     const { searchParams } = new URL(req.url);
     const limit = parseInt(searchParams.get('limit') || '50');
     const offset = parseInt(searchParams.get('offset') || '0');
@@ -45,6 +46,10 @@ export async function PATCH(
   { params }: { params: { conversationId: string } }
 ) {
   try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get('userId');
 
@@ -86,6 +91,10 @@ export async function DELETE(
   { params }: { params: { conversationId: string } }
 ) {
   try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     const { error } = await supabase
       .from('conversations')
       .delete()
