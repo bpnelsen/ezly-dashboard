@@ -140,6 +140,10 @@ export default function DashboardLayout({
           ))}
           <button 
             onClick={async () => {
+              const supabase = createClient(
+                process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
+                process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_L7gJaRj4UpH8UtsyC0GDHQ_6MV10N4u'
+              )
               await supabase.auth.signOut()
               window.location.href = '/login'
             }}
