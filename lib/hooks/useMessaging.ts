@@ -1,10 +1,7 @@
+'use client';
+
 import { useEffect, useState, useCallback } from 'react';
 import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export interface Conversation {
   id: string;
@@ -56,6 +53,10 @@ export function useConversations(userId: string, role: 'homeowner' | 'contractor
     fetchConversations();
 
     // Subscribe to real-time updates
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     const channel = supabase
       .channel('conversations-' + userId)
       .on(
@@ -105,6 +106,10 @@ export function useMessages(conversationId: string) {
     fetchMessages();
 
     // Subscribe to real-time updates
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     const channel = supabase
       .channel('messages-' + conversationId)
       .on(
