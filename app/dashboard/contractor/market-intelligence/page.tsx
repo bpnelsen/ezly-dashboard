@@ -129,7 +129,7 @@ export default function MarketIntelligence() {
     <div className="space-y-8 p-8">
       {/* Header */}
       <div>
-        <h1 className="text-4xl font-bold text-ezly-navy mb-2">💡 Market Intelligence</h1>
+        <h1 className="text-4xl font-bold text-navy-500 mb-2">💡 Market Intelligence</h1>
         <p className="text-gray-600">Real-time pricing data and recommendations for your trade in Salt Lake County</p>
       </div>
 
@@ -141,7 +141,7 @@ export default function MarketIntelligence() {
           <select
             value={selectedTrade}
             onChange={(e) => setSelectedTrade(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ezly-navy focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
           >
             {allTrades.map(trade => (
               <option key={trade} value={trade}>
@@ -157,7 +157,7 @@ export default function MarketIntelligence() {
           <select
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ezly-navy focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
           >
             {allLocations.map(location => (
               <option key={location} value={location}>{location}</option>
@@ -170,13 +170,13 @@ export default function MarketIntelligence() {
       {currentMarketData && tradeData && (
         <>
           {/* Pricing Recommendation */}
-          <div className="bg-gradient-to-br from-ezly-navy to-ezly-teal rounded-2xl p-8 text-white">
+          <div className="bg-gradient-to-br from-navy-500 to-teal-500 rounded-2xl p-8 text-white">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <p className="text-ezly-teal/80 text-sm font-semibold mb-2">💡 RECOMMENDED BID</p>
+                <p className="text-teal-500/80 text-sm font-semibold mb-2">💡 RECOMMENDED BID</p>
                 <p className="text-5xl font-bold">${recommendation?.toLocaleString()}</p>
               </div>
-              <CheckCircle size={40} className="text-ezly-teal" />
+              <CheckCircle size={40} className="text-teal-500" />
             </div>
             <p className="text-white/90">
               Based on market average of ${currentMarketData.average.toLocaleString()} with 4.5⭐ contractor premium (+4%)
@@ -192,7 +192,7 @@ export default function MarketIntelligence() {
             <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-sm font-semibold text-gray-600">Market Average</p>
-                <DollarSign size={20} className="text-ezly-navy" />
+                <DollarSign size={20} className="text-navy-500" />
               </div>
               <p className="text-3xl font-bold text-gray-900">${currentMarketData.average.toLocaleString()}</p>
               <p className="text-xs text-gray-500 mt-2">All contractors in {selectedLocation}</p>
@@ -202,7 +202,7 @@ export default function MarketIntelligence() {
             <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-sm font-semibold text-gray-600">Typical Range</p>
-                <TrendingUp size={20} className="text-ezly-teal" />
+                <TrendingUp size={20} className="text-teal-500" />
               </div>
               <p className="text-3xl font-bold text-gray-900">
                 ${currentMarketData.average_low.toLocaleString()} - ${currentMarketData.average_high.toLocaleString()}
@@ -245,17 +245,17 @@ export default function MarketIntelligence() {
                     key={i}
                     className={`p-4 rounded-lg border-2 transition ${
                       isSelected
-                        ? 'border-ezly-navy bg-ezly-navy/5'
+                        ? 'border-navy-500 bg-navy-500/5'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-semibold text-gray-900">{loc.name}</span>
-                      <span className="text-sm font-bold text-ezly-navy">${loc.price.toLocaleString()}</span>
+                      <span className="text-sm font-bold text-navy-500">${loc.price.toLocaleString()}</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-ezly-navy to-ezly-teal h-2 rounded-full"
+                        className="bg-gradient-to-r from-navy-500 to-teal-500 h-2 rounded-full"
                         style={{ width: `${percentOfMax}%` }}
                       />
                     </div>

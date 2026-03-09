@@ -103,11 +103,11 @@ export default function DashboardLayout({
   return (
     <div className="flex h-screen bg-white">
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-ezly-navy text-white transition-all duration-300 flex flex-col border-r border-ezly-navy/50`}>
+      <div className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-navy-500 text-white transition-all duration-300 flex flex-col border-r border-navy-500/50`}>
         {/* Logo */}
-        <div className="h-16 flex items-center justify-between px-6 border-b border-ezly-navy/50">
+        <div className="h-16 flex items-center justify-between px-6 border-b border-navy-500/50">
           {sidebarOpen && <span className="text-2xl font-bold">EZLY</span>}
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-1 hover:bg-ezly-navy/80 rounded">
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-1 hover:bg-navy-500/80 rounded">
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -118,7 +118,7 @@ export default function DashboardLayout({
             <Link
               key={item.name}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-ezly-teal/20 hover:text-white transition group"
+              className="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-teal-500/20 hover:text-white transition group"
             >
               <item.icon size={20} />
               {sidebarOpen && <span className="text-sm font-medium group-hover:text-white">{item.name}</span>}
@@ -127,12 +127,12 @@ export default function DashboardLayout({
         </nav>
 
         {/* Bottom Navigation */}
-        <nav className="px-3 py-6 border-t border-ezly-navy/50 space-y-2">
+        <nav className="px-3 py-6 border-t border-navy-500/50 space-y-2">
           {bottomNavigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-ezly-teal/20 hover:text-white transition"
+              className="flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-teal-500/20 hover:text-white transition"
             >
               <item.icon size={20} />
               {sidebarOpen && <span className="text-sm font-medium">{item.name}</span>}
@@ -147,7 +147,7 @@ export default function DashboardLayout({
               await supabase.auth.signOut()
               window.location.href = '/login'
             }}
-            className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-ezly-teal/20 hover:text-white transition"
+            className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-gray-300 hover:bg-teal-500/20 hover:text-white transition"
           >
             <LogOut size={20} />
             {sidebarOpen && <span className="text-sm font-medium">Sign Out</span>}
@@ -158,19 +158,19 @@ export default function DashboardLayout({
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <div className="h-16 bg-white border-b border-ezly-navy/10 flex items-center justify-between px-8">
+        <div className="h-16 bg-white border-b border-navy-500/10 flex items-center justify-between px-8">
           <div>
-            <h2 className="text-ezly-navy text-sm font-semibold">EZLY Platform</h2>
+            <h2 className="text-navy-500 text-sm font-semibold">EZLY Platform</h2>
           </div>
           <div className="flex items-center gap-4">
             {/* Admin Role Switcher */}
             {isAdmin && (
-              <div className="flex items-center gap-2 px-4 py-2 bg-ezly-navy/5 rounded-lg border border-ezly-navy/10">
-                <span className="text-xs font-medium text-ezly-navy">View as:</span>
+              <div className="flex items-center gap-2 px-4 py-2 bg-navy-500/5 rounded-lg border border-navy-500/10">
+                <span className="text-xs font-medium text-navy-500">View as:</span>
                 <select
                   value={viewingAsRole}
                   onChange={(e) => switchViewAs(e.target.value)}
-                  className="text-sm font-semibold text-ezly-navy bg-transparent border-none focus:outline-none cursor-pointer"
+                  className="text-sm font-semibold text-navy-500 bg-transparent border-none focus:outline-none cursor-pointer"
                 >
                   <option value="admin">👑 Admin</option>
                   <option value="homeowner">🏠 Homeowner</option>
@@ -178,7 +178,7 @@ export default function DashboardLayout({
                 </select>
               </div>
             )}
-            <button className="w-10 h-10 rounded-full bg-ezly-navy/10 flex items-center justify-center text-ezly-navy font-bold hover:bg-ezly-navy/20 transition">
+            <button className="w-10 h-10 rounded-full bg-navy-500/10 flex items-center justify-center text-navy-500 font-bold hover:bg-navy-500/20 transition">
               A
             </button>
           </div>

@@ -129,7 +129,7 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-ezly-navy to-ezly-teal text-white">
+      <div className="bg-gradient-to-r from-navy-500 to-teal-500 text-white">
         <div className="max-w-7xl mx-auto px-8 py-12">
           <div className="flex items-center justify-between">
             <div>
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
             {!isEditMode && (
               <button
                 onClick={() => setIsEditMode(true)}
-                className="flex items-center gap-2 px-6 py-3 bg-white text-ezly-navy rounded-lg font-semibold hover:bg-gray-100 transition"
+                className="flex items-center gap-2 px-6 py-3 bg-white text-navy-500 rounded-lg font-semibold hover:bg-gray-100 transition"
               >
                 <Edit2 size={20} />
                 Edit Data
@@ -210,7 +210,7 @@ export default function AdminDashboard() {
                       ...editingStats,
                       [stat.stat_key]: parseFloat(e.target.value) || 0
                     })}
-                    className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ezly-navy"
+                    className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500"
                   />
                 ) : (
                   <p className="text-3xl font-bold text-gray-900 mt-2">
@@ -249,10 +249,10 @@ export default function AdminDashboard() {
                         ...editingSettings,
                         [setting.setting_key]: e.target.value
                       })}
-                      className="ml-4 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ezly-navy min-w-[200px]"
+                      className="ml-4 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 min-w-[200px]"
                     />
                   ) : (
-                    <p className="ml-4 text-lg font-semibold text-ezly-navy">{setting.setting_value}</p>
+                    <p className="ml-4 text-lg font-semibold text-navy-500">{setting.setting_value}</p>
                   )}
                 </div>
               </div>
