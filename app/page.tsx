@@ -3,7 +3,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { Search, Home, CheckCircle } from 'lucide-react'
+import { Search, Home as HomeIcon, CheckCircle } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Home() {
@@ -109,7 +109,7 @@ export default function Home() {
           {/* Hero Image Placeholder */}
           <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-80 flex items-center justify-center text-gray-400">
             <div className="text-center">
-              <Home size={48} className="mx-auto mb-4 opacity-50" />
+              <HomeIcon size={48} className="mx-auto mb-4 opacity-50" />
               <p>Beautiful home improvement photo</p>
             </div>
           </div>
