@@ -84,25 +84,82 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero Visual */}
+        {/* Hero Visual - Dashboard Mockup */}
         <div className="mt-20 relative">
           <div className="absolute inset-0 bg-gradient-to-r from-navy-500/20 to-teal-500/20 rounded-2xl blur-3xl"></div>
-          <div className="relative bg-white rounded-2xl border border-gray-200/50 p-1 shadow-2xl">
-            <div className="bg-gradient-to-b from-gray-50 to-white rounded-xl p-8 space-y-4">
-              <div className="flex gap-3">
-                <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-                <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-                <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+          <div className="relative bg-white rounded-2xl border border-gray-200/50 overflow-hidden shadow-2xl">
+            {/* Dashboard Header */}
+            <div className="bg-navy-500 text-white px-8 py-4 flex justify-between items-center">
+              <h3 className="text-lg font-bold">EZLY Dashboard</h3>
+              <div className="flex gap-2">
+                <div className="w-8 h-8 rounded-full bg-teal-400"></div>
               </div>
-              <div className="grid grid-cols-4 gap-4">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="bg-gradient-to-br from-navy-100/50 to-cyan-100/50 rounded-lg p-4 h-24"></div>
+            </div>
+
+            {/* Dashboard Content */}
+            <div className="p-8">
+              {/* Stats Row */}
+              <div className="grid grid-cols-4 gap-4 mb-8">
+                {[
+                  { label: '586', desc: 'Contractors' },
+                  { label: '47', desc: 'Campaigns' },
+                  { label: '3.2K', desc: 'Messages' },
+                  { label: '68%', desc: 'Open Rate' }
+                ].map((stat, i) => (
+                  <div key={i} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+                    <div className="text-2xl font-bold text-navy-500">{stat.label}</div>
+                    <div className="text-sm text-gray-600 mt-1">{stat.desc}</div>
+                  </div>
                 ))}
               </div>
-              <div className="space-y-3">
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className="h-12 bg-gray-100 rounded-lg"></div>
-                ))}
+
+              {/* Content Cards */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* Contractors Card */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+                  <h4 className="font-bold text-gray-900 mb-3">Recent Contractors</h4>
+                  {[
+                    { name: 'Smith\'s Construction', type: 'Electrical • 4.8★' },
+                    { name: 'Premium Roofing', type: 'Roofing • 4.9★' },
+                    { name: 'Master Plumbing', type: 'Plumbing • 4.7★' }
+                  ].map((c, i) => (
+                    <div key={i} className="flex items-center gap-3 mb-3 pb-3 border-b border-gray-200 last:border-b-0">
+                      <div className="w-8 h-8 rounded bg-teal-400"></div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-gray-900 truncate">{c.name}</p>
+                        <p className="text-xs text-gray-600">{c.type}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Campaign Performance Card */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+                  <h4 className="font-bold text-gray-900 mb-3">Campaign Performance</h4>
+                  <div className="flex items-end gap-1 h-20 mb-3">
+                    {[60, 75, 45, 80, 55, 90, 70].map((height, i) => (
+                      <div
+                        key={i}
+                        className="flex-1 bg-gradient-to-t from-teal-500 to-teal-400 rounded-t-sm"
+                        style={{ height: `${height}%` }}
+                      ></div>
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-xs">
+                    <div>
+                      <p className="text-gray-600">Opens</p>
+                      <p className="font-bold text-navy-500">68%</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-600">Clicks</p>
+                      <p className="font-bold text-navy-500">23%</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-600">Converts</p>
+                      <p className="font-bold text-navy-500">8%</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
