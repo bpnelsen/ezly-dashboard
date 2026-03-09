@@ -106,12 +106,13 @@ export default function Home() {
             </div>
           </form>
 
-          {/* Hero Image Placeholder */}
-          <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-80 flex items-center justify-center text-gray-400">
-            <div className="text-center">
-              <HomeIcon size={48} className="mx-auto mb-4 opacity-50" />
-              <p>Beautiful home improvement photo</p>
-            </div>
+          {/* Hero Image */}
+          <div className="rounded-lg h-96 overflow-hidden shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=500&fit=crop" 
+              alt="Professional contractor working on home renovation"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
