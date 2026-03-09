@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 150" width="400" height="150">
+  <!-- EZLY Logo White/Knockout - For dark backgrounds -->
+  
+  <defs>
+    <style>
+      .ezly-white { fill: #FFFFFF; stroke: #FFFFFF; }
+      .ezly-stroke-white { stroke: #FFFFFF; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wordmark-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 56px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        fill: #FFFFFF;
+      }
+    </style>
+  </defs>
+
+  <!-- Dark background for preview -->
+  <rect width="400" height="150" fill="#0F3A7D" opacity="0.95"/>
+
+  <!-- Icon: House Mark (Left side) -->
+  <g id="icon" transform="translate(10, 30)">
+    <!-- House roof -->
+    <polygon points="40,50 70,20 100,50" class="ezly-white"/>
+    
+    <!-- House body -->
+    <rect x="40" y="50" width="60" height="50" class="ezly-white"/>
+    
+    <!-- Door (outline) -->
+    <rect x="60" y="65" width="15" height="35" fill="none" stroke-width="2" class="ezly-stroke-white"/>
+    <circle cx="72" cy="82" r="1.5" class="ezly-white"/>
+    
+    <!-- Accent circle -->
+    <circle cx="70" cy="10" r="6" class="ezly-white" opacity="0.7"/>
+  </g>
+
+  <!-- Text: EZLY -->
+  <text x="130" y="105" class="wordmark-text">EZLY</text>
+
+  <!-- Accent underline -->
+  <rect x="130" y="115" width="105" height="3" rx="1.5" class="ezly-white" opacity="0.8"/>
+</svg>

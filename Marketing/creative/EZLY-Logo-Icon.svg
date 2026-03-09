@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- EZLY Logo Icon - Connected House Mark -->
+  <!-- Navy + Teal brand colors -->
+  
+  <defs>
+    <style>
+      .ezly-navy { fill: #0F3A7D; }
+      .ezly-teal { fill: #06B6D4; }
+      .ezly-stroke { stroke: #0F3A7D; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- House Shape (Left side) -->
+  <g id="house">
+    <!-- Roof (triangle) -->
+    <polygon points="60,90 100,50 140,90" class="ezly-navy"/>
+    
+    <!-- House body (rectangle) -->
+    <rect x="60" y="90" width="80" height="70" class="ezly-navy"/>
+    
+    <!-- Door -->
+    <rect x="90" y="110" width="20" height="50" fill="#FFFFFF"/>
+    <circle cx="109" cy="135" r="2" class="ezly-teal"/>
+  </g>
+
+  <!-- Connection nodes (interconnected circles) -->
+  <g id="nodes">
+    <!-- Top node (teal) -->
+    <circle cx="100" cy="35" r="8" class="ezly-teal"/>
+    
+    <!-- Left node (navy) -->
+    <circle cx="45" cy="100" r="8" class="ezly-navy"/>
+    
+    <!-- Right node (teal) -->
+    <circle cx="155" cy="100" r="8" class="ezly-teal"/>
+    
+    <!-- Bottom node (navy) -->
+    <circle cx="100" cy="170" r="8" class="ezly-navy"/>
+  </g>
+
+  <!-- Connection lines (curved paths) -->
+  <g id="connections">
+    <!-- Top-left connection -->
+    <path d="M 92 42 Q 70 65 52 94" class="ezly-stroke"/>
+    
+    <!-- Top-right connection -->
+    <path d="M 108 42 Q 130 65 148 94" class="ezly-stroke"/>
+    
+    <!-- Bottom-left connection -->
+    <path d="M 92 162 Q 70 135 52 106" class="ezly-stroke"/>
+    
+    <!-- Bottom-right connection -->
+    <path d="M 108 162 Q 130 135 148 106" class="ezly-stroke"/>
+    
+    <!-- Vertical connection (center) -->
+    <path d="M 100 43 L 100 162" class="ezly-stroke" stroke-dasharray="5,5" opacity="0.5"/>
+  </g>
+
+  <!-- Optional: Inner frame for balance -->
+  <g id="accent-frame" opacity="0.1">
+    <rect x="40" y="30" width="120" height="140" rx="10" class="ezly-stroke"/>
+  </g>
+</svg>

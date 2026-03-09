@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 150" width="400" height="150">
+  <!-- EZLY Logo Monochrome - Navy only (for print) -->
+  
+  <defs>
+    <style>
+      .ezly-navy { fill: #0F3A7D; stroke: #0F3A7D; }
+      .ezly-stroke { stroke: #0F3A7D; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .wordmark-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 56px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        fill: #0F3A7D;
+      }
+    </style>
+  </defs>
+
+  <!-- Icon: House Mark (Left side) -->
+  <g id="icon" transform="translate(10, 30)">
+    <!-- House roof -->
+    <polygon points="40,50 70,20 100,50" class="ezly-navy"/>
+    
+    <!-- House body -->
+    <rect x="40" y="50" width="60" height="50" class="ezly-navy"/>
+    
+    <!-- Door -->
+    <rect x="60" y="65" width="15" height="35" fill="none" stroke-width="2" class="ezly-stroke"/>
+    <circle cx="72" cy="82" r="1.5" class="ezly-navy"/>
+  </g>
+
+  <!-- Text: EZLY -->
+  <text x="130" y="105" class="wordmark-text">EZLY</text>
+
+  <!-- Accent underline (subtle) -->
+  <line x1="130" y1="115" x2="235" y2="115" stroke-width="2" class="ezly-stroke"/>
+</svg>

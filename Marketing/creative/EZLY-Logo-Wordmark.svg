@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
+  <!-- EZLY Logo Wordmark - Modern Typography -->
+  <!-- Navy primary with Teal accent -->
+  
+  <defs>
+    <style>
+      .ezly-navy { fill: #0F3A7D; }
+      .ezly-teal { fill: #06B6D4; }
+      .wordmark-text {
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 72px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
+    </style>
+  </defs>
+
+  <!-- Background (optional, can be removed) -->
+  <rect width="500" height="150" fill="#FFFFFF" opacity="0"/>
+
+  <!-- Main text: EZLY -->
+  <text x="80" y="100" class="wordmark-text ezly-navy">EZLY</text>
+
+  <!-- Accent underline (Teal) -->
+  <rect x="80" y="110" width="140" height="4" rx="2" class="ezly-teal"/>
+
+  <!-- Accent dot (Teal) - top right of Y -->
+  <circle cx="240" cy="25" r="6" class="ezly-teal"/>
+
+  <!-- Optional: Tagline -->
+  <text x="80" y="135" style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; fill: #6B7280; letter-spacing: 1px;">BUILD • TRUST • CONNECTIONS</text>
+</svg>

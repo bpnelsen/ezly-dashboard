@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <!-- EZLY Icon Square - For favicons, app icons, social avatars -->
+  <!-- Navy + Teal, square format -->
+  
+  <defs>
+    <style>
+      .ezly-navy { fill: #0F3A7D; }
+      .ezly-teal { fill: #06B6D4; }
+      .ezly-stroke { stroke: #0F3A7D; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- White background -->
+  <rect width="180" height="180" fill="#FFFFFF"/>
+
+  <!-- House Shape (centered) -->
+  <g id="house" transform="translate(45, 35)">
+    <!-- Roof (triangle) -->
+    <polygon points="35,40 55,10 75,40" class="ezly-navy"/>
+    
+    <!-- House body (rectangle) -->
+    <rect x="35" y="40" width="40" height="45" class="ezly-navy"/>
+    
+    <!-- Door -->
+    <rect x="50" y="55" width="10" height="30" fill="#FFFFFF"/>
+    <circle cx="57" cy="70" r="1.5" class="ezly-teal"/>
+    
+    <!-- Window -->
+    <rect x="38" y="48" width="8" height="8" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Accent nodes (corner indicators) -->
+  <g id="accents">
+    <!-- Top accent circle (teal) -->
+    <circle cx="90" cy="20" r="5" class="ezly-teal"/>
+    
+    <!-- Bottom accent circle (teal) -->
+    <circle cx="90" cy="160" r="5" class="ezly-teal" opacity="0.6"/>
+  </g>
+
+  <!-- Subtle border for definition -->
+  <rect x="5" y="5" width="170" height="170" rx="12" class="ezly-stroke" opacity="0.3"/>
+</svg>
