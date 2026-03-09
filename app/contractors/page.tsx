@@ -112,38 +112,44 @@ export default function ContractorsPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-navy-500">EZLY</Link>
-          <div className="flex gap-3">
-            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+          <Link href="/" className="text-xl sm:text-2xl font-bold text-navy-500">EZLY</Link>
+          <div className="hidden md:flex gap-3">
+            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
               Sign In
             </Link>
             <Link 
               href="/signup"
-              className="px-4 py-2 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600"
+              className="px-4 py-2 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 text-sm"
             >
               Get Started
             </Link>
           </div>
+          <Link 
+            href="/signup"
+            className="md:hidden px-3 py-2 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 text-sm min-h-10 flex items-center"
+          >
+            Sign Up
+          </Link>
         </div>
       </nav>
 
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 py-8">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      <div className="bg-white border-b border-gray-200 py-6 sm:py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             {service ? `${service} Contractors` : 'All Contractors'}
           </h1>
-          {location && <p className="text-gray-600">in {location}</p>}
-          <p className="text-gray-600 mt-2">{sorted.length} professionals available</p>
+          {location && <p className="text-gray-600 text-sm sm:text-base">in {location}</p>}
+          <p className="text-gray-600 mt-2 text-sm sm:text-base">{sorted.length} professionals available</p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Sidebar - Filters */}
-          <div className="w-64 flex-shrink-0">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-24">
+          <div className="w-full lg:w-64 lg:flex-shrink-0">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 sticky top-20">
               <div className="flex items-center gap-2 mb-6">
                 <Filter size={20} />
                 <h3 className="font-bold text-lg text-gray-900">Filters</h3>
@@ -181,11 +187,11 @@ export default function ContractorsPage() {
           {/* Main Content - Contractor Cards */}
           <div className="flex-1">
             {sorted.length === 0 ? (
-              <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-                <p className="text-gray-600 text-lg mb-4">No contractors found matching your criteria.</p>
+              <div className="bg-white rounded-lg border border-gray-200 p-6 sm:p-12 text-center">
+                <p className="text-gray-600 text-base sm:text-lg mb-4">No contractors found matching your criteria.</p>
                 <Link 
                   href="/"
-                  className="inline-block px-6 py-2 bg-navy-500 text-white rounded-lg hover:bg-navy-600"
+                  className="inline-block px-6 py-2 bg-navy-500 text-white rounded-lg hover:bg-navy-600 min-h-10 flex items-center"
                 >
                   Back to Home
                 </Link>
@@ -194,9 +200,9 @@ export default function ContractorsPage() {
               <div className="space-y-4">
                 {sorted.map(contractor => (
                   <div key={contractor.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition">
-                    <div className="flex">
+                    <div className="flex flex-col sm:flex-row">
                       {/* Image */}
-                      <div className="w-48 h-48 flex-shrink-0">
+                      <div className="w-full sm:w-48 h-48 flex-shrink-0">
                         <img 
                           src={contractor.image}
                           alt={contractor.name}
@@ -205,64 +211,68 @@ export default function ContractorsPage() {
                       </div>
 
                       {/* Content */}
-                      <div className="flex-1 p-6 flex flex-col justify-between">
+                      <div className="flex-1 p-4 sm:p-6 flex flex-col justify-between">
                         <div>
                           {/* Header */}
-                          <div className="flex items-start justify-between mb-3">
-                            <div>
-                              <h3 className="text-xl font-bold text-gray-900">{contractor.name}</h3>
-                              <div className="flex items-center gap-2 text-gray-600 mt-1">
-                                <Briefcase size={16} />
-                                <span className="text-sm">{contractor.service}</span>
-                                <span className="text-gray-400">•</span>
-                                <MapPin size={16} />
-                                <span className="text-sm">{contractor.location}</span>
+                          <div className="flex items-start justify-between mb-3 flex-col sm:flex-row gap-2">
+                            <div className="flex-1">
+                              <h3 className="text-lg sm:text-xl font-bold text-gray-900">{contractor.name}</h3>
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-gray-600 mt-1 text-sm">
+                                <div className="flex items-center gap-1">
+                                  <Briefcase size={16} />
+                                  <span>{contractor.service}</span>
+                                </div>
+                                <span className="hidden sm:inline text-gray-400">•</span>
+                                <div className="flex items-center gap-1">
+                                  <MapPin size={16} />
+                                  <span>{contractor.location}</span>
+                                </div>
                               </div>
                             </div>
                             {contractor.verified && (
-                              <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">
+                              <div className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold whitespace-nowrap">
                                 ✓ Verified
                               </div>
                             )}
                           </div>
 
                           {/* Description */}
-                          <p className="text-gray-600 mb-4">{contractor.description}</p>
+                          <p className="text-gray-600 mb-4 text-sm sm:text-base line-clamp-2">{contractor.description}</p>
 
                           {/* Stats */}
-                          <div className="flex items-center gap-6 text-sm">
+                          <div className="grid grid-cols-2 sm:flex sm:gap-6 gap-4 text-xs sm:text-sm mb-4 sm:mb-0">
                             <div>
                               <div className="flex items-center gap-1">
-                                <Star size={16} className="text-yellow-400 fill-yellow-400" />
+                                <Star size={14} className="text-yellow-400 fill-yellow-400" />
                                 <span className="font-bold text-gray-900">{contractor.rating}</span>
                               </div>
                               <span className="text-gray-600">{contractor.reviews} reviews</span>
                             </div>
                             <div>
-                              <span className="font-bold text-gray-900">⚡ {contractor.responseTime}</span>
+                              <span className="font-bold text-gray-900 block">⚡ {contractor.responseTime}</span>
                               <p className="text-gray-600">response time</p>
                             </div>
                             <div>
-                              <span className="font-bold text-gray-900">{contractor.minBid}</span>
+                              <span className="font-bold text-gray-900 block">{contractor.minBid}</span>
                               <p className="text-gray-600">starting bid</p>
                             </div>
                           </div>
                         </div>
 
                         {/* Actions */}
-                        <div className="flex gap-3 mt-6">
+                        <div className="flex gap-3 mt-4 sm:mt-6 flex-col sm:flex-row">
                           <Link 
                             href={`/contractors/${contractor.id}`}
-                            className="flex-1 px-4 py-2 border-2 border-navy-500 text-navy-500 font-bold rounded-lg hover:bg-navy-50 transition text-center"
+                            className="flex-1 px-3 sm:px-4 py-2 border-2 border-navy-500 text-navy-500 font-bold rounded-lg hover:bg-navy-50 transition text-center min-h-10 flex items-center justify-center text-sm sm:text-base"
                           >
                             View Profile
                           </Link>
                           <Link 
                             href={`/contractors/${contractor.id}?tab=message`}
-                            className="flex-1 px-4 py-2 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600 transition flex items-center justify-center gap-2"
+                            className="flex-1 px-3 sm:px-4 py-2 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600 transition flex items-center justify-center gap-2 min-h-10 text-sm sm:text-base"
                           >
                             <MessageCircle size={18} />
-                            Message
+                            <span className="hidden sm:inline">Message</span>
                           </Link>
                         </div>
                       </div>

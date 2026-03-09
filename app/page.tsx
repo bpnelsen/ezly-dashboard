@@ -3,12 +3,13 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { Search, Home as HomeIcon, CheckCircle } from 'lucide-react'
+import { Search, Home as HomeIcon, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Home() {
   const [serviceType, setServiceType] = useState('')
   const [location, setLocation] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -21,14 +22,18 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-          <div className="text-2xl font-bold text-navy-500">EZLY</div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+          <Link href="/" className="text-xl sm:text-2xl font-bold text-navy-500">EZLY</Link>
+          
+          {/* Desktop Navigation */}
           <div className="hidden md:flex gap-6 items-center text-sm">
             <Link href="/blog" className="text-gray-700 hover:text-navy-500 transition">Blog</Link>
             <a href="#how-it-works" className="text-gray-700 hover:text-navy-500 transition">How it Works</a>
             <a href="#contractors" className="text-gray-700 hover:text-navy-500 transition">Contractors</a>
           </div>
-          <div className="flex gap-2">
+
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex gap-2">
             <Link href="/login" className="px-3 py-2 text-gray-700 hover:text-navy-500 text-sm font-medium transition">
               Sign In
             </Link>
@@ -39,35 +44,70 @@ export default function Home() {
               Get Started
             </Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg touch-none"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white">
+            <div className="px-4 py-3 space-y-2">
+              <Link href="/blog" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                Blog
+              </Link>
+              <a href="#how-it-works" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onClick={() => setMenuOpen(false)}>
+                How it Works
+              </a>
+              <a href="#contractors" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onClick={() => setMenuOpen(false)}>
+                Contractors
+              </a>
+              <hr className="my-2" />
+              <Link href="/login" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                Sign In
+              </Link>
+              <Link 
+                href="/signup"
+                className="block w-full px-3 py-3 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 text-center min-h-12 flex items-center justify-center"
+              >
+                Get Started
+              </Link>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* HERO SECTION - THUMBTACK STYLE */}
-      <section className="bg-white pt-20 pb-16">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="bg-white pt-12 sm:pt-20 pb-12 sm:pb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 text-center mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-gray-900 text-center mb-4 sm:mb-6 leading-tight">
             Find trusted contractors
             <br />
             <span className="text-teal-500">in minutes</span>
           </h1>
           
-          <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-2">
             Get multiple bids from vetted professionals. Compare rates, read reviews, and hire with confidence.
           </p>
 
           {/* Search Bar */}
-          <form onSubmit={handleSearch} className="bg-white rounded-lg shadow-lg p-6 mb-12 border border-gray-200">
-            <div className="grid md:grid-cols-3 gap-4 items-end">
+          <form onSubmit={handleSearch} className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-8 sm:mb-12 border border-gray-200">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 items-end">
               {/* Service Type */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                   What do you need?
                 </label>
                 <select 
                   value={serviceType}
                   onChange={(e) => setServiceType(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm min-h-12"
                 >
                   <option value="">Select service...</option>
                   <option value="electrical">Electrical</option>
@@ -83,7 +123,7 @@ export default function Home() {
 
               {/* Location */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                   Your location
                 </label>
                 <input 
@@ -91,23 +131,23 @@ export default function Home() {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="City or ZIP code"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm min-h-12"
                 />
               </div>
 
               {/* Search Button */}
               <button 
                 type="submit"
-                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-lg transition flex items-center justify-center gap-2 text-sm sm:text-base min-h-12"
               >
                 <Search size={20} />
-                Search
+                <span className="hidden sm:inline">Search</span>
               </button>
             </div>
           </form>
 
           {/* Hero Image */}
-          <div className="rounded-lg h-96 overflow-hidden shadow-lg">
+          <div className="rounded-lg h-48 sm:h-80 md:h-96 overflow-hidden shadow-lg">
             <img 
               src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=500&fit=crop" 
               alt="Professional contractor working on home renovation"
@@ -118,35 +158,35 @@ export default function Home() {
       </section>
 
       {/* TRUST & SOCIAL PROOF */}
-      <section className="bg-white py-16 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+      <section className="bg-white border-t border-gray-200 py-8 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-navy-500 mb-2">586+</div>
-              <p className="text-gray-600">Verified Contractors</p>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">586+</div>
+              <p className="text-xs sm:text-base text-gray-600">Verified Contractors</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-navy-500 mb-2">10,000+</div>
-              <p className="text-gray-600">Happy Homeowners</p>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">10,000+</div>
+              <p className="text-xs sm:text-base text-gray-600">Happy Homeowners</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-navy-500 mb-2">$50M+</div>
-              <p className="text-gray-600">Projects Completed</p>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">$50M+</div>
+              <p className="text-xs sm:text-base text-gray-600">Projects Completed</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-navy-500 mb-2">4.8★</div>
-              <p className="text-gray-600">Average Rating</p>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">4.8★</div>
+              <p className="text-xs sm:text-base text-gray-600">Average Rating</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">How EZLY works</h2>
+      <section id="how-it-works" className="bg-gray-50 py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">How EZLY works</h2>
           
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               { step: 1, title: 'Tell us what you need', desc: 'Describe your project in a few details' },
               { step: 2, title: 'Get quotes', desc: 'Receive bids from multiple contractors' },
@@ -154,11 +194,11 @@ export default function Home() {
               { step: 4, title: 'Hire with confidence', desc: 'Message, sign contract, and pay through EZLY' }
             ].map((item) => (
               <div key={item.step} className="text-center">
-                <div className="w-16 h-16 bg-teal-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-teal-500 text-white rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mx-auto mb-4">
                   {item.step}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -166,11 +206,11 @@ export default function Home() {
       </section>
 
       {/* FEATURED CONTRACTORS */}
-      <section id="contractors" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Contractors you can trust</h2>
+      <section id="contractors" className="py-12 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">Contractors you can trust</h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               { name: "Smith's Construction", service: 'Electrical', rating: 4.8, reviews: 127, verified: true },
               { name: 'Premium Roofing Co', service: 'Roofing', rating: 4.9, reviews: 89, verified: true },
@@ -191,9 +231,9 @@ export default function Home() {
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-yellow-400">★★★★★</span>
                   <span className="font-bold text-gray-900">{contractor.rating}</span>
-                  <span className="text-gray-600">({contractor.reviews})</span>
+                  <span className="text-gray-600 text-sm">({contractor.reviews})</span>
                 </div>
-                <button className="w-full bg-navy-500 hover:bg-navy-600 text-white font-bold py-2 rounded-lg transition">
+                <button className="w-full bg-navy-500 hover:bg-navy-600 text-white font-bold py-3 rounded-lg transition min-h-12 text-sm sm:text-base">
                   View Profile
                 </button>
               </div>
@@ -203,11 +243,11 @@ export default function Home() {
       </section>
 
       {/* WHY CHOOSE EZLY */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Why choose EZLY?</h2>
+      <section className="bg-gray-50 py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">Why choose EZLY?</h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               { icon: '✓', title: 'Verified Professionals', desc: 'Every contractor is background-checked and insured' },
               { icon: '💬', title: 'Direct Communication', desc: 'Message contractors instantly. No middleman.' },
@@ -216,10 +256,10 @@ export default function Home() {
               { icon: '📊', title: 'Compare Easily', desc: 'View multiple bids side-by-side' },
               { icon: '⚡', title: 'Fast & Easy', desc: 'Get quotes in minutes, not weeks' }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white rounded-lg p-8 border border-gray-200">
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="font-bold text-lg text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+              <div key={idx} className="bg-white rounded-lg p-6 sm:p-8 border border-gray-200">
+                <div className="text-3xl sm:text-4xl mb-4">{item.icon}</div>
+                <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -227,23 +267,23 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">What customers say</h2>
+      <section className="bg-white py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">What customers say</h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               { name: 'Sarah M.', text: 'EZLY made it so easy to find a contractor. I got 3 quotes in one day and chose the perfect fit.', rating: 5 },
               { name: 'James L.', text: 'As a contractor, EZLY helps me find quality projects. The platform is straightforward and fair.', rating: 5 },
               { name: 'Emily R.', text: 'Exceptional experience from start to finish. The contractors were professional and the pricing was transparent.', rating: 5 }
             ].map((testimonial, idx) => (
-              <div key={idx} className="bg-gray-50 rounded-lg p-8 border border-gray-200">
+              <div key={idx} className="bg-gray-50 rounded-lg p-6 sm:p-8 border border-gray-200">
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <span key={i} className="text-yellow-400">★</span>
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                <p className="text-sm sm:text-base text-gray-700 mb-4 italic">"{testimonial.text}"</p>
                 <p className="font-bold text-gray-900">— {testimonial.name}</p>
               </div>
             ))}
@@ -252,13 +292,13 @@ export default function Home() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="bg-gradient-to-r from-navy-500 to-teal-500 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to find your contractor?</h2>
-          <p className="text-xl text-white/90 mb-8">Join thousands of homeowners who've found trusted professionals through EZLY.</p>
+      <section className="bg-gradient-to-r from-navy-500 to-teal-500 py-12 sm:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">Ready to find your contractor?</h2>
+          <p className="text-base sm:text-xl text-white/90 mb-8">Join thousands of homeowners who've found trusted professionals through EZLY.</p>
           <Link 
             href="/signup"
-            className="inline-block bg-white text-teal-500 font-bold px-8 py-4 rounded-lg hover:bg-gray-100 transition"
+            className="inline-block bg-white text-teal-500 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition text-base sm:text-lg min-h-12 flex items-center justify-center"
           >
             Get Started Free
           </Link>
@@ -266,9 +306,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+      <footer className="bg-gray-900 text-gray-300 py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="font-bold text-white mb-4">EZLY</h3>
               <p className="text-sm">Find trusted contractors in minutes.</p>

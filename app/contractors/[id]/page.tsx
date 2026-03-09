@@ -76,25 +76,28 @@ export default function ContractorPage({ params }: { params: { id: string } }) {
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-navy-500">EZLY</Link>
-          <div className="flex gap-3">
-            <Link href="/contractors" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+          <Link href="/" className="text-xl sm:text-2xl font-bold text-navy-500">EZLY</Link>
+          <div className="hidden md:flex gap-3">
+            <Link href="/contractors" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
               Back to Results
             </Link>
-            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium">
+            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
               Sign In
             </Link>
           </div>
+          <Link href="/contractors" className="md:hidden px-3 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
+            Back
+          </Link>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Header */}
-        <div className="bg-white rounded-lg border border-gray-200 p-8 mb-8">
-          <div className="flex gap-8">
+        <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-8 mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
             {/* Image */}
-            <div className="w-64 h-64 flex-shrink-0">
+            <div className="w-full sm:w-64 h-48 sm:h-64 flex-shrink-0">
               <img 
                 src={contractor.image}
                 alt={contractor.name}
@@ -104,18 +107,20 @@ export default function ContractorPage({ params }: { params: { id: string } }) {
 
             {/* Info */}
             <div className="flex-1">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h1 className="text-4xl font-bold text-gray-900 mb-2">{contractor.name}</h1>
-                  <div className="flex items-center gap-2 text-gray-600 mb-4">
-                    <span className="text-lg font-semibold text-navy-500">{contractor.service}</span>
-                    <span>•</span>
-                    <MapPin size={18} />
-                    <span>{contractor.location}</span>
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                <div className="flex-1">
+                  <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2">{contractor.name}</h1>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-gray-600 mb-4">
+                    <span className="font-semibold text-navy-500 text-base sm:text-lg">{contractor.service}</span>
+                    <span className="hidden sm:inline">•</span>
+                    <div className="flex items-center gap-1">
+                      <MapPin size={18} />
+                      <span>{contractor.location}</span>
+                    </div>
                   </div>
                 </div>
                 {contractor.verified && (
-                  <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full font-bold text-sm">
+                  <div className="bg-green-100 text-green-700 px-3 sm:px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap">
                     ✓ Verified Professional
                   </div>
                 )}
@@ -124,59 +129,59 @@ export default function ContractorPage({ params }: { params: { id: string } }) {
               <p className="text-gray-700 text-lg mb-6">{contractor.description}</p>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-4 gap-4 mb-8">
-                <div className="bg-yellow-50 rounded-lg p-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <div className="bg-yellow-50 rounded-lg p-3 sm:p-4">
                   <div className="flex items-center gap-1 mb-1">
-                    <Star size={20} className="text-yellow-400 fill-yellow-400" />
+                    <Star size={18} className="text-yellow-400 fill-yellow-400" />
                     <span className="font-bold text-gray-900">{contractor.rating}</span>
                   </div>
-                  <p className="text-sm text-gray-600">{contractor.reviews} reviews</p>
+                  <p className="text-xs sm:text-sm text-gray-600">{contractor.reviews} reviews</p>
                 </div>
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Award size={20} className="text-blue-600" />
+                <div className="bg-blue-50 rounded-lg p-3 sm:p-4">
+                  <div className="flex items-center gap-1 mb-1">
+                    <Award size={18} className="text-blue-600" />
                     <span className="font-bold text-gray-900">{contractor.yearsInBusiness}+</span>
                   </div>
-                  <p className="text-sm text-gray-600">Years in Business</p>
+                  <p className="text-xs sm:text-sm text-gray-600">Years in Business</p>
                 </div>
-                <div className="bg-purple-50 rounded-lg p-4">
-                  <div className="flex items-center gap-2 mb-1">
-                    <DollarSign size={20} className="text-purple-600" />
+                <div className="bg-purple-50 rounded-lg p-3 sm:p-4">
+                  <div className="flex items-center gap-1 mb-1">
+                    <DollarSign size={18} className="text-purple-600" />
                     <span className="font-bold text-gray-900">{contractor.completedProjects}</span>
                   </div>
-                  <p className="text-sm text-gray-600">Projects Completed</p>
+                  <p className="text-xs sm:text-sm text-gray-600">Projects Completed</p>
                 </div>
-                <div className="bg-green-50 rounded-lg p-4">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Clock size={20} className="text-green-600" />
-                    <span className="font-bold text-gray-900">{contractor.responseTime}</span>
+                <div className="bg-green-50 rounded-lg p-3 sm:p-4">
+                  <div className="flex items-center gap-1 mb-1">
+                    <Clock size={18} className="text-green-600" />
+                    <span className="font-bold text-gray-900 text-xs sm:text-base">{contractor.responseTime}</span>
                   </div>
-                  <p className="text-sm text-gray-600">Avg. Response</p>
+                  <p className="text-xs sm:text-sm text-gray-600">Avg. Response</p>
                 </div>
               </div>
 
               {/* Contact & Action */}
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                 <a 
                   href={`mailto:${contractor.email}`}
-                  className="px-6 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition"
+                  className="flex-1 px-4 sm:px-6 py-2 sm:py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base min-h-10"
                 >
-                  <Mail size={18} className="inline mr-2" />
-                  Email
+                  <Mail size={16} />
+                  <span className="hidden sm:inline">Email</span>
                 </a>
                 <a 
                   href={`tel:${contractor.phone}`}
-                  className="px-6 py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition"
+                  className="flex-1 px-4 sm:px-6 py-2 sm:py-3 border-2 border-gray-300 text-gray-700 font-bold rounded-lg hover:border-gray-400 transition flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base min-h-10"
                 >
-                  <Phone size={18} className="inline mr-2" />
-                  Call
+                  <Phone size={16} />
+                  <span className="hidden sm:inline">Call</span>
                 </a>
                 <button 
                   onClick={() => setActiveTab('message')}
-                  className="flex-1 px-6 py-3 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600 transition flex items-center justify-center gap-2"
+                  className="flex-1 px-4 sm:px-6 py-2 sm:py-3 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600 transition flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-base min-h-10"
                 >
-                  <MessageCircle size={20} />
-                  Send Message
+                  <MessageCircle size={16} />
+                  <span>Message</span>
                 </button>
               </div>
             </div>
