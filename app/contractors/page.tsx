@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Star, MapPin, Briefcase, MessageCircle, Filter } from 'lucide-react'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 
 // Mock contractor data
 const CONTRACTORS = [
@@ -87,7 +87,7 @@ const CONTRACTORS = [
   }
 ]
 
-export default function ContractorsPage() {
+function ContractorsContent() {
   const searchParams = useSearchParams()
   const service = searchParams.get('service') || ''
   const location = searchParams.get('location') || ''
@@ -285,5 +285,13 @@ export default function ContractorsPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ContractorsPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
+      <ContractorsContent />
+    </Suspense>
   )
 }

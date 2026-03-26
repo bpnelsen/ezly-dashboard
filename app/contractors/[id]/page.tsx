@@ -214,7 +214,7 @@ export default function ContractorPage({ params }: { params: { id: string } }) {
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Services Offered</h3>
                 <div className="grid grid-cols-2 gap-4 mb-8">
-                  {contractor.services.map(service => (
+                  {(contractor.services as string[]).map((service: string) => (
                     <div key={service} className="bg-gray-50 rounded-lg p-4 flex items-center gap-3">
                       <span className="text-teal-500 text-xl">✓</span>
                       <span className="text-gray-700">{service}</span>
@@ -240,7 +240,7 @@ export default function ContractorPage({ params }: { params: { id: string } }) {
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Projects</h3>
                 <div className="grid grid-cols-3 gap-6">
-                  {contractor.portfolio.map((project, idx) => (
+                  {(contractor.portfolio as {title: string, image: string}[]).map((project: {title: string, image: string}, idx: number) => (
                     <div key={idx} className="rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition">
                       <img 
                         src={project.image}
@@ -261,7 +261,7 @@ export default function ContractorPage({ params }: { params: { id: string } }) {
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Customer Reviews ({contractor.reviews.length})</h3>
                 <div className="space-y-6">
-                  {contractor.reviews.map((review, idx) => (
+                  {(contractor.reviews as {author: string, rating: number, text: string, date: string}[]).map((review: {author: string, rating: number, text: string, date: string}, idx: number) => (
                     <div key={idx} className="border-b border-gray-200 pb-6 last:border-b-0">
                       <div className="flex items-center justify-between mb-2">
                         <div>
