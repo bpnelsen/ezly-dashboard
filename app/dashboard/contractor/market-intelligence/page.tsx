@@ -8,7 +8,7 @@ import { TrendingUp, MapPin, DollarSign, AlertCircle, CheckCircle, ArrowUp } fro
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_L7gJaRj4UpH8UtsyC0GDHQ_6MV10N4u'
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJycGtva2hqb212bHVtcmVrbnVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDk1OTEsImV4cCI6MjA4NzQ4NTU5MX0.YzU7qcsV3-un90QGEWcSj4J7-h8c2yae79LsbQOQRwg'
 )
 
 interface MarketData {
