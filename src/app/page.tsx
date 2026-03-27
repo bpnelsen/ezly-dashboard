@@ -14,7 +14,7 @@ export default function EzlyDashboard() {
             <h1 className="text-3xl font-bold text-purple-900">Ezly Operations Desk</h1>
             <div className="flex items-center gap-4">
                 {user.role === 'Contractor' && (
-                    <a href="https://prolink-ezly.vercel.app" className="text-purple-700 font-bold hover:underline">ProLink</a>
+                    <a href="https://prolink-ezly.vercel.app/dashboard" className="text-purple-700 font-bold hover:underline">← Go to Prolink</a>
                 )}
                 <div className="text-sm font-medium text-purple-700 bg-purple-100 px-4 py-2 rounded-lg">
                     586 Total Contractors
