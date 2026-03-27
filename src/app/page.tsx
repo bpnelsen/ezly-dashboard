@@ -1,8 +1,4 @@
 /* EZLY App Dashboard - Contractor CRM */
-import ContractorCRM from '../components/ContractorCRM';
-import ContractorPipeline from '../components/ContractorPipeline';
-import VettingEngine from '../components/VettingEngine';
-
 export default function EzlyDashboard() {
   // Simulate user session/role check
   const user = { name: 'Brian', role: 'Contractor' };
