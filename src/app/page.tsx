@@ -51,10 +51,10 @@ export default function EzlyDashboard() {
   }, []);
 
   const navItems = [
-    { name: 'Dashboard', icon: Home },
-    { name: 'Contractors', icon: Users },
-    { name: 'Analytics', icon: BarChart3 },
-    { name: 'Settings', icon: Settings },
+    { name: 'Dashboard', icon: Home, link: '/' },
+    { name: 'Contractors', icon: Users, link: '#' },
+    { name: 'Analytics', icon: BarChart3, link: '#' },
+    { name: 'Settings', icon: Settings, link: '#' },
   ];
 
   return (
@@ -62,11 +62,13 @@ export default function EzlyDashboard() {
       {/* Sidebar - Desktop */}
       <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 flex-col">
         <div className="p-6">
-          <h1 className="text-xl font-bold text-purple-900">Ezly Desk</h1>
+          <Link href="/">
+             <h1 className="text-xl font-bold text-purple-900 cursor-pointer">Ezly Desk</h1>
+          </Link>
         </div>
         <nav className="flex-1 px-4 space-y-2">
           {navItems.map((item) => (
-            <a key={item.name} href="#" className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-purple-50 hover:text-purple-900">
+            <a key={item.name} href={item.link} className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-purple-50 hover:text-purple-900">
               <item.icon size={20} />
               <span className="font-medium text-sm">{item.name}</span>
             </a>
@@ -84,7 +86,7 @@ export default function EzlyDashboard() {
       <div className="flex-1">
         {/* Top Nav (Mobile & Desktop) */}
         <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-           <h2 className="text-lg font-bold md:hidden">Ezly Desk</h2>
+           <Link href={user ? '/dashboard' : '/'}><h2 className="text-lg font-bold md:hidden">Ezly Desk</h2></Link>
            <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
              {isMobileMenuOpen ? <X /> : <Menu />}
            </button>
