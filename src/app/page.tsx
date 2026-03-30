@@ -1,10 +1,27 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Home, Users, BarChart3, Settings, LogOut, Menu, X, Plus } from 'lucide-react';
+import { supabase } from '@/lib/supabase-client';
 
 export default function EzlyDashboard() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [contractorCount, setContractorCount] = useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      // Get real data from Supabase
+      const { count } = await supabase
+        .from('profiles')
+        .select('*', { count: 'exact', head: true })
+        .eq('role', 'contractor');
+      
+      setContractorCount(count || 0);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
 
   const navItems = [
     { name: 'Dashboard', icon: Home },
@@ -68,8 +85,8 @@ export default function EzlyDashboard() {
                 </div>
                 <div className="bg-purple-900 text-white rounded-xl shadow-sm p-6">
                     <h3 className="font-bold text-lg mb-2">Total Contractors</h3>
-                    <p className="text-3xl font-black">586</p>
-                    <p className="text-purple-300 text-xs mt-2">12 new this week</p>
+                    <p className="text-3xl font-black">{loading ? '...' : contractorCount}</p>
+                    <p className="text-purple-300 text-xs mt-2">Active in system</p>
                 </div>
             </div>
         </main>
