@@ -8,16 +8,25 @@ export default function EzlyDashboard() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [contractorCount, setContractorCount] = useState(0);
+  const [recentJobs, setRecentJobs] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      // Get real data from Supabase
+      // Fetch contractor count
       const { count } = await supabase
         .from('profiles')
         .select('*', { count: 'exact', head: true })
         .eq('role', 'contractor');
       
+      // Fetch recent jobs (assuming title, status, amount)
+      const { data: jobs } = await supabase
+        .from('jobs')
+        .select('id, title, status, total_amount')
+        .order('created_at', { ascending: false })
+        .limit(3);
+
       setContractorCount(count || 0);
+      setRecentJobs(jobs || []);
       setLoading(false);
     }
     fetchData();
@@ -80,8 +89,20 @@ export default function EzlyDashboard() {
         <main className="p-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                    <h3 className="font-bold text-lg mb-4">Operations Summary</h3>
-                     <p className="text-gray-500 text-sm">Welcome back, Brian. Your contractor network is active across 4 regions.</p>
+                    <h3 className="font-bold text-lg mb-4">Recent Jobs</h3>
+                {loading ? <p className="text-sm text-gray-500">Loading...</p> : (
+                  <div className="space-y-3">
+                    {recentJobs.map(job => (
+                      <div key={job.id} className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg group">
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900 group-hover:text-purple-700">{job.title || 'Untitled Job'}</p>
+                          <p className="text-xs text-gray-500">{job.status}</p>
+                        </div>
+                        <p className="text-sm font-bold text-gray-900">{job.total_amount ? `$${job.total_amount}` : '--'}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 </div>
                 <div className="bg-purple-900 text-white rounded-xl shadow-sm p-6">
                     <h3 className="font-bold text-lg mb-2">Total Contractors</h3>
