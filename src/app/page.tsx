@@ -12,18 +12,32 @@ export default function EzlyDashboard() {
 
   useEffect(() => {
     async function fetchData() {
-      // 1. Fetch contractor count (debugged by removing role filter to see total profiles)
-      const { data, count, error } = await supabase
+      // 1. Fetch current user to determine role
+      const { data: { user } } = await supabase.auth.getUser();
+      const { data: profile } = user ? await supabase
         .from('profiles')
-        .select('*', { count: 'exact' });
+        .select('role')
+        .eq('id', user.id)
+        .single() : { data: null };
+
+      const isAdmin = profile?.role === 'admin';
+
+      // 2. Fetch contractors
+      let query = supabase.from('profiles').select('*', { count: 'exact' });
       
+      if (!isAdmin) {
+         query = query.eq('role', 'contractor');
+      }
+
+      const { data, count, error } = await query;
+      
+      console.log('DEBUG: User Role:', profile?.role, 'Is Admin:', isAdmin);
       console.log('DEBUG: Profiles data:', data);
       console.log('DEBUG: Profiles count:', count);
-      console.log('DEBUG: Profiles error:', error);
       
       setContractorCount(count || 0);
 
-      // 2. Fetch recent jobs
+      // 3. Fetch recent jobs
       const { data: jobs } = await supabase
         .from('jobs')
         .select('id, title, status, total_amount')
