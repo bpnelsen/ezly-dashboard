@@ -53,13 +53,6 @@ export default function HomeownerDashboard() {
               <h1 className="text-3xl font-bold text-gray-900">Welcome back!</h1>
               <p className="text-gray-600 mt-1">Here's what's happening with your projects</p>
             </div>
-            <Link
-              href="/dashboard/homeowner/post-project"
-              className="px-6 py-3 bg-[#0F3A7D] text-white rounded-lg font-semibold hover:bg-[#0d2f68] transition shadow-sm hover:shadow-md flex items-center gap-2"
-            >
-              <Plus size={20} />
-              Post New Project
-            </Link>
           </div>
         </div>
       </div>
@@ -115,17 +108,7 @@ export default function HomeownerDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-          <Link
-            href="/dashboard/homeowner/post-project"
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
-          >
-            <div className="p-2 bg-navy-100 rounded-lg">
-              <Plus size={20} className="text-navy-600" />
-            </div>
-            <span className="font-semibold text-gray-900">Post Project</span>
-          </Link>
-
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Link
             href="/dashboard/homeowner/bids"
             className="bg-white border border-gray-200 rounded-lg p-4 hover:border-navy-300 hover:shadow-md transition flex items-center gap-3"
