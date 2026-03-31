@@ -15,75 +15,62 @@ export default function AuthCallback() {
   useEffect(() => {
     const handleCallback = async () => {
       try {
-        // Wait for any URL hash params (OAuth tokens) to be processed
         await new Promise(resolve => setTimeout(resolve, 500))
         
-        // Try to get the session - Supabase handles the hash params automatically
         const { data: { session }, error } = await supabase.auth.getSession()
         
-        if (error) {
+        if (error || !session?.user) {
           console.error('Auth error:', error)
           setStatus('error')
           router.push('/login')
           return
         }
         
-        if (session?.user) {
-          const user = session.user
+        const user = session.user
+        
+        // Check if profile exists
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single()
+        
+        let targetProfile = profile
+        
+        // Create profile if it doesn't exist
+        if (!profile) {
+          const searchParams = new URLSearchParams(window.location.search)
+          const roleFromUrl = searchParams.get('role')
           
-          // Check if profile exists
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select('*')
-            .eq('id', user.id)
-            .single()
-          
-          // Create profile if it doesn't exist (new OAuth user)
-          if (!profile) {
-            const searchParams = new URLSearchParams(window.location.search)
-            const roleFromUrl = searchParams.get('role')
-            
-            let role = 'homeowner'
-            if (user.email === ADMIN_EMAIL) {
-              role = 'admin'
-            } else if (roleFromUrl === 'contractor' || roleFromUrl === 'homeowner') {
-              role = roleFromUrl
-            }
-            
-            await supabase.from('profiles').insert({
-              id: user.id,
-              email: user.email,
-              full_name: user.user_metadata?.full_name || user.email?.split('@')[0],
-              role: role,
-            })
+          let role = 'homeowner'
+          if (user.email === ADMIN_EMAIL) {
+            role = 'admin'
+          } else if (roleFromUrl === 'contractor' || roleFromUrl === 'homeowner') {
+            role = roleFromUrl
           }
           
-          setStatus('success')
-          // Redirect based on role
-          const userRole = profile?.role || 'homeowner'
-          if (userRole === 'contractor') {
-            window.location.href = '/dashboard/contractor'
-          } else if (userRole === 'admin') {
-            window.location.href = '/dashboard/admin'
-          } else {
-            window.location.href = '/dashboard/homeowner'
-          }
-          return
+          const { data: newProfile, error: insertError } = await supabase.from('profiles').insert({
+            id: user.id,
+            email: user.email,
+            full_name: user.user_metadata?.full_name || user.email?.split('@')[0],
+            role: role,
+          }).select().single()
+          
+          if (insertError) console.error('Insert error:', insertError)
+          targetProfile = newProfile
         }
         
-        // No session - check if maybe we need to wait longer
-        // Try one more time after a delay
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        const { data: { session: retrySession } } = await supabase.auth.getSession()
+        setStatus('success')
         
-        if (retrySession?.user) {
-          window.location.href = '/dashboard'
-          return
+        // Redirect based on role
+        const role = targetProfile?.role || 'homeowner'
+        if (role === 'contractor') {
+          window.location.href = '/dashboard/contractor'
+        } else if (role === 'admin') {
+          window.location.href = '/dashboard/admin'
+        } else {
+          window.location.href = '/dashboard/homeowner'
         }
-        
-        // No valid session found
-        setStatus('no_session')
-        router.push('/login')
         
       } catch (err) {
         console.error('Callback error:', err)
@@ -98,31 +85,9 @@ export default function AuthCallback() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="text-center p-8">
-        {status === 'authenticating' && (
-          <>
-            <div className="w-12 h-12 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <h1 className="text-xl font-bold text-gray-900 mb-2">Authenticating...</h1>
-            <p className="text-gray-500">Please wait while we verify your account.</p>
-          </>
-        )}
-        {status === 'error' && (
-          <>
-            <h1 className="text-xl font-bold text-red-600 mb-2">Authentication Failed</h1>
-            <p className="text-gray-500">Redirecting to login...</p>
-          </>
-        )}
-        {status === 'no_session' && (
-          <>
-            <h1 className="text-xl font-bold text-gray-900 mb-2">No Session Found</h1>
-            <p className="text-gray-500">Please try logging in again.</p>
-          </>
-        )}
-        {status === 'success' && (
-          <>
-            <h1 className="text-xl font-bold text-green-600 mb-2">Success!</h1>
-            <p className="text-gray-500">Redirecting to dashboard...</p>
-          </>
-        )}
+        <div className="w-12 h-12 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <h1 className="text-xl font-bold text-gray-900 mb-2">Authenticating...</h1>
+        <p className="text-gray-500">Please wait while we set up your profile.</p>
       </div>
     </div>
   )
