@@ -4,7 +4,7 @@ EZLY Contractor Scraper (V2)
 Uses Playwright selectors for robust extraction of Google Maps/Local results.
 """
 
-import json, time, sys
+import json, time, sys, re
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
@@ -24,30 +24,30 @@ def scrape_google(page, trade, city):
     try:
         page.goto(url, wait_until="networkidle", timeout=20000)
         
-        # Google Maps results often live inside these containers
-        results = page.query_selector_all('div[jscontroller*="gQkS4b"], div[jscontroller*="M80Meb"]')
+# Updated selectors to match current Google search structure
+        # Google Maps results container
+        # Often reside in g-card, or search results containers
+        results = page.query_selector_all('div.g')
         
         businesses = []
         for res in results:
-            # Try to grab name
-            name_el = res.query_selector('div[role="heading"]')
+            # Name
+            name_el = res.query_selector('h3')
             if not name_el: continue
             name = name_el.inner_text().strip()
             
-            # Extract info (selectors vary but common structure)
-            # Address/Phone often nested in the same parent
-            info = res.inner_text()
+            # Phone: Google search often embeds this in a 'span' or 'div' with specific patterns
+            # Or in the Maps block specifically
+            phone_el = res.query_selector('span:has-text("(")')
+            phone = phone_el.inner_text().strip() if phone_el else None
             
-            # Simple heuristic regex for address/phone
-            # Phone: (xxx) xxx-xxxx
-            phone_match = re.search(r'\(\d{3}\)\s*\d{3}-\d{4}', info)
-            phone = phone_match.group(0) if phone_match else None
-                
+            # Simplified for robustness without relying on rigid jscontroller IDs
             businesses.append({
                 "name": name,
                 "phone": phone,
                 "city": city
             })
+
             
         return businesses
     except Exception as e:
