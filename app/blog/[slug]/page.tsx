@@ -629,6 +629,159 @@ Kitchen remodels typically return:
 A well-planned kitchen remodel budget ensures you get quality work without breaking the bank. Use EZLY to get detailed quotes from verified contractors for your specific project.
     `
   },
+,
+  'bathroom-renovation-guide': {
+    title: 'Complete Bathroom Renovation Guide: Step-by-Step Process',
+    date: '2026-03-31',
+    readTime: '8 min read',
+    category: 'Homeowner Tips',
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&h=600&fit=crop',
+    content: `
+# Complete Bathroom Renovation Guide: Step-by-Step Process
+
+A bathroom renovation is a significant investment. This guide walks you through the entire process.
+
+## Phase 1: Planning (1-2 weeks)
+
+### Define Your Goals
+- What's the primary purpose? (Updated look, functionality, resale value)
+- Budget range?
+- Must-have features?
+- Style preferences?
+
+### Inspiration & Design
+- Collect ideas from Pinterest, magazines, showrooms
+- Consider current and future needs
+- Plan layout (major move = higher cost)
+- Choose fixtures and finishes
+
+### Get Professional Design Help
+- Bathroom designer: 
+
+,000-$3,000
+- Design consultation: $500-
+
+,500
+- DIY design tools: Free-
+
+00
+
+## Phase 2: Budgeting (1 week)
+
+### Estimate Costs
+- Fixtures: $2,000-$8,000
+- Materials (tiles, paint, etc.): 
+
+,500-$5,000
+- Labor: $3,000-
+
+0,000+
+- Contingency (15%): Add extra
+
+### Total Budget Range
+- Small bathroom: $8,000-
+
+5,000
+- Medium bathroom: 
+
+5,000-$30,000
+- Large/master bath: $30,000-$60,000+
+
+## Phase 3: Contractor Selection (1-2 weeks)
+
+### Get Multiple Bids
+- Get 3-5 quotes minimum
+- Ensure equal scope
+- Compare apples-to-apples
+- Check references
+
+### Verify Credentials
+- License and insurance
+- Experience with bathroom renovations
+- Timeline and warranty
+- Communication style
+
+## Phase 4: Permits & Preparation (1 week)
+
+### Obtain Permits
+- Building permit (usually required)
+- Plumbing permit
+- Electrical permit
+- Inspection fees
+
+### Prepare Home
+- Secure alternate bathroom access
+- Protect adjacent areas
+- Plan for dust and noise
+- Establish project timeline
+
+## Phase 5: Demolition (2-4 days)
+
+### Remove Old Fixtures
+- Disconnect plumbing
+- Remove old tile, flooring
+- Take out vanity, toilet, tub
+- Protect walls and floors
+
+### Structural Work
+- Fix any underlying issues
+- Adjust framing if needed
+- Repair water damage
+- Update rough plumbing/electrical
+
+## Phase 6: Installation (2-4 weeks)
+
+### Rough-In Work
+- Plumbing installation
+- Electrical wiring
+- Ventilation ducts
+- Inspections
+
+### Wall & Floor Prep
+- Install cement board
+- Waterproofing
+- Substrate preparation
+
+### Finish Work
+- Tile installation
+- Paint application
+- Fixture installation
+- Hardware mounting
+
+## Phase 7: Final Inspection & Touchups (1 week)
+
+### Professional Inspection
+- Building inspector approval
+- Plumbing inspection
+- Electrical inspection
+
+### Contractor Walkthrough
+- Check all work quality
+- Make punch list items
+- Test fixtures
+- Verify cleanliness
+
+## Total Timeline
+
+- Small bathroom: 3-4 weeks
+- Medium bathroom: 4-6 weeks
+- Large bathroom: 6-8 weeks
+
+## Common Mistakes to Avoid
+
+1. **Underestimating budget** - Add 15-20% contingency
+2. **Rushing the design** - Plan thoroughly first
+3. **Ignoring ventilation** - Proper exhaust prevents mold
+4. **Cheap fixtures** - Quality lasts longer
+5. **DIY plumbing/electrical** - Hire professionals
+6. **Poor waterproofing** - Critical in bathrooms
+
+## Conclusion
+
+A well-planned bathroom renovation transforms your daily routine and adds home value. Use EZLY to find experienced contractors who specialize in bathroom renovations.
+    `
+  },
 }
 
 export default function BlogPostPage() {

@@ -78,6 +78,17 @@ const posts: BlogPost[] = [
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop'
   },
+,
+  {
+    slug: 'bathroom-renovation-guide',
+    title: 'Complete Bathroom Renovation Guide: Step-by-Step Process',
+    excerpt: 'Everything you need to know about bathroom renovations, from planning to completion. Understand timelines, budgets, and what to expect.',
+    date: '2026-03-31',
+    readTime: '8 min read',
+    category: 'Homeowner Tips',
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&h=600&fit=crop'
+  },
 ]
 
 export default function BlogPage() {
