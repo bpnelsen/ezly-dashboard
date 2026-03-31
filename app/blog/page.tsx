@@ -67,6 +67,17 @@ const posts: BlogPost[] = [
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop'
   }
+,
+  {
+    slug: 'kitchen-remodel-cost-breakdown',
+    title: 'Kitchen Remodel Cost Breakdown: What to Budget for 2026',
+    excerpt: 'Learn the detailed breakdown of kitchen remodel costs in 2026, including labor, materials, appliances, and hidden expenses.',
+    date: '2026-03-31',
+    readTime: '7 min read',
+    category: 'Pricing & Budgets',
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop'
+  },
 ]
 
 export default function BlogPage() {
