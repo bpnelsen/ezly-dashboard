@@ -69,10 +69,6 @@ export default function ContractorsPage() {
               <h1 className="text-3xl font-bold text-gray-900">Contractors</h1>
               <p className="text-gray-600 mt-1">{filtered.length} contractors in your network</p>
             </div>
-            <button className="px-6 py-2.5 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition shadow-sm flex items-center gap-2">
-              <Plus size={18} />
-              Add Contractor
-            </button>
           </div>
         </div>
       </div>
@@ -127,10 +123,7 @@ export default function ContractorsPage() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-16">
-            <p className="text-gray-600 text-lg mb-4">No contractors found</p>
-            <button className="px-6 py-2 bg-navy-600 text-white rounded-lg font-semibold hover:bg-navy-700 transition">
-              Add your first contractor
-            </button>
+            <p className="text-gray-600 text-lg">No contractors found</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
