@@ -48,6 +48,7 @@ export default function Home() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-6 items-center text-sm">
+            <Link href="/about" className="text-gray-700 hover:text-navy-500 transition">About</Link>
             <Link href="/blog" className="text-gray-700 hover:text-navy-500 transition">Blog</Link>
             <a href="#how-it-works" className="text-gray-700 hover:text-navy-500 transition">How it Works</a>
             <a href="#contractors" className="text-gray-700 hover:text-navy-500 transition">Contractors</a>
