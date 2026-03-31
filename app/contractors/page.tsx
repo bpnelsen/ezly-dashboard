@@ -23,7 +23,7 @@ function ContractorsContent() {
         .limit(50)
 
       if (service) {
-        query = query.or(`specialties.ilike.%${service}%,business_name.ilike.%${service}%`)
+        query = query.contains('specialties', [service.charAt(0).toUpperCase() + service.slice(1)])
       }
       if (location) {
         query = query.or(`city.ilike.%${location}%,state.ilike.%${location}%,zip.ilike.%${location}%`)
