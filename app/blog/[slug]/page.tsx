@@ -782,6 +782,40 @@ A bathroom renovation is a significant investment. This guide walks you through 
 A well-planned bathroom renovation transforms your daily routine and adds home value. Use EZLY to find experienced contractors who specialize in bathroom renovations.
     `
   },
+,
+  'essential-tips-roofing': {
+    title: '4 Essential Tips for Choosing a Reliable Roofing Contractor',
+    date: '2026-03-31',
+    readTime: '5 min read',
+    category: 'Homeowner Tips',
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1632752762296-6d73ac97b692?w=1200&h=600&fit=crop',
+    content: `
+# 4 Essential Tips for Choosing a Reliable Roofing Contractor
+
+Finding a roofer shouldn't feel like a gamble. From verifying insurance to checking local licensing, here are the non-negotiables for your next home project.
+
+## 1. Verify Insurance Coverage
+Never work with a contractor who isn't fully insured. You want two types of coverage:
+- **General Liability:** Covers accidental damage to your home during the project.
+- **Workers' Compensation:** Protects you if a worker is injured on your property.
+
+## 2. Check Local Licensing
+Roofing codes vary by municipality. Ensure your contractor holds current, relevant licenses for your specific city or county. A licensed pro is more likely to be up-to-date on safety standards and local building codes.
+
+## 3. Look for Proven Experience
+Ask for a track record of similar roofing projects. Don't just settle for photos; ask for a few recent customer contacts you can speak with directly. Honest contractors stand by their work.
+
+## 4. Get a Detailed Written Estimate
+If the quote is just a few numbers on a scrap of paper, keep looking. A professional estimate should detail:
+- Type and quality of shingles/materials
+- Estimated timeframe for completion
+- Warranty terms (both materials and workmanship)
+- Cleanup expectations
+
+Need a reliable roofer? Use EZLY to find and vet contractors with proven experience in your area.
+    `
+  },
 }
 
 export default function BlogPostPage() {

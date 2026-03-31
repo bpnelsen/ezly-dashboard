@@ -89,6 +89,17 @@ const posts: BlogPost[] = [
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&h=600&fit=crop'
   },
+,
+  {
+    slug: 'essential-tips-roofing',
+    title: '4 Essential Tips for Choosing a Reliable Roofing Contractor',
+    excerpt: 'Finding a roofer shouldn't feel like a gamble. From verifying insurance to checking local licensing, here are the non-negotiables for your next home project.',
+    date: '2026-03-31',
+    readTime: '5 min read',
+    category: 'Homeowner Tips',
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1632752762296-6d73ac97b692?w=1200&h=600&fit=crop'
+  },
 ]
 
 export default function BlogPage() {
