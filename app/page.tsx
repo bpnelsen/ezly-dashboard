@@ -54,13 +54,13 @@ export default function Home() {
           </div>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex gap-2">
-            <Link href="/login" className="px-3 py-2 text-gray-700 hover:text-navy-500 text-sm font-medium transition">
+          <div className="hidden md:flex gap-4 items-center">
+            <Link href="/login" className="px-4 py-2 text-navy-600 hover:text-navy-700 text-sm font-semibold transition">
               Sign In
             </Link>
             <Link 
               href="/signup"
-              className="px-4 py-2 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 transition text-sm"
+              className="px-6 py-2.5 bg-navy-600 text-white rounded-full font-bold hover:bg-navy-700 transition text-sm shadow-lg shadow-navy-600/30 hover:shadow-xl hover:shadow-navy-600/40"
             >
               Get Started
             </Link>
@@ -351,7 +351,7 @@ export default function Home() {
             <div>
               <h4 className="font-bold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/blog" className="hover:text-white transition">About</Link></li>
+                <li><Link href="/about" className="hover:text-white transition">About</Link></li>
                 <li><a href="mailto:support@useezly.com" className="hover:text-white transition">Contact</a></li>
                 <li><Link href="/blog" className="hover:text-white transition">Privacy</Link></li>
               </ul>
