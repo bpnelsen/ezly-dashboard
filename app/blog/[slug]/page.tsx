@@ -816,6 +816,33 @@ If the quote is just a few numbers on a scrap of paper, keep looking. A professi
 Need a reliable roofer? Use EZLY to find and vet contractors with proven experience in your area.
     `
   },
+,
+  'why-we-vet-contractors': {
+    title: 'Why We Vet Every Contractor on Our Platform',
+    date: '2026-03-31',
+    readTime: '4 min read',
+    category: 'EZLY Insights',
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1581094794329-c8112a966512?w=1200&h=600&fit=crop',
+    content: `
+# Why We Vett Every Contractor on Our Platform
+
+Trust is the foundation of home repair. We go behind the scenes to show you how our background-check process protects you and your property.
+
+## Our Approach to Contractor Excellence
+We don’t just open the doors to anyone with a business card. We require our contractors to meet high standards of service, safety, and reliability.
+
+### The 3-Pillar Vetting Process
+1. **Background Screening:** We verify professional licensure and business standing.
+2. **Track-Record Verification:** We require verified references and confirm a positive history of project completion.
+3. **Insurance Check:** Every contractor must provide current, active liability and worker's compensation insurance before joining EZLY.
+
+## Why This Matters
+When you welcome someone into your home, you deserve peace of mind. We believe vetted contractors lead to better project outcomes, fewer delays, and most importantly, your total satisfaction.
+
+Use EZLY today to browse contractors that have already earned the trust of homeowners like you.
+    `
+  },
 }
 
 export default function BlogPostPage() {

@@ -100,6 +100,17 @@ const posts: BlogPost[] = [
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1632752762296-6d73ac97b692?w=1200&h=600&fit=crop'
   },
+,
+  {
+    slug: 'why-we-vet-contractors',
+    title: 'Why We Vet Every Contractor on Our Platform',
+    excerpt: 'Trust is the foundation of home repair. We go behind the scenes to show you how our background-check process protects you and your property.',
+    date: '2026-03-31',
+    readTime: '4 min read',
+    category: 'EZLY Insights',
+    author: 'EZLY Team',
+    image: 'https://images.unsplash.com/photo-1581094794329-c8112a966512?w=1200&h=600&fit=crop'
+  },
 ]
 
 export default function BlogPage() {
