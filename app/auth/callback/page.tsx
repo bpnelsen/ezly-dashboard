@@ -12,6 +12,16 @@ export default function AuthCallback() {
   const router = useRouter()
   const [status, setStatus] = useState('authenticating')
 
+  const redirectByRole = (role: string) => {
+    if (role === 'contractor') {
+      window.location.href = '/dashboard/contractor'
+    } else if (role === 'admin') {
+      window.location.href = '/dashboard/admin'
+    } else {
+      window.location.href = '/dashboard/homeowner'
+    }
+  }
+
   useEffect(() => {
     const handleCallback = async () => {
       try {
@@ -61,16 +71,7 @@ export default function AuthCallback() {
         }
         
         setStatus('success')
-        
-        // Redirect based on role
-        const role = targetProfile?.role || 'homeowner'
-        if (role === 'contractor') {
-          window.location.href = '/dashboard/contractor'
-        } else if (role === 'admin') {
-          window.location.href = '/dashboard/admin'
-        } else {
-          window.location.href = '/dashboard/homeowner'
-        }
+        redirectByRole(targetProfile?.role || 'homeowner')
         
       } catch (err) {
         console.error('Callback error:', err)
