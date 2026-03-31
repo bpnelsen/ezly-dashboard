@@ -1,12 +1,12 @@
+
 'use client'
 
 export const dynamic = 'force-dynamic'
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@supabase/supabase-js'
+import Link from 'next/link'
 import { Users, TrendingUp, MessageSquare, Activity, ArrowUpRight, BarChart3 } from 'lucide-react'
-
 import { supabase } from '@/lib/supabase-client'
 
 export default function DashboardPage() {
@@ -31,59 +31,6 @@ export default function DashboardPage() {
     fetchData()
   }, [])
 
-  const checkUserRoleAndRedirect = async () => {
-    try {
-      // Get current user
-      const { data: { session } } = await supabase.auth.getSession()
-      
-      if (!session?.user) {
-        // Not logged in, redirect to login
-        router.push('/login')
-        return
-      }
-
-      // Get user profile with role
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', session.user.id)
-        .single()
-
-      if (profile) {
-        // Check if admin is viewing as a different role
-        const viewingAs = localStorage.getItem('admin_viewing_as')
-        
-        if (profile.role === 'admin' && viewingAs) {
-          // Admin viewing as different role
-          if (viewingAs === 'homeowner') {
-            router.push('/dashboard/homeowner')
-            return
-          } else if (viewingAs === 'contractor') {
-            router.push('/dashboard/contractor')
-            return
-          }
-          // Otherwise stay on admin dashboard
-        } else {
-          // Regular user - redirect based on their actual role
-          if (profile.role === 'homeowner') {
-            router.push('/dashboard/homeowner')
-            return
-          } else if (profile.role === 'contractor') {
-            router.push('/dashboard/contractor')
-            return
-          }
-          // Admin stays on this page
-        }
-      }
-
-      // Default: show admin dashboard
-      setLoading(false)
-    } catch (error) {
-      console.error('Error checking role:', error)
-      setLoading(false)
-    }
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -94,16 +41,9 @@ export default function DashboardPage() {
       </div>
     )
   }
-  const stats = [
-    { label: 'Total Contractors', value: '586', change: '+2.4%', icon: Users, color: 'blue' },
-    { label: 'Active This Month', value: '342', change: '+8.2%', icon: Activity, color: 'green' },
-    { label: 'Response Rate', value: '34.2%', change: '+1.3%', icon: TrendingUp, color: 'purple' },
-    { label: 'Avg Response', value: '2.4h', change: '-0.2h', icon: BarChart3, color: 'orange' },
-  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-navy-50/30">
-      {/* Header */}
       <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-8 py-8">
           <div className="flex justify-between items-start">
@@ -122,7 +62,6 @@ export default function DashboardPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-8">
-        {/* Stats Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {stats.map((stat, i) => {
             const colorMap = {
@@ -149,91 +88,6 @@ export default function DashboardPage() {
               </div>
             )
           })}
-        </div>
-
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Activity Feed */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-lg font-bold text-gray-900">Recent Activity</h2>
-                <button className="text-gray-600 hover:text-gray-900 text-sm font-semibold">View All</button>
-              </div>
-
-              <div className="space-y-4">
-                {[
-                  { name: 'ABC Electrical', action: 'Opened email campaign', time: '2 min ago', icon: '⚡' },
-                  { name: 'Smith Roofing', action: 'Clicked campaign link', time: '15 min ago', icon: '🔗' },
-                  { name: 'Green HVAC', action: 'Replied to message', time: '1 hour ago', icon: '💬' },
-                  { name: 'Elite Plumbing', action: 'Viewed your profile', time: '3 hours ago', icon: '👁️' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition">
-                    <div className="text-2xl">{item.icon}</div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-gray-900">{item.name}</p>
-                      <p className="text-sm text-gray-600">{item.action}</p>
-                    </div>
-                    <p className="text-sm text-gray-500">{item.time}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Active Campaigns */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Active Campaigns</h3>
-              <p className="text-4xl font-bold text-gray-900">12</p>
-              <p className="text-sm text-gray-600 mt-2">Campaigns running</p>
-            </div>
-
-            {/* Performance */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Performance</h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-600">Open Rate</span>
-                    <span className="text-sm font-bold text-gray-900">68%</span>
-                  </div>
-                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-navy-600" style={{ width: '68%' }}></div>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-600">Click Rate</span>
-                    <span className="text-sm font-bold text-gray-900">34%</span>
-                  </div>
-                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-600" style={{ width: '34%' }}></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="bg-gradient-to-br from-navy-600 to-navy-700 text-white rounded-xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold mb-4">Next Actions</h3>
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-navy-300"></span>
-                  Review 5 pending replies
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-navy-300"></span>
-                  Send follow-up emails
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-navy-300"></span>
-                  Schedule 3 meetings
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </div>

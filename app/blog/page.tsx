@@ -66,8 +66,7 @@ const posts: BlogPost[] = [
     category: 'Maintenance',
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop'
-  }
-,
+  },
   {
     slug: 'kitchen-remodel-cost-breakdown',
     title: 'Kitchen Remodel Cost Breakdown: What to Budget for 2026',
@@ -78,7 +77,6 @@ const posts: BlogPost[] = [
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop'
   },
-,
   {
     slug: 'bathroom-renovation-guide',
     title: 'Complete Bathroom Renovation Guide: Step-by-Step Process',
@@ -89,18 +87,16 @@ const posts: BlogPost[] = [
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&h=600&fit=crop'
   },
-,
   {
     slug: 'essential-tips-roofing',
     title: '4 Essential Tips for Choosing a Reliable Roofing Contractor',
-    excerpt: 'Finding a roofer shouldn't feel like a gamble. From verifying insurance to checking local licensing, here are the non-negotiables for your next home project.',
+    excerpt: 'Finding a roofer shouldn\'t feel like a gamble. From verifying insurance to checking local licensing, here are the non-negotiables for your next home project.',
     date: '2026-03-31',
     readTime: '5 min read',
     category: 'Homeowner Tips',
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1632752762296-6d73ac97b692?w=1200&h=600&fit=crop'
   },
-,
   {
     slug: 'why-we-vet-contractors',
     title: 'Why We Vet Every Contractor on Our Platform',
@@ -110,7 +106,7 @@ const posts: BlogPost[] = [
     category: 'EZLY Insights',
     author: 'EZLY Team',
     image: 'https://images.unsplash.com/photo-1581094794329-c8112a966512?w=1200&h=600&fit=crop'
-  },
+  }
 ]
 
 export default function BlogPage() {
