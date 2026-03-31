@@ -90,6 +90,29 @@ export default function ContractorSignup() {
         return
       }
 
+      // If signup successful, create profile record
+      if (data.user) {
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .insert({
+            id: data.user.id,
+            email: formData.email,
+            full_name: formData.ownerName,
+            business_name: formData.businessName,
+            role: 'contractor',
+            metadata: {
+              serviceAreas: formData.serviceAreas,
+              specialties: formData.specialties,
+              yearsExperience: formData.yearsExperience,
+              licensed: formData.licensed,
+              insured: formData.insured,
+              howDidYouHear: formData.howDidYouHear
+            }
+          })
+          
+        if (profileError) console.error('Error creating profile:', profileError)
+      }
+
       // Redirect to dashboard
       window.location.href = '/dashboard/contractor'
     } catch (err: any) {

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Search, Home as HomeIcon, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase-client'
+import EzlyLogo from '@/components/EzlyLogo'
 
 export default function Home() {
   const [serviceType, setServiceType] = useState('')
@@ -41,7 +42,9 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-          <Link href="/" className="text-xl sm:text-2xl font-bold text-navy-500">EZLY</Link>
+          <Link href="/" className="flex items-center">
+            <EzlyLogo className="w-24 h-10" />
+          </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-6 items-center text-sm">
