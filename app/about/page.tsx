@@ -17,25 +17,43 @@ export default function AboutPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-16">
-        <h1 className="text-5xl font-bold text-gray-900 mb-8">About EZLY</h1>
+        {/* Hero Section */}
+        <div className="relative mb-16 rounded-3xl overflow-hidden shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1581094794329-c8112a966512?w=1600&h=600&fit=crop" 
+            alt="Modern home renovation" 
+            className="w-full h-80 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent flex flex-col justify-end p-12">
+            <h1 className="text-5xl font-bold text-white mb-4">About EZLY</h1>
+            <p className="text-xl text-teal-300 font-medium tracking-wide">Building the Future of Home Improvement</p>
+          </div>
+        </div>
         
         <div className="prose prose-lg prose-navy max-w-none text-gray-700">
-          <p className="text-xl text-gray-600 mb-8">
-            EZLY was born from a simple realization: finding, vetting, and managing home projects should feel as seamless as any other modern digital experience.
+          <p className="text-2xl text-gray-800 mb-12 font-medium leading-relaxed italic text-center">
+            "EZLY was born from a simple realization: finding, vetting, and managing home projects should feel as seamless as any other modern digital experience."
           </p>
 
-          <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">The Problem with Traditional Platforms</h2>
-          <p>
-            For years, homeowners have faced a fragmented and often frustrating process when trying to improve their homes. You've likely experienced the common pitfalls of legacy platforms:
-          </p>
-          <ul className="space-y-4">
-            <li><strong>The Lead-Gen Black Hole:</strong> Endless platforms where you're just a "lead" sold to multiple contractors, leading to a barrage of unwanted calls instead of curated, relevant help.</li>
-            <li><strong>Lack of Transparency:</strong> Inflated review systems, questionable contractor history, and a lack of real-time project oversight.</li>
-            <li><strong>Communication Barriers:</strong> Friction between the homeowner and the contractor, with platforms acting more as a barrier than a bridge.</li>
-            <li><strong>Financial Uncertainty:</strong> Ambiguous billing, difficult payment tracking, and no clear way to verify the scope of work before money changes hands.</li>
-          </ul>
+          <h2 className="text-4xl font-bold text-gray-900 mt-16 mb-8 text-center">The Problem with Traditional Platforms</h2>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-inner">
+               <p className="mb-4 text-lg text-gray-700">For years, homeowners have faced a fragmented and often frustrating process. Traditional systems often act as:</p>
+               <ul className="space-y-4 text-gray-600">
+                 <li><span className="text-teal-600 font-bold">●</span> The Lead-Gen Black Hole</li>
+                 <li><span className="text-teal-600 font-bold">●</span> Opaque Review Systems</li>
+                 <li><span className="text-teal-600 font-bold">●</span> Broken Communication Bridges</li>
+                 <li><span className="text-teal-600 font-bold">●</span> Unclear Financial Tracking</li>
+               </ul>
+            </div>
+            <img 
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" 
+              alt="Frustrated homeowner" 
+              className="rounded-2xl shadow-lg"
+            />
+          </div>
 
-          <h2 className="text-3xl font-bold text-navy-600 mt-16 mb-8">The EZLY Advantage</h2>
+          <h2 className="text-4xl font-bold text-navy-800 mt-20 mb-10 text-center">The EZLY Advantage</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-navy-50 p-6 rounded-xl border border-navy-100">
               <h3 className="font-bold text-navy-900 mb-2">Curated, Not Sold</h3>

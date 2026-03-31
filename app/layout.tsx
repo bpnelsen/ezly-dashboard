@@ -2,8 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'EZLY Dashboard',
-  description: 'Contractor management and campaign platform',
+  title: 'EZLY',
+  description: 'Find trusted contractors in minutes',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
