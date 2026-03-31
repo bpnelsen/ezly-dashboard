@@ -59,8 +59,15 @@ export default function AuthCallback() {
           }
           
           setStatus('success')
-          // Use window.location for reliable redirect
-          window.location.href = '/dashboard'
+          // Redirect based on role
+          const userRole = profile?.role || 'homeowner'
+          if (userRole === 'contractor') {
+            window.location.href = '/dashboard/contractor'
+          } else if (userRole === 'admin') {
+            window.location.href = '/dashboard/admin'
+          } else {
+            window.location.href = '/dashboard/homeowner'
+          }
           return
         }
         

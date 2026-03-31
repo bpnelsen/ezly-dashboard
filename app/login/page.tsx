@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Mail, Lock, ArrowRight } from 'lucide-react'
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '@/lib/supabase-client'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -19,10 +19,6 @@ export default function LoginPage() {
     setError('')
     
     try {
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJycGtva2hqb212bHVtcmVrbnVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDk1OTEsImV4cCI6MjA4NzQ4NTU5MX0.YzU7qcsV3-un90QGEWcSj4J7-h8c2yae79LsbQOQRwg'
-      )
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -44,10 +40,6 @@ export default function LoginPage() {
     setError('')
     
     try {
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJycGtva2hqb212bHVtcmVrbnVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDk1OTEsImV4cCI6MjA4NzQ4NTU5MX0.YzU7qcsV3-un90QGEWcSj4J7-h8c2yae79LsbQOQRwg'
-      )
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -103,9 +95,9 @@ export default function LoginPage() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-semibold text-gray-900">Password</label>
-                <Link href="#" className="text-sm text-navy-600 hover:text-navy-700 font-medium">
+                <span className="text-sm text-gray-400 cursor-default">
                   Forgot?
-                </Link>
+                </span>
               </div>
               <div className="relative">
                 <Lock size={18} className="absolute left-4 top-3.5 text-gray-400" />

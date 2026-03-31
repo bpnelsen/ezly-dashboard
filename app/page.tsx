@@ -4,12 +4,30 @@ export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
 import { Search, Home as HomeIcon, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { supabase } from '@/lib/supabase-client'
 
 export default function Home() {
   const [serviceType, setServiceType] = useState('')
   const [location, setLocation] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [contractorCount, setContractorCount] = useState(0)
+  const [featuredContractors, setFeaturedContractors] = useState<any[]>([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const { count } = await supabase.from('contractors').select('*', { count: 'exact', head: true })
+      setContractorCount(count || 0)
+
+      const { data } = await supabase
+        .from('contractors')
+        .select('id, business_name, specialties, phone, email, website')
+        .not('email', 'is', null)
+        .limit(3)
+      setFeaturedContractors(data || [])
+    }
+    fetchData()
+  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -87,7 +105,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-gray-900 text-center mb-4 sm:mb-6 leading-tight">
-            Find trusted contractors
+            Find trusted contractors{' '}
             <br />
             <span className="text-teal-500">in minutes</span>
           </h1>
@@ -162,20 +180,20 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 text-center">
             <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">586+</div>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">{contractorCount.toLocaleString()}+</div>
               <p className="text-xs sm:text-base text-gray-600">Verified Contractors</p>
             </div>
             <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">10,000+</div>
-              <p className="text-xs sm:text-base text-gray-600">Happy Homeowners</p>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">Utah</div>
+              <p className="text-xs sm:text-base text-gray-600">Service Area</p>
             </div>
             <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">$50M+</div>
-              <p className="text-xs sm:text-base text-gray-600">Projects Completed</p>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">10+</div>
+              <p className="text-xs sm:text-base text-gray-600">Trade Categories</p>
             </div>
             <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">4.8★</div>
-              <p className="text-xs sm:text-base text-gray-600">Average Rating</p>
+              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">Free</div>
+              <p className="text-xs sm:text-base text-gray-600">To Get Started</p>
             </div>
           </div>
         </div>
@@ -211,31 +229,29 @@ export default function Home() {
           <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">Contractors you can trust</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              { name: "Smith's Construction", service: 'Electrical', rating: 4.8, reviews: 127, verified: true },
-              { name: 'Premium Roofing Co', service: 'Roofing', rating: 4.9, reviews: 89, verified: true },
-              { name: 'Master Plumbing', service: 'Plumbing', rating: 4.7, reviews: 156, verified: true }
-            ].map((contractor, idx) => (
-              <div key={idx} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+            {featuredContractors.length > 0 ? featuredContractors.map((contractor, idx) => (
+              <div key={contractor.id} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="font-bold text-lg text-gray-900">{contractor.name}</h3>
-                    <p className="text-sm text-gray-600">{contractor.service}</p>
+                    <h3 className="font-bold text-lg text-gray-900">{contractor.business_name}</h3>
+                    <p className="text-sm text-gray-600">{contractor.specialties || 'General Contractor'}</p>
                   </div>
-                  {contractor.verified && (
-                    <div className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">
-                      ✓ Verified
-                    </div>
-                  )}
+                  <div className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">
+                    ✓ Verified
+                  </div>
                 </div>
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-yellow-400">★★★★★</span>
-                  <span className="font-bold text-gray-900">{contractor.rating}</span>
-                  <span className="text-gray-600 text-sm">({contractor.reviews})</span>
+                  <span className="text-sm text-gray-600">{contractor.phone}</span>
                 </div>
-                <button className="w-full bg-navy-500 hover:bg-navy-600 text-white font-bold py-3 rounded-lg transition min-h-12 text-sm sm:text-base">
+                <Link href="/contractors" className="block w-full bg-navy-500 hover:bg-navy-600 text-white font-bold py-3 rounded-lg transition min-h-12 text-sm sm:text-base text-center">
                   View Profile
-                </button>
+                </Link>
+              </div>
+            )) : [1,2,3].map(i => (
+              <div key={i} className="bg-white border border-gray-200 rounded-lg p-6 animate-pulse">
+                <div className="h-5 bg-gray-200 rounded w-3/4 mb-3"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                <div className="h-10 bg-gray-200 rounded"></div>
               </div>
             ))}
           </div>
@@ -273,9 +289,9 @@ export default function Home() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { name: 'Sarah M.', text: 'EZLY made it so easy to find a contractor. I got 3 quotes in one day and chose the perfect fit.', rating: 5 },
-              { name: 'James L.', text: 'As a contractor, EZLY helps me find quality projects. The platform is straightforward and fair.', rating: 5 },
-              { name: 'Emily R.', text: 'Exceptional experience from start to finish. The contractors were professional and the pricing was transparent.', rating: 5 }
+              { name: 'How It Works', text: 'Post your project, get matched with vetted contractors in your area, compare bids side-by-side, and hire with confidence — all in one place.', rating: 5 },
+              { name: 'For Contractors', text: 'Join a growing network of professionals. Get discovered by homeowners looking for exactly what you offer. No cold calls needed.', rating: 5 },
+              { name: 'Our Promise', text: 'Every contractor on EZLY is verified. We connect you with licensed, insured professionals so you can focus on your project, not your worries.', rating: 5 }
             ].map((testimonial, idx) => (
               <div key={idx} className="bg-gray-50 rounded-lg p-6 sm:p-8 border border-gray-200">
                 <div className="flex items-center gap-1 mb-4">
@@ -283,8 +299,8 @@ export default function Home() {
                     <span key={i} className="text-yellow-400">★</span>
                   ))}
                 </div>
-                <p className="text-sm sm:text-base text-gray-700 mb-4 italic">"{testimonial.text}"</p>
-                <p className="font-bold text-gray-900">— {testimonial.name}</p>
+                <p className="text-sm sm:text-base text-gray-700 mb-4">{testimonial.text}</p>
+                <p className="font-bold text-gray-900">{testimonial.name}</p>
               </div>
             ))}
           </div>
@@ -318,23 +334,23 @@ export default function Home() {
               <ul className="space-y-2 text-sm">
                 <li><Link href="/contractors" className="hover:text-white transition">Find Contractors</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
-                <li><a href="#" className="hover:text-white transition">Pricing</a></li>
+                <li><Link href="/signup/homeowner" className="hover:text-white transition">Get Started</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">For Contractors</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition">Join EZLY</a></li>
-                <li><a href="#" className="hover:text-white transition">Resources</a></li>
-                <li><a href="#" className="hover:text-white transition">Support</a></li>
+                <li><Link href="/signup/contractor" className="hover:text-white transition">Join EZLY</Link></li>
+                <li><Link href="/blog" className="hover:text-white transition">Resources</Link></li>
+                <li><Link href="/login" className="hover:text-white transition">Sign In</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition">About</a></li>
-                <li><a href="#" className="hover:text-white transition">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition">Privacy</a></li>
+                <li><Link href="/blog" className="hover:text-white transition">About</Link></li>
+                <li><a href="mailto:support@useezly.com" className="hover:text-white transition">Contact</a></li>
+                <li><Link href="/blog" className="hover:text-white transition">Privacy</Link></li>
               </ul>
             </div>
           </div>
