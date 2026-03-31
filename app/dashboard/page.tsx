@@ -7,17 +7,28 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@supabase/supabase-js'
 import { Users, TrendingUp, MessageSquare, Activity, ArrowUpRight, BarChart3 } from 'lucide-react'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rrpkokhjomvlumreknuq.supabase.co',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJycGtva2hqb212bHVtcmVrbnVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDk1OTEsImV4cCI6MjA4NzQ4NTU5MX0.YzU7qcsV3-un90QGEWcSj4J7-h8c2yae79LsbQOQRwg'
-)
+import { supabase } from '@/lib/supabase-client'
 
 export default function DashboardPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
+  const [contractorCount, setContractorCount] = useState(0)
+  const [stats, setStats] = useState<any[]>([])
 
   useEffect(() => {
-    checkUserRoleAndRedirect()
+    async function fetchData() {
+      // Get counts
+      const { count } = await supabase.from('contractors').select('*', { count: 'exact', head: true })
+      setContractorCount(count || 0)
+      setStats([
+        { label: 'Total Contractors', value: (count || 0).toLocaleString(), change: '+2.4%', icon: Users, color: 'blue' },
+        { label: 'Active This Month', value: '342', change: '+8.2%', icon: Activity, color: 'green' },
+        { label: 'Response Rate', value: '34.2%', change: '+1.3%', icon: TrendingUp, color: 'purple' },
+        { label: 'Avg Response', value: '2.4h', change: '-0.2h', icon: BarChart3, color: 'orange' },
+      ])
+      setLoading(false)
+    }
+    fetchData()
   }, [])
 
   const checkUserRoleAndRedirect = async () => {
@@ -97,6 +108,9 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-8 py-8">
           <div className="flex justify-between items-start">
             <div>
+              <Link href="/" className="text-sm font-semibold text-teal-600 hover:text-teal-700 flex items-center gap-1 mb-2">
+                ← Back to Home
+              </Link>
               <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
               <p className="text-gray-600 mt-1">Welcome back! Here's your network activity.</p>
             </div>
