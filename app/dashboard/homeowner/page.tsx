@@ -53,12 +53,19 @@ export default function HomeownerDashboard() {
               <h1 className="text-3xl font-bold text-gray-900">Welcome back!</h1>
               <p className="text-gray-600 mt-1">Here's what's happening with your projects</p>
             </div>
+            <Link
+              href="/dashboard/homeowner/post-project"
+              className="btn-navy flex items-center gap-2"
+            >
+              <Plus size={20} />
+              Post New Project
+            </Link>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-8">
-        {/* Stats Grid */}
+         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {/* Active Projects */}
           <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
@@ -106,7 +113,7 @@ export default function HomeownerDashboard() {
             <p className="text-3xl font-bold text-gray-900">${stats.totalSpent.toLocaleString()}</p>
           </div>
         </div>
-
+        
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Link

@@ -1,98 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  :root {
+    --navy-primary: #0f3a7d;
+    --teal-primary: #14b8a6;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    @apply antialiased bg-white text-[#111827];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', sans-serif;
+    @apply text-[#0f3a7d];
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  color-scheme: light;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-  color: #0F3A7D;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-}
-
-/* Links */
-a {
-  @apply transition-colors duration-200;
-}
-
-a:hover {
-  color: #0F3A7D;
-}
-
-/* Buttons */
-button, [type='button'], [type='submit'], [type='reset'] {
-  @apply transition-all duration-200;
-}
-
-/* Form inputs */
-input, textarea, select {
-  @apply transition-colors duration-200;
-  border-color: #C3D3E7;
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: #0F3A7D;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(15, 58, 125, 0.1);
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f0f4f9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #A5BDDB;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #5E8EC7;
-}
-
-/* Selection */
-::selection {
-  background-color: #0F3A7D;
-  color: white;
-}
-
-/* Utility classes */
-.brand-gradient {
-  @apply bg-gradient-to-r from-navy-500 to-teal-500;
-}
-
-.brand-shadow {
-  @apply shadow-lg shadow-navy-500/10;
-}
-
-.brand-button {
-  @apply px-6 py-3 bg-navy-500 text-white font-semibold rounded-lg hover:bg-navy-600 active:bg-navy-700 transition-colors duration-200;
-}
-
-.brand-button-outline {
-  @apply px-6 py-3 border-2 border-navy-500 text-navy-500 font-semibold rounded-lg hover:bg-navy-50 transition-colors duration-200;
+@layer components {
+  .btn-navy {
+    @apply px-6 py-2.5 bg-[#0f3a7d] text-white rounded-full font-bold hover:bg-[#0e346f] transition-all;
+  }
+  .btn-teal {
+    @apply px-6 py-2.5 bg-[#14b8a6] text-white rounded-full font-bold hover:bg-[#0d9488] transition-all;
+  }
 }

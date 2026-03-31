@@ -48,20 +48,21 @@ export default function Home() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-6 items-center text-sm">
-            <Link href="/about" className="text-gray-700 hover:text-navy-500 transition">About</Link>
-            <Link href="/blog" className="text-gray-700 hover:text-navy-500 transition">Blog</Link>
-            <a href="#how-it-works" className="text-gray-700 hover:text-navy-500 transition">How it Works</a>
-            <a href="#contractors" className="text-gray-700 hover:text-navy-500 transition">Contractors</a>
+            <Link href="/about" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">About</Link>
+            <Link href="/blog" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Blog</Link>
+            <a href="mailto:support@useezly.com" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Contact</a>
+            <a href="#how-it-works" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">How it Works</a>
+            <a href="#contractors" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Contractors</a>
           </div>
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex gap-4 items-center">
-            <Link href="/login" className="px-4 py-2 text-navy-600 hover:text-navy-700 text-sm font-semibold transition">
+            <Link href="/login" className="px-4 py-2 text-[#0f3a7d] hover:text-[#0e346f] text-sm font-semibold transition">
               Sign In
             </Link>
             <Link 
               href="/signup"
-              className="px-6 py-2.5 bg-navy-600 text-white rounded-full font-bold hover:bg-navy-700 transition text-sm shadow-lg shadow-navy-600/30 hover:shadow-xl hover:shadow-navy-600/40"
+              className="btn-navy"
             >
               Get Started
             </Link>
