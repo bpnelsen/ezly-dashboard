@@ -3,6 +3,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase-client'
 import { BarChart3, Users, Mail, MessageSquare, Settings, LogOut, Menu, X, Home, Briefcase, FileText, Star, TrendingUp } from 'lucide-react'
@@ -102,7 +103,7 @@ export default function DashboardLayout({
       <div className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-navy-500 text-white transition-all duration-300 flex flex-col border-r border-navy-500/50`}>
         {/* Logo */}
         <div className="h-16 flex items-center justify-between px-6 border-b border-navy-500/50">
-          {sidebarOpen && <span className="text-2xl font-bold">EZLY</span>}
+          {sidebarOpen && <Image src="/ezly-logo.png" alt="Ezly Logo" width={80} height={32} style={{ objectFit: 'contain' }} priority />}
           <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-1 hover:bg-navy-500/80 rounded">
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>

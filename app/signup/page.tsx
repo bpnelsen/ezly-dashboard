@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic'
 
 import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { supabase } from '@/lib/supabase-client'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -164,7 +165,7 @@ function SignupPageContent() {
     <div className="min-h-screen bg-gradient-to-br from-navy-50 to-indigo-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-lg shadow-xl p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">EZLY</h1>
+          <Image src="/ezly-logo.png" alt="Ezly Logo" width={120} height={48} style={{ objectFit: 'contain' }} className="mx-auto mb-2" priority />
           <p className="text-gray-600 text-center mb-6">Create an Account</p>
 
           {error && (

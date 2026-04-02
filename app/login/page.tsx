@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic'
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Mail, Lock, ArrowRight } from 'lucide-react'
 import { supabase } from '@/lib/supabase-client'
 
@@ -60,7 +61,7 @@ export default function LoginPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <Link href="/" className="inline-block mb-8">
-            <div className="text-3xl font-bold text-gray-900">EZLY</div>
+            <Image src="/ezly-logo.png" alt="Ezly Logo" width={120} height={48} style={{ objectFit: 'contain' }} priority />
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
           <p className="text-gray-600">Sign in to your account to continue</p>

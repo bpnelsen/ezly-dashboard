@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic'
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
 import { supabase } from '@/lib/supabase-client'
 
@@ -131,7 +132,7 @@ export default function HomeownerSignup() {
       <div className="max-w-lg mx-auto px-6 py-16">
         {/* Logo */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">EZLY</h1>
+          <Image src="/ezly-logo.png" alt="Ezly Logo" width={120} height={48} style={{ objectFit: 'contain' }} priority />
           <p className="text-gray-600 mt-1">Find & hire verified contractors</p>
         </div>
 
