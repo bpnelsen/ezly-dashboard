@@ -61,7 +61,7 @@ export default function LoginPage() {
         {/* Header */}
         <div className="text-center mb-10">
           <Link href="/" className="inline-block mb-8">
-            <Image src="/ezly-logo.png" alt="Ezly Logo" width={120} height={48} style={{ objectFit: 'contain' }} priority />
+            <Image src="/ezly-logo.png" alt="Ezly Logo" width={200} height={80} style={{ objectFit: 'contain' }} priority />
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
           <p className="text-gray-600">Sign in to your account to continue</p>

@@ -103,7 +103,7 @@ export default function DashboardLayout({
       <div className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-navy-500 text-white transition-all duration-300 flex flex-col border-r border-navy-500/50`}>
         {/* Logo */}
         <div className="h-16 flex items-center justify-between px-6 border-b border-navy-500/50">
-          {sidebarOpen && <Image src="/ezly-logo.png" alt="Ezly Logo" width={80} height={32} style={{ objectFit: 'contain' }} priority />}
+          {sidebarOpen && <Image src="/ezly-logo.png" alt="Ezly Logo" width={160} height={44} style={{ objectFit: 'contain' }} priority />}
           <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-1 hover:bg-navy-500/80 rounded">
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>

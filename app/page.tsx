@@ -50,7 +50,7 @@ export default function Home() {
           <div className="hidden md:flex gap-6 items-center text-sm">
             <Link href="/about" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">About</Link>
             <Link href="/blog" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Blog</Link>
-            <a href="mailto:support@useezly.com" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Contact</a>
+            <a href="mailto:ezly.home@gmail.com" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Contact</a>
             <a href="#how-it-works" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">How it Works</a>
             <a href="#contractors" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Contractors</a>
           </div>
@@ -106,31 +106,36 @@ export default function Home() {
       </nav>
 
       {/* HERO SECTION - THUMBTACK STYLE */}
-      <section className="bg-white pt-12 sm:pt-20 pb-12 sm:pb-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <section className="relative overflow-hidden bg-white pt-16 sm:pt-24 pb-16 sm:pb-24">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-navy-50 rounded-full blur-3xl opacity-60"></div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-gray-900 text-center mb-4 sm:mb-6 leading-tight">
-            Find trusted contractors{' '}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 text-center mb-6 tracking-tight leading-tight">
+            Find trusted contractors
             <br />
-            <span className="text-teal-500">in minutes</span>
+            <span className="text-[#0f3a7d] bg-clip-text">
+              {' '}in <span className="text-[#14b8a6]">minutes</span>
+            </span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-2">
+          <p className="text-lg sm:text-xl text-gray-600 text-center mb-10 max-w-2xl mx-auto px-2">
             Get multiple bids from vetted professionals. Compare rates, read reviews, and hire with confidence.
           </p>
 
-          {/* Search Bar */}
-          <form onSubmit={handleSearch} className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-8 sm:mb-12 border border-gray-200">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 items-end">
-              {/* Service Type */}
-              <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                  What do you need?
-                </label>
+          {/* Search Bar with enhanced shadow */}
+          <form onSubmit={handleSearch} className="bg-white rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] p-4 sm:p-8 mb-16 border border-gray-100 relative group">
+            <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 items-end">
+              {/* Search fields remain same functionality but cleaner */}
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-gray-900">What do you need?</label>
                 <select 
                   value={serviceType}
                   onChange={(e) => setServiceType(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm min-h-12"
+                  className="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 transition text-sm font-medium"
                 >
                   <option value="">Select service...</option>
                   <option value="electrical">Electrical</option>
@@ -144,38 +149,34 @@ export default function Home() {
                 </select>
               </div>
 
-              {/* Location */}
-              <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                  Your location
-                </label>
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-gray-900">Your location</label>
                 <input 
                   type="text"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="City or ZIP code"
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm min-h-12"
+                  className="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 transition text-sm font-medium"
                 />
               </div>
 
-              {/* Search Button */}
               <button 
                 type="submit"
-                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-lg transition flex items-center justify-center gap-2 text-sm sm:text-base min-h-12"
+                className="w-full btn-teal py-4 text-base shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40"
               >
-                <Search size={20} />
-                <span className="hidden sm:inline">Search</span>
+                Find Pros
               </button>
             </div>
           </form>
 
-          {/* Hero Image */}
-          <div className="rounded-lg h-48 sm:h-80 md:h-96 overflow-hidden shadow-lg">
+          {/* Hero Image with stylish overlay */}
+          <div className="relative rounded-3xl h-64 sm:h-96 overflow-hidden shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=500&fit=crop" 
-              alt="Professional contractor working on home renovation"
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=800&fit=crop" 
+              alt="Professional contractor"
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           </div>
         </div>
       </section>
@@ -346,7 +347,7 @@ export default function Home() {
               <h4 className="font-bold text-white mb-4">For Contractors</h4>
               <ul className="space-y-2 text-sm">
                 <li><Link href="/signup/contractor" className="hover:text-white transition">Join EZLY</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition">Resources</Link></li>
+                <li><Link href="/resources" className="hover:text-white transition">Resources</Link></li>
                 <li><Link href="/login" className="hover:text-white transition">Sign In</Link></li>
               </ul>
             </div>
@@ -354,8 +355,9 @@ export default function Home() {
               <h4 className="font-bold text-white mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
                 <li><Link href="/about" className="hover:text-white transition">About</Link></li>
-                <li><a href="mailto:support@useezly.com" className="hover:text-white transition">Contact</a></li>
-                <li><Link href="/blog" className="hover:text-white transition">Privacy</Link></li>
+                <li><a href="mailto:ezly.home@gmail.com" className="hover:text-white transition">Contact</a></li>
+                <li><Link href="/privacy" className="hover:text-white transition">Privacy</Link></li>
+                <li><Link href="/sitemap" className="hover:text-white transition">Site Map</Link></li>
               </ul>
             </div>
           </div>
