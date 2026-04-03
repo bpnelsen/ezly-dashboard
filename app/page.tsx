@@ -42,17 +42,17 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-          <Link href="/" className="flex items-center flex-shrink-0">
-            <EzlyLogo className="w-48 sm:w-64 h-auto" />
+          <Link href="/" className="flex items-center flex-shrink-0 w-36 sm:w-48">
+            <EzlyLogo className="w-full h-auto" />
           </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-1 items-center text-sm font-medium">
-            <Link href="/about" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">About</Link>
-            <Link href="/blog" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">Blog</Link>
-            <a href="mailto:ezly.home@gmail.com" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">Contact</a>
-            <a href="#how-it-works" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">How it Works</a>
-            <a href="#contractors" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">Contractors</a>
+            <Link href="/about" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">About</Link>
+            <Link href="/blog" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Blog</Link>
+            <a href="mailto:ezly.home@gmail.com" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Contact</a>
+            <a href="#how-it-works" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">How it Works</a>
+            <a href="#contractors" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Contractors</a>
           </div>
 
           {/* Desktop Auth Buttons */}
