@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const EzlyLogo = ({ className = "w-48 h-16" }: { className?: string }) => {
+const EzlyLogo = ({ className = "w-480 h-160" }: { className?: string }) => {
   return (
     <Image
       src="/ezly-logo.png"
