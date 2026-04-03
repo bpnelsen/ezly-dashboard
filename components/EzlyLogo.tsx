@@ -5,7 +5,7 @@ const EzlyLogo = ({ className = "w-480 h-160" }: { className?: string }) => {
     <Image
       src="/ezly-logo.png"
       alt="Ezly Logo"
-      width={400}
+      width={480}
       height={160}
       className={className}
       style={{ objectFit: 'contain' }}
