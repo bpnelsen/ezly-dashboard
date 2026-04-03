@@ -43,26 +43,26 @@ export default function Home() {
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
           <Link href="/" className="flex items-center flex-shrink-0">
-            <EzlyLogo className="w-[480px] h-auto" />
+            <EzlyLogo className="w-48 sm:w-64 h-auto" />
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-6 items-center text-sm">
-            <Link href="/about" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">About</Link>
-            <Link href="/blog" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Blog</Link>
-            <a href="mailto:ezly.home@gmail.com" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Contact</a>
-            <a href="#how-it-works" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">How it Works</a>
-            <a href="#contractors" className="px-4 py-2 rounded-full hover:bg-navy-600 hover:text-white transition-all duration-200">Contractors</a>
+          <div className="hidden md:flex gap-1 items-center text-sm font-medium">
+            <Link href="/about" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">About</Link>
+            <Link href="/blog" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">Blog</Link>
+            <a href="mailto:ezly.home@gmail.com" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">Contact</a>
+            <a href="#how-it-works" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">How it Works</a>
+            <a href="#contractors" className="px-3 py-2 rounded-lg hover:bg-gray-100/50 hover:text-navy-500 transition-all">Contractors</a>
           </div>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex gap-4 items-center">
-            <Link href="/login" className="px-4 py-2 text-[#0f3a7d] hover:text-[#0e346f] text-sm font-semibold transition">
+          <div className="hidden md:flex gap-3 items-center">
+            <Link href="/login" className="px-5 py-2.5 text-navy-500 hover:text-navy-700 text-sm font-semibold transition">
               Sign In
             </Link>
             <Link 
               href="/signup"
-              className="btn-navy"
+              className="px-5 py-2.5 bg-navy-500 text-white rounded-full font-semibold text-sm hover:bg-navy-600 transition flex items-center justify-center min-h-[40px]"
             >
               Get Started
             </Link>
