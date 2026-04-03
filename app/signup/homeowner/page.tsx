@@ -132,7 +132,7 @@ export default function HomeownerSignup() {
       <div className="max-w-lg mx-auto px-6 py-16">
         {/* Logo */}
         <div className="mb-8">
-          <Image src="/ezly-logo.png" alt="Ezly Logo" width={200} height={80} style={{ objectFit: 'contain' }} priority />
+          <Image src="/ezly-logo.png" alt="Ezly Logo" width={400} height={160} style={{ objectFit: 'contain' }} priority />
           <p className="text-gray-600 mt-1">Find & hire verified contractors</p>
         </div>
 

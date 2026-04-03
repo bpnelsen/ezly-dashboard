@@ -8,6 +8,7 @@ import { ArrowLeft, Upload, MapPin, Calendar, DollarSign, X, Eye, Send } from 'l
 
 export default function PostProjectPage() {
   const [step, setStep] = useState<'form' | 'preview'>('form')
+  const [currentSection, setCurrentSection] = useState(1)
   const [formData, setFormData] = useState({
     title: '',
     category: '',
