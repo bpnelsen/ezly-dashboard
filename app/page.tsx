@@ -167,8 +167,8 @@ export default function Home() {
           {/* Hero Image with stylish overlay */}
           <div className="relative rounded-3xl h-64 sm:h-96 overflow-hidden shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=800&fit=crop" 
-              alt="Professional contractor"
+              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=800&fit=crop" 
+              alt="Professional residential construction project"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
