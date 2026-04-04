@@ -38,7 +38,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col items-center gap-4">
@@ -361,6 +361,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </main>
+    </div>
   )
 }
