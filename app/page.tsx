@@ -42,7 +42,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col items-center gap-4">
-          <Link href="/" className="flex items-center flex-shrink-0 w-full justify-center max-w-[280px] mx-auto">
+          <Link href="/" className="flex items-center flex-shrink-0 w-full justify-center max-w-[400px] mx-auto">
             <EzlyLogo className="w-full" />
           </Link>
           
