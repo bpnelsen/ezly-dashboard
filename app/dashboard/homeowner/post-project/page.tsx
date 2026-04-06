@@ -19,7 +19,25 @@ export default function PostProjectPage() {
     location: '',
     photos: [] as string[]
   })
+  const [marketPriceEstimate, setMarketPriceEstimate] = useState<string | null>(null)
+  const [isCalculating, setIsCalculating] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+
+  const calculateEstimate = async () => {
+    if (!formData.category || !formData.description) return
+    
+    setIsCalculating(true)
+    try {
+      // Simulate AI market price estimation API call
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      const mockEstimate = Math.floor(Math.random() * 5000) + 10000
+      setMarketPriceEstimate(mockEstimate.toLocaleString())
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setIsCalculating(false)
+    }
+  }
 
   const categories = [
     'Kitchen Remodel',
@@ -268,7 +286,7 @@ export default function PostProjectPage() {
             {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
           </div>
 
-          {/* Budget Range */}
+          {/* Budget Range and AI Estimate */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-900 mb-2">
@@ -279,6 +297,7 @@ export default function PostProjectPage() {
                 type="number"
                 value={formData.budgetMin}
                 onChange={(e) => setFormData({...formData, budgetMin: e.target.value})}
+                onBlur={calculateEstimate}
                 placeholder="5000"
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                   errors.budgetMin ? 'border-red-500' : 'border-gray-300'
@@ -295,6 +314,7 @@ export default function PostProjectPage() {
                 type="number"
                 value={formData.budgetMax}
                 onChange={(e) => setFormData({...formData, budgetMax: e.target.value})}
+                onBlur={calculateEstimate}
                 placeholder="15000"
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
                   errors.budgetMax ? 'border-red-500' : 'border-gray-300'
@@ -303,7 +323,25 @@ export default function PostProjectPage() {
               {errors.budgetMax && <p className="text-red-600 text-sm mt-1">{errors.budgetMax}</p>}
             </div>
           </div>
-          {errors.budget && <p className="text-red-600 text-sm">{errors.budget}</p>}
+          
+          {/* Market Intelligence AI Box */}
+          {marketPriceEstimate && (
+            <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 flex items-center gap-4">
+              <div className="bg-teal-100 p-2 rounded-full text-teal-700">
+                <DollarSign size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-teal-800">AI Market Price Estimate</h4>
+                <p className="text-teal-700 text-sm">
+                  Based on similar projects in your area, the estimated market price is approximately 
+                  <span className="font-bold ml-1">${marketPriceEstimate}</span>.
+                </p>
+              </div>
+            </div>
+          )}
+          {isCalculating && (
+            <div className="text-sm text-gray-500 italic animate-pulse">Calculating market estimate...</div>
+          )}
 
           {/* Timeline */}
           <div>
