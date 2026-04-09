@@ -301,7 +301,6 @@ export default function PostProjectPage() {
                 <option value="condo">Condo</option>
                 <option value="townhome">Townhome</option>
                 <option value="multi-family">Multi-Family</option>
-                <option value="commercial">Commercial</option>
               </select>
             </div>
             <div>
