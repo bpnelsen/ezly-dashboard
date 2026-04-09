@@ -13,8 +13,11 @@ export default function PostProjectPage() {
     title: '',
     category: '',
     description: '',
+    propertyType: '',
+    sizeSqft: '',
     budgetMin: '',
     budgetMax: '',
+    urgency: '',
     timeline: '',
     location: '',
     photos: [] as string[]
@@ -66,11 +69,7 @@ export default function PostProjectPage() {
     if (!formData.title.trim()) newErrors.title = 'Project title is required'
     if (!formData.category) newErrors.category = 'Category is required'
     if (!formData.description.trim()) newErrors.description = 'Description is required'
-    if (!formData.budgetMin) newErrors.budgetMin = 'Minimum budget is required'
-    if (!formData.budgetMax) newErrors.budgetMax = 'Maximum budget is required'
-    if (parseInt(formData.budgetMin) > parseInt(formData.budgetMax)) {
-      newErrors.budget = 'Minimum budget cannot be higher than maximum'
-    }
+    if (!formData.urgency) newErrors.urgency = 'Urgency is required'
     if (!formData.timeline) newErrors.timeline = 'Timeline is required'
     if (!formData.location.trim()) newErrors.location = 'Location is required'
 
@@ -284,6 +283,61 @@ export default function PostProjectPage() {
             />
             <p className="text-sm text-gray-500 mt-1">Detailed descriptions get more and better bids</p>
             {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
+          </div>
+
+          {/* Property Type & Size */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Property Type
+              </label>
+              <select
+                value={formData.propertyType}
+                onChange={(e) => setFormData({...formData, propertyType: e.target.value})}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition"
+              >
+                <option value="">Select property type</option>
+                <option value="single-family">Single Family Home</option>
+                <option value="condo">Condo</option>
+                <option value="townhome">Townhome</option>
+                <option value="multi-family">Multi-Family</option>
+                <option value="commercial">Commercial</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                Size (sq ft)
+              </label>
+              <input
+                type="number"
+                value={formData.sizeSqft}
+                onChange={(e) => setFormData({...formData, sizeSqft: e.target.value})}
+                placeholder="e.g., 1500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition"
+              />
+            </div>
+          </div>
+
+          {/* Urgency */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
+              How urgent is this project? <span className="text-red-600">*</span>
+            </label>
+            <select
+              value={formData.urgency}
+              onChange={(e) => setFormData({...formData, urgency: e.target.value})}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent outline-none transition ${
+                errors.urgency ? 'border-red-500' : 'border-gray-300'
+              }`}
+            >
+              <option value="">Select urgency</option>
+              <option value="standard">Standard - Not time sensitive</option>
+              <option value="flexible">Flexible - Within a few weeks</option>
+              <option value="soon">Soon - Need it done this month</option>
+              <option value="urgent">Urgent - Need contractor ASAP</option>
+              <option value="emergency">Emergency - Immediate need</option>
+            </select>
+            {errors.urgency && <p className="text-red-600 text-sm mt-1">{errors.urgency}</p>}
           </div>
 
           {/* Budget Range and AI Estimate */}
