@@ -3,7 +3,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { Search, Home as HomeIcon, Menu, X } from 'lucide-react'
+import { Search, Menu, X, CheckCircle, Star, Shield, MessageCircle, DollarSign, Clock, Users, MapPin, Phone } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase-client'
 import EzlyLogo from '@/components/EzlyLogo'
@@ -38,51 +38,43 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-        {/* Top accent line */}
-        <div className="h-[3px] bg-gradient-to-r from-[#0f3a7d] via-[#14b8a6] to-[#0f3a7d]"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center gap-6">
+    <div className="min-h-screen bg-[#f8fafc]">
+      {/* HEADER - Dark Navy Solid Background */}
+      <nav className="sticky top-0 z-50 bg-[#0f3a7d] shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center gap-6">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0 w-40 sm:w-48">
             <EzlyLogo className="w-full h-auto" />
           </Link>
           
-          {/* Desktop Navigation - Elegant, distributed */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 justify-between items-center px-8">
-            <div className="flex items-center gap-8 text-sm">
-              <Link href="/about" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+            <div className="flex items-center gap-10">
+              <Link href="/about" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
                 About
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <Link href="/blog" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <Link href="/blog" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
                 Blog
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <a href="mailto:ezly.home@gmail.com" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <a href="mailto:ezly.home@gmail.com" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
                 Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
               </a>
-              <a href="#how-it-works" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <a href="#how-it-works" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
                 How it Works
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
               </a>
-              <a href="#contractors" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <a href="#contractors" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
                 Contractors
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
               </a>
             </div>
 
             {/* Auth Buttons */}
-            <div className="flex items-center gap-4">
-              <Link href="/login" className="text-sm font-medium text-[#0f3a7d] hover:text-[#14b8a6] transition-colors">
+            <div className="flex items-center gap-5">
+              <Link href="/login" className="text-white font-semibold text-base tracking-wide hover:text-[#14b8a6] transition-colors">
                 Sign In
               </Link>
               <Link 
                 href="/signup"
-                className="px-5 py-2 bg-[#0f3a7d] text-white rounded-lg font-medium text-sm hover:bg-[#0c2e5c] hover:shadow-md transition-all duration-300"
+                className="px-6 py-2.5 bg-[#14b8a6] text-white rounded-lg font-bold text-base hover:bg-[#0d9e8c] hover:shadow-lg transition-all duration-300"
               >
                 Get Started
               </Link>
@@ -92,39 +84,39 @@ export default function Home() {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg touch-none transition-colors"
+            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Navigation Menu - Refined */}
+        {/* Mobile Navigation Menu */}
         {menuOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white">
+          <div className="lg:hidden bg-[#0c2e5c] border-t border-white/10">
             <div className="px-4 py-4 space-y-1">
-              <Link href="/about" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+              <Link href="/about" className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
                 About
               </Link>
-              <Link href="/blog" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+              <Link href="/blog" className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
                 Blog
               </Link>
-              <a href="mailto:ezly.home@gmail.com" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+              <a href="mailto:ezly.home@gmail.com" className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
                 Contact
               </a>
-              <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+              <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
                 How it Works
               </a>
-              <a href="#contractors" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+              <a href="#contractors" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
                 Contractors
               </a>
-              <hr className="my-3 border-gray-100" />
+              <hr className="my-3 border-white/20" />
               <div className="flex items-center gap-3 px-2">
-                <Link href="/login" className="flex-1 px-4 py-3 text-center text-[#0f3a7d] border-2 border-[#0f3a7d] rounded-lg font-medium hover:bg-[#0f3a7d] hover:text-white transition-colors">
+                <Link href="/login" className="flex-1 px-4 py-3 text-center text-white border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-[#0f3a7d] transition-colors">
                   Sign In
                 </Link>
                 <Link 
                   href="/signup"
-                  className="flex-1 px-4 py-3 text-center bg-[#0f3a7d] text-white rounded-lg font-medium hover:bg-[#0c2e5c] transition-colors"
+                  className="flex-1 px-4 py-3 text-center bg-[#14b8a6] text-white rounded-lg font-semibold hover:bg-[#0d9e8c] transition-colors"
                 >
                   Get Started
                 </Link>
@@ -134,37 +126,41 @@ export default function Home() {
         )}
       </nav>
 
-      {/* HERO SECTION - THUMBTACK STYLE */}
-      <section className="relative overflow-hidden bg-white pt-16 sm:pt-24 pb-16 sm:pb-24">
-        {/* Abstract Background Elements */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-teal-50 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-navy-50 rounded-full blur-3xl opacity-60"></div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
+      {/* HERO SECTION - Clean & Professional */}
+      <section className="bg-gradient-to-br from-[#0f3a7d] via-[#0f3a7d] to-[#0c2e5c] pt-16 sm:pt-24 pb-20 sm:pb-32 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#14b8a6] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          {/* Trust badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
+            <Shield className="w-4 h-4 text-[#14b8a6]" />
+            <span className="text-white/90 text-sm font-medium">Trusted by homeowners across Utah</span>
+          </div>
+          
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 text-center mb-6 tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
             Find trusted contractors
-            <br />
-            <span className="text-[#0f3a7d] bg-clip-text">
-              {' '}in <span className="text-[#14b8a6]">minutes</span>
-            </span>
+            <br className="hidden sm:block" />
+            <span className="text-[#14b8a6]"> in minutes</span>
           </h1>
           
-          <p className="text-lg sm:text-xl text-gray-600 text-center mb-10 max-w-2xl mx-auto px-2">
+          <p className="text-lg sm:text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto">
             Get multiple bids from vetted professionals. Compare rates, read reviews, and hire with confidence.
           </p>
 
-          {/* Search Bar with enhanced shadow */}
-          <form onSubmit={handleSearch} className="bg-white rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] p-4 sm:p-8 mb-16 border border-gray-100 relative group">
-            <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          {/* Search Bar - Dark glass effect */}
+          <form onSubmit={handleSearch} className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20 max-w-4xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 items-end">
-              {/* Search fields remain same functionality but cleaner */}
               <div className="space-y-2">
-                <label className="block text-sm font-bold text-gray-900">What do you need?</label>
+                <label className="block text-sm font-semibold text-white/90">What do you need?</label>
                 <select 
                   value={serviceType}
                   onChange={(e) => setServiceType(e.target.value)}
-                  className="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 transition text-sm font-medium"
+                  className="w-full px-4 py-4 bg-white text-gray-900 border-0 rounded-xl focus:ring-2 focus:ring-[#14b8a6] transition text-base font-medium"
                 >
                   <option value="">Select service...</option>
                   <option value="electrical">Electrical</option>
@@ -179,79 +175,113 @@ export default function Home() {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-bold text-gray-900">Your location</label>
+                <label className="block text-sm font-semibold text-white/90">Your location</label>
                 <input 
                   type="text"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="City or ZIP code"
-                  className="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 transition text-sm font-medium"
+                  className="w-full px-4 py-4 bg-white text-gray-900 border-0 rounded-xl focus:ring-2 focus:ring-[#14b8a6] transition text-base font-medium placeholder-gray-500"
                 />
               </div>
 
               <button 
                 type="submit"
-                className="w-full btn-teal py-4 text-base shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40"
+                className="w-full bg-[#14b8a6] hover:bg-[#0d9e8c] text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-base"
               >
                 Find Pros
               </button>
             </div>
           </form>
+        </div>
+      </section>
 
-          {/* Hero Image with stylish overlay */}
-          <div className="relative rounded-3xl h-64 sm:h-96 overflow-hidden shadow-2xl">
-            <img 
-              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=800&fit=crop" 
-              alt="Professional contractor"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+      {/* TRUST STATS - Clean cards */}
+      <section className="bg-white py-12 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-[#0f3a7d]/10 rounded-xl mb-3">
+                <Users className="w-6 h-6 text-[#0f3a7d]" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#0f3a7d] mb-1">{contractorCount}+</div>
+              <p className="text-sm text-gray-600">Verified Contractors</p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-[#0f3a7d]/10 rounded-xl mb-3">
+                <MapPin className="w-6 h-6 text-[#0f3a7d]" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#0f3a7d] mb-1">Utah</div>
+              <p className="text-sm text-gray-600">Service Area</p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-[#0f3a7d]/10 rounded-xl mb-3">
+                <Star className="w-6 h-6 text-[#0f3a7d]" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#0f3a7d] mb-1">10+</div>
+              <p className="text-sm text-gray-600">Trade Categories</p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-[#14b8a6]/10 rounded-xl mb-3">
+                <CheckCircle className="w-6 h-6 text-[#14b8a6]" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#0f3a7d] mb-1">Free</div>
+              <p className="text-sm text-gray-600">To Get Started</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* TRUST & SOCIAL PROOF */}
-      <section className="bg-white border-t border-gray-200 py-8 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 text-center">
-            <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">{contractorCount.toLocaleString()}+</div>
-              <p className="text-xs sm:text-base text-gray-600">Verified Contractors</p>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">Utah</div>
-              <p className="text-xs sm:text-base text-gray-600">Service Area</p>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">10+</div>
-              <p className="text-xs sm:text-base text-gray-600">Trade Categories</p>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-4xl font-bold text-navy-500 mb-1 sm:mb-2">Free</div>
-              <p className="text-xs sm:text-base text-gray-600">To Get Started</p>
-            </div>
+      {/* HOW IT WORKS - Clean numbered steps */}
+      <section id="how-it-works" className="bg-[#f8fafc] py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0f3a7d] mb-4">How EZLY works</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">Simple, transparent, and designed to save you time.</p>
           </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section id="how-it-works" className="bg-gray-50 py-12 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">How EZLY works</h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { step: 1, title: 'Tell us what you need', desc: 'Describe your project in a few details' },
-              { step: 2, title: 'Get quotes', desc: 'Receive bids from multiple contractors' },
-              { step: 3, title: 'Compare & review', desc: 'View ratings, reviews, and pricing' },
-              { step: 4, title: 'Hire with confidence', desc: 'Message, sign contract, and pay through EZLY' }
-            ].map((item) => (
-              <div key={item.step} className="text-center">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-teal-500 text-white rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mx-auto mb-4">
+              { step: 1, title: 'Tell us what you need', desc: 'Describe your project in a few details', icon: Search },
+              { step: 2, title: 'Get quotes', desc: 'Receive bids from multiple contractors', icon: DollarSign },
+              { step: 3, title: 'Compare & review', desc: 'View ratings, reviews, and pricing', icon: Star },
+              { step: 4, title: 'Hire with confidence', desc: 'Message, sign contract, and pay through EZLY', icon: Shield }
+            ].map((item, idx) => (
+              <div key={item.step} className="relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-[#0f3a7d] text-white rounded-xl flex items-center justify-center text-xl font-bold mb-5">
                   {item.step}
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE EZLY - Feature cards */}
+      <section className="bg-[#0f3a7d] py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Why choose EZLY?</h2>
+            <p className="text-white/70 text-lg">Everything you need to make the right choice.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: Shield, title: 'Verified Professionals', desc: 'Every contractor is background-checked and insured' },
+              { icon: MessageCircle, title: 'Direct Communication', desc: 'Message contractors instantly. No middleman.' },
+              { icon: DollarSign, title: 'Protected Transactions', desc: 'Secure payments and contract management through EZLY' },
+              { icon: Star, title: 'Real Reviews', desc: 'Read verified reviews from real homeowners' },
+              { icon: CheckCircle, title: 'Compare Easily', desc: 'View multiple bids side-by-side' },
+              { icon: Clock, title: 'Fast & Easy', desc: 'Get quotes in minutes, not weeks' }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-colors">
+                <div className="w-12 h-12 bg-[#14b8a6] rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-white/70">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -259,130 +289,126 @@ export default function Home() {
       </section>
 
       {/* FEATURED CONTRACTORS */}
-      <section id="contractors" className="py-12 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">Contractors you can trust</h2>
+      <section id="contractors" className="bg-[#f8fafc] py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0f3a7d] mb-4">Contractors you can trust</h2>
+            <p className="text-gray-600 text-lg">Verified professionals ready to help with your project.</p>
+          </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {featuredContractors.length > 0 ? featuredContractors.map((contractor, idx) => (
-              <div key={contractor.id} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredContractors.length > 0 ? featuredContractors.map((contractor) => (
+              <div key={contractor.id} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="font-bold text-lg text-gray-900">{contractor.business_name}</h3>
                     <p className="text-sm text-gray-600">{contractor.specialties || 'General Contractor'}</p>
                   </div>
-                  <div className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">
-                    ✓ Verified
+                  <div className="bg-[#14b8a6]/10 text-[#14b8a6] px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" /> Verified
                   </div>
                 </div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-sm text-gray-600">{contractor.phone}</span>
+                <div className="flex items-center gap-2 mb-5 text-sm text-gray-600">
+                  <Phone className="w-4 h-4" />
+                  <span>{contractor.phone}</span>
                 </div>
-                <Link href="/contractors" className="block w-full bg-navy-500 hover:bg-navy-600 text-white font-bold py-3 rounded-lg transition min-h-12 text-sm sm:text-base text-center">
+                <Link href="/contractors" className="block w-full bg-[#0f3a7d] hover:bg-[#0c2e5c] text-white font-bold py-3 rounded-xl transition text-center">
                   View Profile
                 </Link>
               </div>
             )) : [1,2,3].map(i => (
-              <div key={i} className="bg-white border border-gray-200 rounded-lg p-6 animate-pulse">
-                <div className="h-5 bg-gray-200 rounded w-3/4 mb-3"></div>
+              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 animate-pulse">
+                <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
                 <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
-                <div className="h-10 bg-gray-200 rounded"></div>
+                <div className="h-12 bg-gray-200 rounded-xl"></div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WHY CHOOSE EZLY */}
-      <section className="bg-gray-50 py-12 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">Why choose EZLY?</h2>
+      {/* TESTIMONIALS - Clean cards */}
+      <section className="bg-white py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0f3a7d] mb-4">What customers say</h2>
+            <div className="flex items-center justify-center gap-1">
+              {[1,2,3,4,5].map(i => (
+                <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              ))}
+              <span className="text-gray-600 ml-2">5.0 average rating</span>
+            </div>
+          </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { icon: '✓', title: 'Verified Professionals', desc: 'Every contractor is background-checked and insured' },
-              { icon: '💬', title: 'Direct Communication', desc: 'Message contractors instantly. No middleman.' },
-              { icon: '🛡️', title: 'Protected Transactions', desc: 'Secure payments and contract management through EZLY' },
-              { icon: '⭐', title: 'Real Reviews', desc: 'Read verified reviews from real homeowners' },
-              { icon: '📊', title: 'Compare Easily', desc: 'View multiple bids side-by-side' },
-              { icon: '⚡', title: 'Fast & Easy', desc: 'Get quotes in minutes, not weeks' }
+              { title: 'For Homeowners', text: 'Post your project, get matched with vetted contractors in your area, compare bids side-by-side, and hire with confidence — all in one place.' },
+              { title: 'For Contractors', text: 'Join a growing network of professionals. Get discovered by homeowners looking for exactly what you offer. No cold calls needed.' },
+              { title: 'Our Promise', text: 'Every contractor on EZLY is verified. We connect you with licensed, insured professionals so you can focus on your project, not your worries.' }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white rounded-lg p-6 sm:p-8 border border-gray-200">
-                <div className="text-3xl sm:text-4xl mb-4">{item.icon}</div>
-                <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="bg-white py-12 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-16">What customers say</h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              { name: 'How It Works', text: 'Post your project, get matched with vetted contractors in your area, compare bids side-by-side, and hire with confidence — all in one place.', rating: 5 },
-              { name: 'For Contractors', text: 'Join a growing network of professionals. Get discovered by homeowners looking for exactly what you offer. No cold calls needed.', rating: 5 },
-              { name: 'Our Promise', text: 'Every contractor on EZLY is verified. We connect you with licensed, insured professionals so you can focus on your project, not your worries.', rating: 5 }
-            ].map((testimonial, idx) => (
-              <div key={idx} className="bg-gray-50 rounded-lg p-6 sm:p-8 border border-gray-200">
+              <div key={idx} className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-100">
                 <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">★</span>
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                   ))}
                 </div>
-                <p className="text-sm sm:text-base text-gray-700 mb-4">{testimonial.text}</p>
-                <p className="font-bold text-gray-900">{testimonial.name}</p>
+                <p className="text-gray-700 mb-4 leading-relaxed">{item.text}</p>
+                <p className="font-bold text-[#0f3a7d]">{item.title}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="bg-gradient-to-r from-navy-500 to-teal-500 py-12 sm:py-20">
+      {/* FINAL CTA - Teal accent */}
+      <section className="bg-gradient-to-r from-[#0f3a7d] to-[#14b8a6] py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">Ready to find your contractor?</h2>
-          <p className="text-base sm:text-xl text-white/90 mb-8">Join thousands of homeowners who've found trusted professionals through EZLY.</p>
-          <Link 
-            href="/signup"
-            className="inline-block bg-white text-teal-500 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition text-base sm:text-lg min-h-12 flex items-center justify-center"
-          >
-            Get Started Free
-          </Link>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to find your contractor?</h2>
+          <p className="text-white/90 text-lg mb-10 max-w-2xl mx-auto">Join thousands of homeowners who've found trusted professionals through EZLY.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link 
+              href="/signup"
+              className="px-8 py-4 bg-white text-[#0f3a7d] font-bold rounded-xl hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl text-lg"
+            >
+              Get Started Free
+            </Link>
+            <a 
+              href="mailto:ezly.home@gmail.com"
+              className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all text-lg"
+            >
+              Contact Us
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      {/* Footer - Dark professional */}
+      <footer className="bg-[#0c2e5c] text-white py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <div>
-              <h3 className="font-bold text-white mb-4">EZLY</h3>
-              <p className="text-sm">Find trusted contractors in minutes.</p>
+              <EzlyLogo className="w-40 h-auto mb-4 opacity-90" />
+              <p className="text-white/60 text-sm">Find trusted contractors in minutes.</p>
             </div>
             <div>
-              <h4 className="font-bold text-white mb-4">For Homeowners</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-4">For Homeowners</h4>
+              <ul className="space-y-2 text-sm text-white/70">
                 <li><Link href="/contractors" className="hover:text-white transition">Find Contractors</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
                 <li><Link href="/signup/homeowner" className="hover:text-white transition">Get Started</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white mb-4">For Contractors</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-4">For Contractors</h4>
+              <ul className="space-y-2 text-sm text-white/70">
                 <li><Link href="/signup/contractor" className="hover:text-white transition">Join EZLY</Link></li>
                 <li><Link href="/resources" className="hover:text-white transition">Resources</Link></li>
                 <li><Link href="/login" className="hover:text-white transition">Sign In</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold text-white mb-4">Company</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="font-bold mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-white/70">
                 <li><Link href="/about" className="hover:text-white transition">About</Link></li>
                 <li><a href="mailto:ezly.home@gmail.com" className="hover:text-white transition">Contact</a></li>
                 <li><Link href="/privacy" className="hover:text-white transition">Privacy</Link></li>
@@ -390,7 +416,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-700 pt-8 text-center text-sm">
+          <div className="border-t border-white/10 pt-8 text-center text-sm text-white/50">
             <p>&copy; 2026 EZLY. All rights reserved.</p>
           </div>
         </div>

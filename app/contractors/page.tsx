@@ -6,6 +6,7 @@ import { Star, MapPin, Briefcase, MessageCircle, Filter } from 'lucide-react'
 import { useState, useEffect, Suspense } from 'react'
 import { supabase } from '@/lib/supabase-client'
 import Navigation from '@/components/Navigation'
+import EzlyLogo from '@/components/EzlyLogo'
 
 function ContractorsContent() {
   const searchParams = useSearchParams()
