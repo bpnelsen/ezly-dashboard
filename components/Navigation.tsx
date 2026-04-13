@@ -13,7 +13,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-0 z-50 bg-gradient-to-b from-[#f8fafc] to-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
       {/* Top accent line */}
       <div className="h-[3px] bg-gradient-to-r from-[#0f3a7d] via-[#14b8a6] to-[#0f3a7d]"></div>
       
