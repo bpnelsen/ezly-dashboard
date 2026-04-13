@@ -335,7 +335,7 @@ export default function Home() {
                   <CheckCircle className="w-4 h-4 text-[#14b8a6]" /> Full invoicing + payments
                 </li>
                 <li className="flex items-center gap-2 text-white text-sm">
-                  <CheckCircle className="w-4 h-4 text-[#14b8a6]" /> Priority leads from EZLY
+                  <CheckCircle className="w-4 h-4 text-[#14b8a6]" /> Job management + scheduling
                 </li>
                 <li className="flex items-center gap-2 text-white text-sm">
                   <CheckCircle className="w-4 h-4 text-[#14b8a6]" /> Business analytics
