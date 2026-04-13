@@ -75,31 +75,31 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
 
       {/* Mobile Navigation Menu - Refined */}
       {menuOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white">
+        <div className="lg:hidden border-t border-[#0f3a7d]/20 bg-[#0f3a7d]/25">
           <div className="px-4 py-4 space-y-1">
-            <Link href="/about" className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <Link href="/about" className="block px-4 py-3 text-base text-[#0f3a7d] hover:bg-[#0f3a7d]/20 rounded-lg transition-colors font-semibold">
               About
             </Link>
-            <Link href="/blog" className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <Link href="/blog" className="block px-4 py-3 text-base text-[#0f3a7d] hover:bg-[#0f3a7d]/20 rounded-lg transition-colors font-semibold">
               Blog
             </Link>
-            <a href="mailto:ezly.home@gmail.com" className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <a href="mailto:ezly.home@gmail.com" className="block px-4 py-3 text-base text-[#0f3a7d] hover:bg-[#0f3a7d]/20 rounded-lg transition-colors font-semibold">
               Contact
             </a>
-            <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-base text-[#0f3a7d] hover:bg-[#0f3a7d]/20 rounded-lg transition-colors font-semibold">
               How it Works
             </a>
-            <a href="/#contractors" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <a href="/#contractors" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-base text-[#0f3a7d] hover:bg-[#0f3a7d]/20 rounded-lg transition-colors font-semibold">
               Contractors
             </a>
-            <hr className="my-3 border-gray-100" />
+            <hr className="my-3 border-[#0f3a7d]/20" />
             <div className="flex items-center gap-3 px-2">
-              <Link href="/login" className="flex-1 px-4 py-3 text-center text-[#0f3a7d] border-2 border-[#0f3a7d] rounded-lg font-medium hover:bg-[#0f3a7d] hover:text-white transition-colors">
+              <Link href="/login" className="flex-1 px-4 py-3 text-center text-white border-2 border-white rounded-lg font-semibold hover:bg-white hover:text-[#0f3a7d] transition-colors">
                 Sign In
               </Link>
               <Link 
                 href="/signup"
-                className="flex-1 px-4 py-3 text-center bg-[#0f3a7d] text-white rounded-lg font-medium hover:bg-[#0c2e5c] transition-colors"
+                className="flex-1 px-4 py-3 text-center bg-white text-[#0f3a7d] rounded-lg font-semibold hover:bg-[#0f3a7d]/20 transition-colors"
               >
                 Get Started
               </Link>
