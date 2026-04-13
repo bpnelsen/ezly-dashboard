@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Star, MapPin, Phone, Mail, MessageCircle, Award, DollarSign, Clock } from 'lucide-react'
 import { useState } from 'react'
+import Navigation from '@/components/Navigation'
 
 // Mock contractor data
 const CONTRACTORS: Record<number, any> = {
@@ -75,22 +76,7 @@ export default function ContractorPage({ params }: { params: { id: string } }) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl sm:text-2xl font-bold text-navy-500">EZLY</Link>
-          <div className="hidden md:flex gap-3">
-            <Link href="/contractors" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
-              Back to Results
-            </Link>
-            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
-              Sign In
-            </Link>
-          </div>
-          <Link href="/contractors" className="md:hidden px-3 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
-            Back
-          </Link>
-        </div>
-      </nav>
+      <Navigation />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
         {/* Header */}

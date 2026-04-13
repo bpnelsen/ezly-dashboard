@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { Star, MapPin, Briefcase, MessageCircle, Filter } from 'lucide-react'
 import { useState, useEffect, Suspense } from 'react'
 import { supabase } from '@/lib/supabase-client'
+import Navigation from '@/components/Navigation'
 
 function ContractorsContent() {
   const searchParams = useSearchParams()
@@ -44,28 +45,7 @@ function ContractorsContent() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl sm:text-2xl font-bold text-navy-500">EZLY</Link>
-          <div className="hidden md:flex gap-3">
-            <Link href="/login" className="px-4 py-2 text-gray-700 hover:text-navy-500 font-medium text-sm">
-              Sign In
-            </Link>
-            <Link 
-              href="/signup"
-              className="px-4 py-2 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 text-sm"
-            >
-              Get Started
-            </Link>
-          </div>
-          <Link 
-            href="/signup"
-            className="md:hidden px-3 py-2 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 text-sm min-h-10 flex items-center"
-          >
-            Sign Up
-          </Link>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Header */}
       <div className="bg-white border-b border-gray-200 py-6 sm:py-8">
