@@ -26,37 +26,37 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
         {/* Desktop Navigation - Elegant, distributed */}
         {variant === 'default' && (
           <div className="hidden lg:flex flex-1 justify-between items-center px-8">
-            <div className="flex items-center gap-10 text-base">
-              <Link href="/about" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+            <div className="flex items-center gap-12">
+              <Link href="/about" className="relative text-gray-700 hover:text-[#0f3a7d] transition-all duration-300 font-semibold tracking-wide group">
                 About
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full rounded-full shadow-lg shadow-[#0f3a7d]/30"></span>
               </Link>
-              <Link href="/blog" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <Link href="/blog" className="relative text-gray-700 hover:text-[#0f3a7d] transition-all duration-300 font-semibold tracking-wide group">
                 Blog
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full rounded-full shadow-lg shadow-[#0f3a7d]/30"></span>
               </Link>
-              <a href="mailto:ezly.home@gmail.com" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <a href="mailto:ezly.home@gmail.com" className="relative text-gray-700 hover:text-[#0f3a7d] transition-all duration-300 font-semibold tracking-wide group">
                 Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full rounded-full shadow-lg shadow-[#0f3a7d]/30"></span>
               </a>
-              <a href="/#how-it-works" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <a href="/#how-it-works" className="relative text-gray-700 hover:text-[#0f3a7d] transition-all duration-300 font-semibold tracking-wide group">
                 How it Works
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full rounded-full shadow-lg shadow-[#0f3a7d]/30"></span>
               </a>
-              <a href="/#contractors" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+              <a href="/#contractors" className="relative text-gray-700 hover:text-[#0f3a7d] transition-all duration-300 font-semibold tracking-wide group">
                 Contractors
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full rounded-full shadow-lg shadow-[#0f3a7d]/30"></span>
               </a>
             </div>
 
             {/* Auth Buttons */}
-            <div className="flex items-center gap-5">
-              <Link href="/login" className="text-base font-medium text-[#0f3a7d] hover:text-[#14b8a6] transition-colors">
+            <div className="flex items-center gap-6">
+              <Link href="/login" className="text-base font-bold text-[#0f3a7d] hover:text-[#14b8a6] transition-colors tracking-wide">
                 Sign In
               </Link>
               <Link 
                 href="/signup"
-                className="px-6 py-2.5 bg-[#0f3a7d] text-white rounded-lg font-medium text-base hover:bg-[#0c2e5c] hover:shadow-md transition-all duration-300"
+                className="px-7 py-2.5 bg-[#0f3a7d] text-white rounded-lg font-bold text-base hover:bg-[#0c2e5c] hover:shadow-xl hover:shadow-[#0f3a7d]/20 hover:-translate-y-0.5 transition-all duration-300 tracking-wide"
               >
                 Get Started
               </Link>
