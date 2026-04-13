@@ -19,16 +19,16 @@ export default function Navigation() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-1 justify-between items-center">
           <div className="flex items-center gap-10">
-            <a href="/#features" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
+            <a href="/#features" className="text-white hover:text-[#14b8a6] transition-colors font-semibold text-base tracking-wide">
               Features
             </a>
-            <a href="/#how-it-works" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
+            <a href="/#how-it-works" className="text-white hover:text-[#14b8a6] transition-colors font-semibold text-base tracking-wide">
               How It Works
             </a>
-            <a href="/#pricing" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
+            <a href="/#pricing" className="text-white hover:text-[#14b8a6] transition-colors font-semibold text-base tracking-wide">
               Pricing
             </a>
-            <a href="/#faq" className="text-white/90 hover:text-white transition-colors font-semibold text-base tracking-wide">
+            <a href="/#faq" className="text-white hover:text-[#14b8a6] transition-colors font-semibold text-base tracking-wide">
               FAQ
             </a>
           </div>
@@ -60,16 +60,16 @@ export default function Navigation() {
       {menuOpen && (
         <div className="lg:hidden bg-[#0c2e5c] border-t border-white/10">
           <div className="px-4 py-4 space-y-1">
-            <a href="/#features" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
+            <a href="/#features" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:text-[#14b8a6] rounded-lg transition-colors font-semibold">
               Features
             </a>
-            <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
+            <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:text-[#14b8a6] rounded-lg transition-colors font-semibold">
               How It Works
             </a>
-            <a href="/#pricing" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
+            <a href="/#pricing" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:text-[#14b8a6] rounded-lg transition-colors font-semibold">
               Pricing
             </a>
-            <a href="/#faq" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-semibold">
+            <a href="/#faq" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-white hover:text-[#14b8a6] rounded-lg transition-colors font-semibold">
               FAQ
             </a>
             <hr className="my-3 border-white/20" />
