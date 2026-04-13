@@ -40,66 +40,95 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center gap-4">
-          <Link href="/" className="flex items-center flex-shrink-0 w-36 sm:w-48">
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        {/* Top accent line */}
+        <div className="h-[3px] bg-gradient-to-r from-[#0f3a7d] via-[#14b8a6] to-[#0f3a7d]"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center gap-6">
+          {/* Logo */}
+          <Link href="/" className="flex items-center flex-shrink-0 w-40 sm:w-48">
             <EzlyLogo className="w-full h-auto" />
           </Link>
           
-          {/* Desktop Navigation - Distributed */}
-          <div className="hidden lg:flex flex-1 justify-around items-center text-xs font-medium px-4">
-            <Link href="/about" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">About</Link>
-            <Link href="/blog" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">Blog</Link>
-            <a href="mailto:ezly.home@gmail.com" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">Contact</a>
-            <a href="#how-it-works" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">How it Works</a>
-            <a href="#contractors" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">Contractors</a>
-          </div>
+          {/* Desktop Navigation - Elegant, distributed */}
+          <div className="hidden lg:flex flex-1 justify-between items-center px-8">
+            <div className="flex items-center gap-8 text-sm">
+              <Link href="/about" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+                About
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <Link href="/blog" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+                Blog
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <a href="mailto:ezly.home@gmail.com" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+                Contact
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#how-it-works" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+                How it Works
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#contractors" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
+                Contractors
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </div>
 
-          {/* Desktop Auth Buttons */}
-          <div className="hidden lg:flex gap-2 items-center flex-shrink-0">
-            <Link href="/login" className="px-3 py-1.5 text-navy-500 hover:text-navy-700 text-xs font-semibold transition">
-              Sign In
-            </Link>
-            <Link 
-              href="/signup"
-              className="px-4 py-1.5 bg-navy-500 text-white rounded-full font-semibold text-xs hover:bg-navy-600 transition"
-            >
-              Get Started
-            </Link>
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-4">
+              <Link href="/login" className="text-sm font-medium text-[#0f3a7d] hover:text-[#14b8a6] transition-colors">
+                Sign In
+              </Link>
+              <Link 
+                href="/signup"
+                className="px-5 py-2 bg-[#0f3a7d] text-white rounded-lg font-medium text-sm hover:bg-[#0c2e5c] hover:shadow-md transition-all duration-300"
+              >
+                Get Started
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg touch-none"
+            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg touch-none transition-colors"
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu - Refined */}
         {menuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white">
-            <div className="px-4 py-3 space-y-2">
-              <Link href="/blog" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+          <div className="lg:hidden border-t border-gray-100 bg-white">
+            <div className="px-4 py-4 space-y-1">
+              <Link href="/about" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                About
+              </Link>
+              <Link href="/blog" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
                 Blog
               </Link>
-              <a href="#how-it-works" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onClick={() => setMenuOpen(false)}>
+              <a href="mailto:ezly.home@gmail.com" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                Contact
+              </a>
+              <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
                 How it Works
               </a>
-              <a href="#contractors" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg" onClick={() => setMenuOpen(false)}>
+              <a href="#contractors" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
                 Contractors
               </a>
-              <hr className="my-2" />
-              <Link href="/login" className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                Sign In
-              </Link>
-              <Link 
-                href="/signup"
-                className="block w-full px-3 py-3 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 text-center min-h-12 flex items-center justify-center"
-              >
-                Get Started
-              </Link>
+              <hr className="my-3 border-gray-100" />
+              <div className="flex items-center gap-3 px-2">
+                <Link href="/login" className="flex-1 px-4 py-3 text-center text-[#0f3a7d] border-2 border-[#0f3a7d] rounded-lg font-medium hover:bg-[#0f3a7d] hover:text-white transition-colors">
+                  Sign In
+                </Link>
+                <Link 
+                  href="/signup"
+                  className="flex-1 px-4 py-3 text-center bg-[#0f3a7d] text-white rounded-lg font-medium hover:bg-[#0c2e5c] transition-colors"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
           </div>
         )}
