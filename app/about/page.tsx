@@ -1,96 +1,98 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle } from 'lucide-react'
+import { ArrowLeft, CheckCircle, Wrench, Users, TrendingUp, Shield } from 'lucide-react'
+import Navigation from '@/components/Navigation'
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <Link href="/" className="inline-flex items-center text-navy-600 hover:text-navy-700 font-medium">
-            <ArrowLeft size={18} className="mr-2" />
-            Back to Home
-          </Link>
-        </div>
-      </div>
+      <Navigation />
 
-      <div className="max-w-4xl mx-auto px-6 py-16">
-        {/* Hero Section */}
-        <div className="relative mb-16 rounded-3xl overflow-hidden shadow-2xl">
-          <img 
-            src="https://images.unsplash.com/photo-1581094794329-c8112a966512?w=1600&h=600&fit=crop" 
-            alt="Modern home renovation" 
-            className="w-full h-80 object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent flex flex-col justify-end p-12">
-            <h1 className="text-5xl font-bold text-white mb-4">About EZLY</h1>
-            <p className="text-xl text-teal-300 font-medium tracking-wide">Building the Future of Home Improvement</p>
+      <section className="max-w-4xl mx-auto px-6 pt-24 pb-20">
+        <h1 className="text-5xl sm:text-6xl font-bold text-[#0f3a7d] mb-8 tracking-tight">
+          About Prolink
+        </h1>
+        <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed max-w-2xl">
+          We built Prolink because we saw contractors struggling with the same problems every day. Too many apps. Not enough time. We thought there had to be a better way.
+        </p>
+      </section>
+
+      <section className="bg-[#f8fafc] py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-[#0f3a7d] mb-8">Our Story</h2>
+          <div className="text-lg text-gray-600 max-w-none">
+            <p className="mb-6">
+              Running a contractor business is hard enough without juggling a dozen different tools just to stay organized. We created Prolink to solve that.
+            </p>
+            <p className="mb-6">
+              Prolink brings CRM, job management, invoicing, and customer communication into one simple platform. No more switching between apps. No more lost leads. No more paperwork headaches.
+            </p>
+            <p>
+              We believe contractors should spend their time doing what they do best — great work — not wrestling with software.
+            </p>
           </div>
         </div>
-        
-        <div className="prose prose-lg prose-navy max-w-none text-gray-700">
-          <p className="text-2xl text-gray-800 mb-12 font-medium leading-relaxed italic text-center">
-            "EZLY was born from a simple realization: finding, vetting, and managing home projects should feel as seamless as any other modern digital experience."
-          </p>
+      </section>
 
-          <h2 className="text-4xl font-bold text-gray-900 mt-16 mb-8 text-center">The Problem with Traditional Platforms</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-inner">
-               <p className="mb-4 text-lg text-gray-700">For years, homeowners have faced a fragmented and often frustrating process. Traditional systems often act as:</p>
-               <ul className="space-y-4 text-gray-600">
-                 <li><span className="text-teal-600 font-bold">●</span> The Lead-Gen Black Hole</li>
-                 <li><span className="text-teal-600 font-bold">●</span> Opaque Review Systems</li>
-                 <li><span className="text-teal-600 font-bold">●</span> Broken Communication Bridges</li>
-                 <li><span className="text-teal-600 font-bold">●</span> Unclear Financial Tracking</li>
-               </ul>
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-[#0f3a7d] mb-12 text-center">What We Stand For</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl p-6 border border-gray-100">
+              <Wrench className="w-8 h-8 text-[#14b8a6] mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Built for Contractors</h3>
+              <p className="text-gray-600">Every feature designed with real contractors in mind. We asked, we listened, we built.</p>
             </div>
-            <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" 
-              alt="Frustrated homeowner" 
-              className="rounded-2xl shadow-lg"
-            />
-          </div>
-
-          <h2 className="text-4xl font-bold text-navy-800 mt-20 mb-10 text-center">The EZLY Advantage</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-navy-50 p-6 rounded-xl border border-navy-100">
-              <h3 className="font-bold text-navy-900 mb-2">Curated, Not Sold</h3>
-              <p className="text-sm">We don't "sell leads." We connect you with a hand-picked, vetted network of pros who are ready to listen to your specific needs.</p>
+            <div className="bg-white rounded-xl p-6 border border-gray-100">
+              <Shield className="w-8 h-8 text-[#14b8a6] mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Transparency</h3>
+              <p className="text-gray-600">No hidden fees. No surprises. Simple pricing for a simple product.</p>
             </div>
-            <div className="bg-teal-50 p-6 rounded-xl border border-teal-100">
-              <h3 className="font-bold text-teal-900 mb-2">Transparency First</h3>
-              <p className="text-sm">From licensing verification to detailed, line-item bidding, we bring clarity where there used to be guesswork.</p>
+            <div className="bg-white rounded-xl p-6 border border-gray-100">
+              <Users className="w-8 h-8 text-[#14b8a6] mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Real Support</h3>
+              <p className="text-gray-600">Talk to real people who understand your business. Not a chatbot. Not a ticket system.</p>
             </div>
-            <div className="bg-navy-50 p-6 rounded-xl border border-navy-100">
-              <h3 className="font-bold text-navy-900 mb-2">Integrated Workflow</h3>
-              <p className="text-sm">Our platform isn't just a list—it's a tool. Manage messaging, track contracts, and settle payments securely in one place.</p>
-            </div>
-            <div className="bg-teal-50 p-6 rounded-xl border border-teal-100">
-              <h3 className="font-bold text-teal-900 mb-2">True Vetting</h3>
-              <p className="text-sm">We handle the background research, license verification, and insurance confirmation so you only focus on the best professionals.</p>
+            <div className="bg-white rounded-xl p-6 border border-gray-100">
+              <TrendingUp className="w-8 h-8 text-[#14b8a6] mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Always Improving</h3>
+              <p className="text-gray-600">We ship updates weekly. Your feedback shapes the product.</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <h2 className="text-3xl font-bold text-gray-900 mt-16 mb-6">Our Mission</h2>
-          <p>
-            At EZLY, our goal is to empower homeowners and contractors to build better together. By reducing the noise and friction inherent in older systems, we foster direct, professional relationships built on transparency and trust.
+      <section className="bg-[#0f3a7d] py-20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to simplify your business?</h2>
+          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+            Join hundreds of contractors who have made the switch to Prolink.
           </p>
-          <p className="mt-6 font-bold text-gray-900 italic">
-            Your home is your biggest investment. Use EZLY to treat it that way.
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/signup/contractor"
+              className="px-8 py-4 bg-[#14b8a6] text-white font-bold rounded-xl hover:bg-[#0d9e8c] transition text-lg"
+            >
+              Start Free Trial
+            </Link>
+            <Link 
+              href="/login"
+              className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition text-lg"
+            >
+              Sign In
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-[#0c2e5c] text-white py-12">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-white/60 text-sm">
+            &copy; 2026 Prolink by EZLY. All rights reserved.
           </p>
         </div>
-
-        <div className="mt-16 text-center">
-          <Link 
-            href="/signup"
-            className="inline-block px-8 py-4 bg-navy-600 text-white rounded-full font-bold hover:bg-navy-700 transition shadow-lg"
-          >
-            Get Started with EZLY
-          </Link>
-        </div>
-      </div>
+      </footer>
     </div>
   )
 }

@@ -2,283 +2,103 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { supabase } from '@/lib/supabase-client'
-import { useRouter, useSearchParams } from 'next/navigation'
-
-type UserRole = 'homeowner' | 'contractor'
-
-function SignupPageContent() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [role, setRole] = useState<UserRole>('homeowner')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-
-  // Check for role query parameter and redirect to segment-specific signup
-  useEffect(() => {
-    const roleParam = searchParams.get('role')
-    if (roleParam === 'homeowner') {
-      router.push('/signup/homeowner')
-    } else if (roleParam === 'contractor') {
-      router.push('/signup/contractor')
-    }
-  }, [searchParams, router])
-
-  const handleGoogleSignup = async () => {
-    setLoading(true)
-    setError(null)
-    
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      })
-      
-      if (error) throw error
-    } catch (err: any) {
-      setError(err.message || 'Failed to sign up with Google')
-      setLoading(false)
-    }
-  }
-
-  const handleSignup = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-
-    try {
-      // Create auth user
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-      })
-
-      if (authError) {
-        setError(authError.message)
-        setLoading(false)
-        return
-      }
-
-      // Create profile
-      if (authData.user) {
-        const { error: profileError } = await supabase.from('profiles').insert({
-          id: authData.user.id,
-          email,
-          full_name: fullName,
-          role,
-        })
-
-        if (profileError) {
-          setError('Failed to create profile')
-        } else {
-          router.push('/dashboard')
-        }
-      }
-    } catch (err) {
-      setError('An error occurred during signup')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  // Show role selection screen first
-  const showRoleSelection = true
-
-  if (showRoleSelection) {
-    return (
-      <div className="min-h-screen bg-white">
-        <div className="border-b border-gray-200">
-          <div className="max-w-lg mx-auto px-6 py-4">
-            <Link href="/" className="inline-flex items-center text-navy-600 hover:text-navy-700 font-medium">
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-
-        <div className="max-w-lg mx-auto px-6 py-16">
-          <div className="mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Create Your Account</h1>
-            <p className="text-lg text-gray-600">First, let's set up your account for the right role</p>
-          </div>
-
-          <div className="grid gap-6">
-            {/* Homeowner Option */}
-            <button
-              onClick={() => router.push('/signup/homeowner')}
-              className="group text-left p-6 rounded-xl border-2 border-gray-200 hover:border-navy-600 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">I'm a Homeowner</h3>
-                  <p className="text-gray-600 mb-4">
-                    Find and hire verified contractors for your home projects
-                  </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>✓ Post unlimited projects</li>
-                    <li>✓ Get multiple bids</li>
-                    <li>✓ Message contractors directly</li>
-                  </ul>
-                </div>
-                <div className="text-navy-600 group-hover:text-navy-700 transition">→</div>
-              </div>
-            </button>
-
-            {/* Contractor Option */}
-            <button
-              onClick={() => router.push('/signup/contractor')}
-              className="group text-left p-6 rounded-xl border-2 border-gray-200 hover:border-teal-600 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">I'm a Contractor</h3>
-                  <p className="text-gray-600 mb-4">
-                    Grow your business and connect with quality home projects
-                  </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    <li>✓ Browse available projects</li>
-                    <li>✓ Submit competitive bids</li>
-                    <li>✓ Build your reputation</li>
-                  </ul>
-                </div>
-                <div className="text-teal-600 group-hover:text-teal-700 transition">→</div>
-              </div>
-            </button>
-          </div>
-
-          <div className="mt-12 text-center text-sm text-gray-600">
-            <p>Already have an account? <Link href="/login" className="text-navy-600 hover:text-navy-700 font-medium">Sign In</Link></p>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-navy-50 to-indigo-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <Image src="/ezly-logo.png" alt="Ezly Logo" width={400} height={160} style={{ objectFit: 'contain' }} className="mx-auto mb-2" priority />
-          <p className="text-gray-600 text-center mb-6">Create an Account</p>
-
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-              <p className="text-red-800 text-sm">{error}</p>
-            </div>
-          )}
-
-          <form onSubmit={handleSignup} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
-                placeholder="John Doe"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
-                placeholder="••••••••"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
-                I am a:
-              </label>
-              <select
-                id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value as UserRole)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent"
-              >
-                <option value="homeowner">Homeowner</option>
-                <option value="contractor">Contractor</option>
-              </select>
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-navy-600 text-white py-2 rounded-lg font-medium hover:bg-navy-700 disabled:opacity-50"
-            >
-              {loading ? 'Creating account...' : 'Sign Up'}
-            </button>
-          </form>
-
-          {/* Divider */}
-          <div className="my-6 flex items-center gap-3">
-            <div className="flex-1 h-px bg-gray-200"></div>
-            <span className="text-xs text-gray-500 font-medium">OR</span>
-            <div className="flex-1 h-px bg-gray-200"></div>
-          </div>
-
-          {/* OAuth Buttons */}
-          <div className="space-y-3">
-            <button 
-              type="button"
-              onClick={handleGoogleSignup}
-              disabled={loading}
-              className="w-full py-3 border border-gray-300 rounded-lg text-gray-900 hover:bg-gray-50 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Continue with Google
-            </button>
-          </div>
-
-          <p className="text-center text-gray-600 text-sm mt-6">
-            Already have an account?{' '}
-            <Link href="/login" className="text-navy-600 hover:underline">
-              Sign in
-            </Link>
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { ArrowRight, CheckCircle } from 'lucide-react'
+import EzlyLogo from '@/components/EzlyLogo'
 
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center">Loading...</div>}>
-      <SignupPageContent />
-    </Suspense>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-[#0f3a7d] py-4 px-6">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <Link href="/" className="w-40">
+            <EzlyLogo className="w-full h-auto" />
+          </Link>
+          <Link href="/" className="text-white/80 hover:text-white text-sm font-medium">
+            Back to Home
+          </Link>
+        </div>
+      </header>
+
+      {/* Role Selection */}
+      <section className="max-w-2xl mx-auto px-6 py-20">
+        <h1 className="text-4xl sm:text-5xl font-bold text-[#0f3a7d] mb-4 text-center">
+          Get Started with Prolink
+        </h1>
+        <p className="text-xl text-gray-600 text-center mb-12">
+          Choose how you want to use Prolink
+        </p>
+
+        <div className="grid gap-6">
+          {/* Contractor Option */}
+          <button
+            onClick={() => window.location.href = '/signup/contractor'}
+            className="group text-left p-8 rounded-xl border-2 border-gray-200 hover:border-[#14b8a6] hover:shadow-lg transition-all duration-300 bg-white"
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">I'm a Contractor</h3>
+                <p className="text-gray-600 mb-6">
+                  CRM, job management, invoicing — everything you need to run your business.
+                </p>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#14b8a6]" />
+                    CRM & customer management
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#14b8a6]" />
+                    Job tracking & scheduling
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#14b8a6]" />
+                    Invoicing & payments
+                  </li>
+                </ul>
+              </div>
+              <ArrowRight className="w-8 h-8 text-[#14b8a6] group-hover:translate-x-2 transition-transform" />
+            </div>
+          </button>
+
+          {/* Homeowner Option - Secondary */}
+          <button
+            onClick={() => window.location.href = '/signup/homeowner'}
+            className="group text-left p-8 rounded-xl border-2 border-gray-200 hover:border-[#0f3a7d] hover:shadow-lg transition-all duration-300 bg-white"
+          >
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">I'm a Homeowner</h3>
+                <p className="text-gray-600 mb-6">
+                  Find trusted contractors for your home projects.
+                </p>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#0f3a7d]" />
+                    Post projects and get bids
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#0f3a7d]" />
+                    Verified contractors
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-[#0f3a7d]" />
+                    Secure payments
+                  </li>
+                </ul>
+              </div>
+              <ArrowRight className="w-8 h-8 text-[#0f3a7d] group-hover:translate-x-2 transition-transform" />
+            </div>
+          </button>
+        </div>
+
+        <p className="text-center text-gray-600 mt-10 text-sm">
+          Already have an account?{' '}
+          <Link href="/login" className="text-[#14b8a6] hover:text-[#0d9e8c] font-semibold">
+            Sign In
+          </Link>
+        </p>
+      </section>
+    </div>
   )
 }

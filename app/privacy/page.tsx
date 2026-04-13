@@ -1,40 +1,52 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, Lock, FileText, Eye } from 'lucide-react'
+import { Lock, FileText, Eye } from 'lucide-react'
+import Navigation from '@/components/Navigation'
 
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <Link href="/" className="inline-flex items-center text-navy-600 hover:text-navy-700 font-medium">
-            <ArrowLeft size={18} className="mr-2" /> Back to Home
-          </Link>
-        </div>
-      </div>
-      <div className="max-w-4xl mx-auto px-6 py-16">
-        <h1 className="text-5xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
-        <div className="prose prose-lg prose-navy max-w-none text-gray-700">
-          <p className="text-xl mb-8">EZLY is committed to your privacy. Here's how we protect it.</p>
-          <div className="grid gap-6">
-            <div className="flex gap-4">
-              <Lock className="text-teal-600 mt-1" size={24} />
-              <div>
-                <h3 className="font-bold text-navy-900">Data Encryption</h3>
-                <p>Your sensitive data is encrypted using industry-standard protocols.</p>
-              </div>
+      <Navigation />
+
+      <section className="max-w-4xl mx-auto px-6 pt-24 pb-20">
+        <h1 className="text-5xl sm:text-6xl font-bold text-[#0f3a7d] mb-8 tracking-tight">
+          Privacy Policy
+        </h1>
+        <p className="text-xl text-gray-600 max-w-2xl">
+          At Prolink, we take your privacy seriously. Here&apos;s how we protect your data.
+        </p>
+      </section>
+
+      <section className="bg-[#f8fafc] py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="grid gap-8">
+            <div className="bg-white rounded-xl p-6 border border-gray-100">
+              <Lock className="w-6 h-6 text-[#14b8a6] mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Data Encryption</h3>
+              <p className="text-gray-600">Your sensitive data is encrypted using industry-standard protocols. We invest in security so you don&apos;t have to worry.</p>
             </div>
-            <div className="flex gap-4">
-              <Eye className="text-teal-600 mt-1" size={24} />
-              <div>
-                <h3 className="font-bold text-navy-900">Zero Selling</h3>
-                <p>We never sell your contact information to third parties. Your data is used strictly for connecting you with verified professionals.</p>
-              </div>
+            <div className="bg-white rounded-xl p-6 border border-gray-100">
+              <Eye className="w-6 h-6 text-[#14b8a6] mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">We Never Sell Your Data</h3>
+              <p className="text-gray-600">Your business data is yours. We never sell customer information to third parties or advertisers.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 border border-gray-100">
+              <FileText className="w-6 h-6 text-[#14b8a6] mb-3" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Transparent Practices</h3>
+              <p className="text-gray-600">We are upfront about what data we collect and why. No hidden clauses. No surprises.</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <footer className="bg-[#0c2e5c] text-white py-12">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-white/60 text-sm">
+            &copy; 2026 Prolink by EZLY. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
