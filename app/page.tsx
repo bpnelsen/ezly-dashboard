@@ -41,23 +41,28 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col items-center gap-4">
-          <Link href="/" className="flex items-center flex-shrink-0 w-full justify-center max-w-[400px] mx-auto">
-            <EzlyLogo className="w-full" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+          <Link href="/" className="flex items-center flex-shrink-0 w-36 sm:w-48">
+            <EzlyLogo className="w-full h-auto" />
           </Link>
           
-          <div className="hidden md:flex flex-wrap justify-center gap-6 items-center text-sm font-medium">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-1 items-center text-sm font-medium">
             <Link href="/about" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">About</Link>
             <Link href="/blog" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Blog</Link>
             <a href="mailto:ezly.home@gmail.com" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Contact</a>
             <a href="#how-it-works" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">How it Works</a>
             <a href="#contractors" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Contractors</a>
-            <div className="flex gap-4 items-center">
-              <Link href="/login" className="text-navy-500 hover:text-navy-700 font-semibold transition">Sign In</Link>
-              <Link href="/signup" className="px-5 py-2.5 bg-navy-500 text-white rounded-full font-semibold hover:bg-navy-600 transition">Get Started</Link>
-            </div>
           </div>
-        </div>
+
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex gap-3 items-center">
+            <Link href="/login" className="px-5 py-2.5 text-navy-500 hover:text-navy-700 text-sm font-semibold transition">
+              Sign In
+            </Link>
+            <Link 
+              href="/signup"
+              className="px-5 py-2.5 bg-navy-500 text-white rounded-full font-semibold text-sm hover:bg-navy-600 transition flex items-center justify-center min-h-[40px]"
             >
               Get Started
             </Link>
@@ -167,8 +172,8 @@ export default function Home() {
           {/* Hero Image with stylish overlay */}
           <div className="relative rounded-3xl h-64 sm:h-96 overflow-hidden shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=800&fit=crop" 
-              alt="Professional residential construction project"
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=800&fit=crop" 
+              alt="Professional contractor"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
