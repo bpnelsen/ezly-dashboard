@@ -26,7 +26,7 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
         {/* Desktop Navigation - Elegant, distributed */}
         {variant === 'default' && (
           <div className="hidden lg:flex flex-1 justify-between items-center px-8">
-            <div className="flex items-center gap-8 text-sm">
+            <div className="flex items-center gap-10 text-base">
               <Link href="/about" className="relative text-gray-600 hover:text-[#0f3a7d] transition-colors group">
                 About
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0f3a7d] transition-all duration-300 group-hover:w-full"></span>
@@ -50,13 +50,13 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
             </div>
 
             {/* Auth Buttons */}
-            <div className="flex items-center gap-4">
-              <Link href="/login" className="text-sm font-medium text-[#0f3a7d] hover:text-[#14b8a6] transition-colors">
+            <div className="flex items-center gap-5">
+              <Link href="/login" className="text-base font-medium text-[#0f3a7d] hover:text-[#14b8a6] transition-colors">
                 Sign In
               </Link>
               <Link 
                 href="/signup"
-                className="px-5 py-2 bg-[#0f3a7d] text-white rounded-lg font-medium text-sm hover:bg-[#0c2e5c] hover:shadow-md transition-all duration-300"
+                className="px-6 py-2.5 bg-[#0f3a7d] text-white rounded-lg font-medium text-base hover:bg-[#0c2e5c] hover:shadow-md transition-all duration-300"
               >
                 Get Started
               </Link>
@@ -77,19 +77,19 @@ export default function Navigation({ variant = 'default' }: NavigationProps) {
       {menuOpen && (
         <div className="lg:hidden border-t border-gray-100 bg-white">
           <div className="px-4 py-4 space-y-1">
-            <Link href="/about" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <Link href="/about" className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
               About
             </Link>
-            <Link href="/blog" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <Link href="/blog" className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
               Blog
             </Link>
-            <a href="mailto:ezly.home@gmail.com" className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <a href="mailto:ezly.home@gmail.com" className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
               Contact
             </a>
-            <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <a href="/#how-it-works" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
               How it Works
             </a>
-            <a href="/#contractors" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
+            <a href="/#contractors" onClick={() => setMenuOpen(false)} className="block px-4 py-3 text-base text-gray-700 hover:text-[#0f3a7d] hover:bg-gray-50 rounded-lg transition-colors font-medium">
               Contractors
             </a>
             <hr className="my-3 border-gray-100" />
