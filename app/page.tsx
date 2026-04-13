@@ -41,28 +41,28 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 border-b border-gray-200/50 backdrop-blur-xl bg-white/90">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center gap-4">
           <Link href="/" className="flex items-center flex-shrink-0 w-36 sm:w-48">
             <EzlyLogo className="w-full h-auto" />
           </Link>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-1 items-center text-sm font-medium">
-            <Link href="/about" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">About</Link>
-            <Link href="/blog" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Blog</Link>
-            <a href="mailto:ezly.home@gmail.com" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Contact</a>
-            <a href="#how-it-works" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">How it Works</a>
-            <a href="#contractors" className="px-3 py-2 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all">Contractors</a>
+          {/* Desktop Navigation - Distributed */}
+          <div className="hidden lg:flex flex-1 justify-around items-center text-xs font-medium px-4">
+            <Link href="/about" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">About</Link>
+            <Link href="/blog" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">Blog</Link>
+            <a href="mailto:ezly.home@gmail.com" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">Contact</a>
+            <a href="#how-it-works" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">How it Works</a>
+            <a href="#contractors" className="px-2 py-1.5 rounded-lg hover:bg-[#0f3a7d] hover:text-white transition-all whitespace-nowrap">Contractors</a>
           </div>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex gap-3 items-center">
-            <Link href="/login" className="px-5 py-2.5 text-navy-500 hover:text-navy-700 text-sm font-semibold transition">
+          <div className="hidden lg:flex gap-2 items-center flex-shrink-0">
+            <Link href="/login" className="px-3 py-1.5 text-navy-500 hover:text-navy-700 text-xs font-semibold transition">
               Sign In
             </Link>
             <Link 
               href="/signup"
-              className="px-5 py-2.5 bg-navy-500 text-white rounded-full font-semibold text-sm hover:bg-navy-600 transition flex items-center justify-center min-h-[40px]"
+              className="px-4 py-1.5 bg-navy-500 text-white rounded-full font-semibold text-xs hover:bg-navy-600 transition"
             >
               Get Started
             </Link>
@@ -71,9 +71,9 @@ export default function Home() {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg touch-none"
+            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg touch-none"
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
