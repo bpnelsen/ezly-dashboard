@@ -325,7 +325,7 @@ export default function Home() {
               <h3 className="text-lg font-bold text-white mb-2">Pro</h3>
               <p className="text-white/70 text-sm mb-4">For growing contractors who want more.</p>
               <div className="text-4xl font-bold text-white mb-6">
-                $79<span className="text-lg text-white/60 font-normal">/mo</span>
+                $49<span className="text-lg text-white/60 font-normal">/mo</span>
               </div>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2 text-white text-sm">
