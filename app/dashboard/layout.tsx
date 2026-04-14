@@ -153,7 +153,7 @@ export default function DashboardLayout({
         {/* Top Bar */}
         <div className="h-16 bg-white border-b border-navy-500/10 flex items-center justify-between px-8">
           <div>
-            <h2 className="text-navy-500 text-sm font-semibold">EZLY Platform</h2>
+            <h2 className="text-navy-500 text-sm font-semibold">Prolink</h2>
           </div>
           <div className="flex items-center gap-4">
             {/* Admin Role Switcher */}
