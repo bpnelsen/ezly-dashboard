@@ -27,7 +27,7 @@ export default function LoginPage() {
       
       if (error) throw error
       
-      window.location.href = '/dashboard'
+      window.location.href = 'https://prolink-ezly.vercel.app/'
     } catch (err: any) {
       setError(err.message || 'Failed to sign in')
     } finally {
