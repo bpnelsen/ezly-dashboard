@@ -56,7 +56,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      {/* Professional White Header */}
+      {/* Header */}
       <header className="bg-white border-b border-gray-100 py-4 px-6 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
@@ -71,7 +71,8 @@ export default function LoginPage() {
 
       {/* Form */}
       <div className="max-w-md mx-auto px-6 py-16">
-        <div className="text-center mb-8">
+        <div className="text-center mb-10 flex flex-col items-center">
+          <EzlyLogo className="w-24 h-auto mb-6" />
           <h1 className="text-3xl font-bold text-[#0f3a7d] mb-2">Welcome back</h1>
           <p className="text-gray-600">Sign in to your account</p>
         </div>
