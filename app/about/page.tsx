@@ -9,7 +9,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
-      <section className="max-w-4xl mx-auto px-6 pt-24 pb-20">
+      <section className="max-w-4xl mx-auto px-6 pt-28 pb-20">
         <h1 className="text-5xl sm:text-6xl font-bold text-[#0f3a7d] mb-8 tracking-tight">
           About Prolink
         </h1>

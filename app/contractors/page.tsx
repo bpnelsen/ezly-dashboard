@@ -49,7 +49,7 @@ function ContractorsContent() {
       <Navigation />
 
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 py-6 sm:py-8">
+      <div className="bg-white border-b border-gray-200 pt-24 pb-6 sm:pt-28 sm:pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             {service ? `${service} Contractors` : 'All Contractors'}
