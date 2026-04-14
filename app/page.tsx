@@ -16,7 +16,7 @@ export default function Home() {
       <Navigation />
 
       {/* HERO - Enterprise Clean */}
-      <section className="bg-gradient-to-br from-[#0f3a7d] via-[#0f3a7d] to-[#0c2e5c] pt-24 sm:pt-28 pb-24 sm:pb-36 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0f3a7d] via-[#0f3a7d] to-[#0c2e5c] pt-20 sm:pt-24 pb-24 sm:pb-36 relative overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
