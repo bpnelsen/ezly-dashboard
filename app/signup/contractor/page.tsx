@@ -138,12 +138,13 @@ export default function ContractorSignup() {
   return (
     <div className="min-h-screen bg-white">
       {/* Minimal Header */}
-      <header className="bg-[#0f3a7d] py-4 px-6">
+      <header className="bg-white border-b border-gray-100 py-4 px-6">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <Link href="/" className="w-40">
-            <EzlyLogo className="w-full h-auto" />
+          <Link href="/" className="flex items-center gap-3">
+            <EzlyLogo className="w-28 h-auto" />
+            <span className="text-[#0f3a7d] font-bold text-lg tracking-tight">Prolink</span>
           </Link>
-          <Link href="/" className="text-white/80 hover:text-white text-sm font-medium flex items-center gap-2">
+          <Link href="/" className="text-gray-500 hover:text-[#0f3a7d] text-sm font-medium transition-colors flex items-center gap-2">
             <ArrowLeft size={16} />
             Back to Home
           </Link>

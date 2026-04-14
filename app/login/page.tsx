@@ -57,12 +57,13 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       {/* Header */}
-      <header className="bg-[#0f3a7d] py-4 px-6">
+      <header className="bg-white border-b border-gray-100 py-4 px-6">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <Link href="/" className="w-40">
-            <EzlyLogo className="w-full h-auto" />
+          <Link href="/" className="flex items-center gap-3">
+            <EzlyLogo className="w-28 h-auto" />
+            <span className="text-[#0f3a7d] font-bold text-lg tracking-tight">Prolink</span>
           </Link>
-          <Link href="/" className="text-white/80 hover:text-white text-sm font-medium flex items-center gap-2">
+          <Link href="/" className="text-gray-500 hover:text-[#0f3a7d] text-sm font-medium transition-colors">
             Back to Home
           </Link>
         </div>
@@ -72,7 +73,7 @@ export default function LoginPage() {
       <div className="max-w-md mx-auto px-6 py-16">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-[#0f3a7d] mb-2">Welcome back</h1>
-          <p className="text-gray-600">Sign in to your Prolink account</p>
+          <p className="text-gray-600">Sign in to your account</p>
         </div>
 
         <div className="bg-white rounded-xl border border-gray-100 p-8 shadow-sm">
