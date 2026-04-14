@@ -34,13 +34,13 @@ export default function Navigation() {
         {/* Desktop Nav */}
         <div className="hidden lg:flex flex-1 justify-between items-center pl-10">
           <div className={`flex items-center transition-all duration-300 ${scrolled ? 'gap-6' : 'gap-8'}`}>
-            {['Features', 'How It Works', 'Pricing', 'FAQ'].map((label) => (
+            {[{label:'Features',href:'/#features'},{label:'How It Works',href:'/#how-it-works'},{label:'Pricing',href:'/#pricing'},{label:'Blog',href:'/blog'},{label:'Contact',href:'/contact'}].map((item) => (
               <a
-                key={label}
-                href={`/#${label.toLowerCase().replace(/\s+/g, '-')}`}
+                key={item.label}
+                href={item.href}
                 className={`text-[#0f3a7d] hover:text-[#14b8a6] font-semibold transition-all duration-300 ${scrolled ? 'text-sm' : 'text-base'}`}
               >
-                {label}
+                {item.label}
               </a>
             ))}
           </div>
@@ -77,14 +77,14 @@ export default function Navigation() {
       {menuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100">
           <div className="max-w-6xl mx-auto px-4 py-4 space-y-1">
-            {['Features', 'How It Works', 'Pricing', 'FAQ'].map((label) => (
+            {[{label:'Features',href:'/#features'},{label:'How It Works',href:'/#how-it-works'},{label:'Pricing',href:'/#pricing'},{label:'Blog',href:'/blog'},{label:'Contact',href:'/contact'}].map((item) => (
               <a
-                key={label}
-                href={`/#${label.toLowerCase().replace(/\s+/g, '-')}`}
+                key={item.label}
+                href={item.href}
                 onClick={() => setMenuOpen(false)}
                 className="block px-4 py-3 text-[#0f3a7d] hover:bg-gray-50 rounded-lg font-semibold"
               >
-                {label}
+                {item.label}
               </a>
             ))}
             <hr className="my-3 border-gray-200" />
