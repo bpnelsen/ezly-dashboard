@@ -60,20 +60,38 @@ export default function Navigation({ transparent = false }: NavigationProps) {
               scrolled ? 'gap-6' : 'gap-8',
             ].join(' ')}
           >
-            {['Features', 'How It Works', 'Pricing', 'FAQ'].map((label) => (
-              <a
-                key={label}
-                href={`/#${label.toLowerCase().replace(/\s+/g, '-')}`}
-                className={[
+<a href={scrolled ? '/#features' : '/#features'} className={[
                   'font-semibold tracking-wide transition-all duration-500',
-                  isDark
+                  scrolled
                     ? 'text-[#0f3a7d] hover:text-[#14b8a6] text-sm'
                     : 'text-white/90 hover:text-white text-base',
-                ].join(' ')}
-              >
-                {label}
-              </a>
-            ))}
+                ].join(' ')}>
+              Features
+            </a>
+            <a href={scrolled ? '/#how-it-works' : '/#how-it-works'} className={[
+                  'font-semibold tracking-wide transition-all duration-500',
+                  scrolled
+                    ? 'text-[#0f3a7d] hover:text-[#14b8a6] text-sm'
+                    : 'text-white/90 hover:text-white text-base',
+                ].join(' ')}>
+              How It Works
+            </a>
+            <a href={scrolled ? '/#pricing' : '/#pricing'} className={[
+                  'font-semibold tracking-wide transition-all duration-500',
+                  scrolled
+                    ? 'text-[#0f3a7d] hover:text-[#14b8a6] text-sm'
+                    : 'text-white/90 hover:text-white text-base',
+                ].join(' ')}>
+              Pricing
+            </a>
+            <a href={scrolled ? '/#faq' : '/#faq'} className={[
+                  'font-semibold tracking-wide transition-all duration-500',
+                  scrolled
+                    ? 'text-[#0f3a7d] hover:text-[#14b8a6] text-sm'
+                    : 'text-white/90 hover:text-white text-base',
+                ].join(' ')}>
+              FAQ
+            </a>
           </div>
 
           {/* Auth */}
