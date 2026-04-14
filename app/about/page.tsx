@@ -86,11 +86,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <footer className="bg-[#0c2e5c] text-white py-12">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-white/60 text-sm">
-            &copy; 2026 Prolink by EZLY. All rights reserved.
-          </p>
+      <footer className="bg-white border-t border-gray-200">
+        <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-400 text-sm">&copy; 2026 Prolink by EZLY. All rights reserved.</p>
+          <div className="flex items-center gap-6 text-gray-400 text-sm">
+            <Link href="/privacy" className="hover:text-gray-600 transition">Privacy</Link>
+            <Link href="/about" className="hover:text-gray-600 transition">About</Link>
+            <a href="mailto:ezly.home@gmail.com" className="hover:text-gray-600 transition">Contact</a>
+          </div>
         </div>
       </footer>
     </div>

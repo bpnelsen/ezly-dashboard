@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      <Navigation transparent />
 
       {/* HERO - Enterprise Clean */}
       <section className="bg-gradient-to-br from-[#0f3a7d] via-[#0f3a7d] to-[#0c2e5c] pt-32 sm:pt-40 pb-24 sm:pb-36 relative overflow-hidden">
@@ -395,45 +395,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-[#0c2e5c] text-white py-16">
+      {/* FOOTER - Clean White Professional */}
+      <footer className="bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
-            <div className="col-span-2 sm:col-span-1">
-              <EzlyLogo className="w-36 h-auto mb-4 opacity-80" />
-              <p className="text-white/50 text-sm leading-relaxed">CRM and workflow management for modern contractors.</p>
+          {/* Main Footer */}
+          <div className="py-16 grid grid-cols-2 sm:grid-cols-5 gap-8">
+            {/* Brand */}
+            <div className="col-span-2">
+              <EzlyLogo className="w-32 h-auto mb-4" />
+              <p className="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
+                CRM and workflow management built for modern contractors.
+              </p>
+              <a
+                href="mailto:ezly.home@gmail.com"
+                className="text-[#14b8a6] text-sm font-semibold hover:text-[#0d9e8c] transition"
+              >
+                ezly.home@gmail.com
+              </a>
             </div>
+
+            {/* Product */}
             <div>
-              <h4 className="font-bold text-sm tracking-wide mb-4">Product</h4>
-              <ul className="space-y-2.5 text-sm text-white/60">
-                <li><a href="#features" className="hover:text-white transition">Features</a></li>
-                <li><a href="#pricing" className="hover:text-white transition">Pricing</a></li>
-                <li><Link href="/signup/contractor" className="hover:text-white transition">Get Started</Link></li>
+              <h4 className="text-gray-900 font-semibold text-sm mb-4">Product</h4>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#features" className="text-gray-500 hover:text-[#0f3a7d] transition">Features</a></li>
+                <li><a href="#pricing" className="text-gray-500 hover:text-[#0f3a7d] transition">Pricing</a></li>
+                <li><a href="#how-it-works" className="text-gray-500 hover:text-[#0f3a7d] transition">How It Works</a></li>
+                <li><a href="#faq" className="text-gray-500 hover:text-[#0f3a7d] transition">FAQ</a></li>
               </ul>
             </div>
+
+            {/* Company */}
             <div>
-              <h4 className="font-bold text-sm tracking-wide mb-4">Company</h4>
-              <ul className="space-y-2.5 text-sm text-white/60">
-                <li><Link href="/about" className="hover:text-white transition">About</Link></li>
-                <li><a href="mailto:ezly.home@gmail.com" className="hover:text-white transition">Contact</a></li>
-                <li><Link href="/privacy" className="hover:text-white transition">Privacy</Link></li>
+              <h4 className="text-gray-900 font-semibold text-sm mb-4">Company</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/about" className="text-gray-500 hover:text-[#0f3a7d] transition">About</Link></li>
+                <li><Link href="/privacy" className="text-gray-500 hover:text-[#0f3a7d] transition">Privacy Policy</Link></li>
+                <li><Link href="/resources" className="text-gray-500 hover:text-[#0f3a7d] transition">Resources</Link></li>
+                <li><a href="mailto:ezly.home@gmail.com" className="text-gray-500 hover:text-[#0f3a7d] transition">Contact</a></li>
               </ul>
             </div>
+
+            {/* Account */}
             <div>
-              <h4 className="font-bold text-sm tracking-wide mb-4">Account</h4>
-              <ul className="space-y-2.5 text-sm text-white/60">
-                <li><Link href="/login" className="hover:text-white transition">Sign In</Link></li>
-                <li><Link href="/signup/contractor" className="hover:text-white transition">Sign Up</Link></li>
-                <li><Link href="/dashboard" className="hover:text-white transition">Dashboard</Link></li>
+              <h4 className="text-gray-900 font-semibold text-sm mb-4">Account</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/login" className="text-gray-500 hover:text-[#0f3a7d] transition">Sign In</Link></li>
+                <li><Link href="/signup/contractor" className="text-gray-500 hover:text-[#0f3a7d] transition">Sign Up</Link></li>
+                <li><Link href="/dashboard" className="text-gray-500 hover:text-[#0f3a7d] transition">Dashboard</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-white/40 text-sm">&copy; 2026 Prolink by EZLY. All rights reserved.</p>
-            <div className="flex gap-6 text-white/40 text-sm">
-              <Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link>
-              <span>·</span>
-              <a href="mailto:ezly.home@gmail.com" className="hover:text-white transition">Contact</a>
+
+          {/* Bottom bar */}
+          <div className="border-t border-gray-100 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-gray-400 text-sm">&copy; 2026 Prolink by EZLY. All rights reserved.</p>
+            <div className="flex items-center gap-6 text-gray-400 text-sm">
+              <Link href="/privacy" className="hover:text-gray-600 transition">Privacy</Link>
+              <Link href="/about" className="hover:text-gray-600 transition">About</Link>
+              <a href="mailto:ezly.home@gmail.com" className="hover:text-gray-600 transition">Contact</a>
             </div>
           </div>
         </div>
