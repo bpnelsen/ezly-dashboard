@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
   },
+  verification: {
+    google: 'YOUR_GOOGLE_SITE_VERIFICATION_CODE',
+  },
   openGraph: {
     title: 'EZLY — Prolink for Contractors',
     description: 'CRM, job management, invoicing, and leads — built for contractors.',
