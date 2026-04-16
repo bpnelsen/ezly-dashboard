@@ -35,7 +35,7 @@ export default function Home() {
             Prolink helps you focus on the work, not the paperwork.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Link href="/signup/contractor" className="px-8 py-4 bg-[#14b8a6] hover:bg-[#0d9e8c] text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl text-lg flex items-center gap-2 group">
+            <Link href="https://app.useezly.com/signup" className="px-8 py-4 bg-[#14b8a6] hover:bg-[#0d9e8c] text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl text-lg flex items-center gap-2 group">
               Start Free Trial
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>

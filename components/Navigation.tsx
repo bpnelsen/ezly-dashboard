@@ -47,13 +47,13 @@ export default function Navigation() {
 
           <div className="flex items-center gap-4">
             <Link
-              href="/login"
+              href="https://app.useezly.com/login"
               className={`text-[#0f3a7d] hover:text-[#14b8a6] font-semibold transition-all duration-300 ${scrolled ? 'text-sm' : 'text-base'}`}
             >
               Sign In
             </Link>
             <Link
-              href="/signup/contractor"
+              href="https://app.useezly.com/signup"
               className={`bg-[#14b8a6] text-white rounded-lg font-bold hover:bg-[#0d9e8c] transition-all duration-300 ${
                 scrolled ? 'px-4 py-1.5 text-sm' : 'px-6 py-2.5 text-base'
               }`}
@@ -90,14 +90,14 @@ export default function Navigation() {
             <hr className="my-3 border-gray-200" />
             <div className="flex items-center gap-3 px-2">
               <Link
-                href="/login"
+                href="https://app.useezly.com/login"
                 onClick={() => setMenuOpen(false)}
                 className="flex-1 px-4 py-3 text-center border-2 border-[#0f3a7d] text-[#0f3a7d] rounded-lg font-semibold hover:bg-[#0f3a7d] hover:text-white transition-colors"
               >
                 Sign In
               </Link>
               <Link
-                href="/signup/contractor"
+                href="https://app.useezly.com/signup"
                 onClick={() => setMenuOpen(false)}
                 className="flex-1 px-4 py-3 text-center bg-[#14b8a6] text-white rounded-lg font-semibold hover:bg-[#0d9e8c] transition-colors"
               >
